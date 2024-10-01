@@ -1,0 +1,18 @@
+:root {
+  font-family: Arial, sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --background-color: #092320;
+  --primary-color: #18635b;
+  --secondary-color: #631845;
+  --tertiary-color: #633618;
+  --text-color: #f3ded1;
+
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
