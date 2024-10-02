@@ -5,7 +5,7 @@ export interface Item {
   component?: string;
   stats: ItemStat[];
   effect?: {
-    conditions: ItemCondition[];
+    condition: ItemCondition;
     stats: ItemStat[];
     duration?: number;
     cooldown?: number;
