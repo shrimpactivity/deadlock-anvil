@@ -1,45 +1,50 @@
-# Thoughts
+# React + TypeScript + Vite
 
-## Flow
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Character Archetype
-Pick from:
-- Tank
-- Gunner
-- Spellcaster
-- Sniper
-- Support
-- Ganker
-- Jungler
-- Custom
+Currently, two official plugins are available:
 
-### Stat Priorities
-Populated from archetype choices, but can be overridden.
-List of stats with checkboxes, and list of conditions with checkboxes.
-Maybe split into three categories.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### Mandated Items
-List of items that can be selected to always be included in build.
+## Expanding the ESLint configuration
 
-### Other Settings
-- set max number of active items
-- set max number of free slots in each category for reaction items
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-### Build Order
-Calculates relative value of item based on stats and cost, and displays items in order.
-- item order is broken into categories by total cost breakpoints
-    - potential breakpoints are 5000, 15000, then any
-- checkbox to show utility item categories
-- total stats from items, including item effect stats and their conditions
+- Configure the top-level `parserOptions` property like this:
 
-## Features
-- associate items / conditions with eachother to form synergy priorities
-    - for example, condition `health_above_60%` synergizes with `bullet_lifesteal`, `spirit_lifesteal`, `health_regen` etc.
-    - maybe this is a matrix? With items, conditions, and stats.
-        - so `alchemical_fire` might map to `movement_slow` and `duration`
-        - 3D matrix
-- active effects / effects with cooldowns have their stat priorities calculated as a percentage of their uptime
-- cooldown reduction affects other item priority calculations?
-- show 'recent as of ... (patch #)' at top of page
-- allow download of list of items json
-- build orders should be deterministic based on selections
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
+
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
+
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
