@@ -1,10 +1,6 @@
 <script>
-  let count = 0;
+  
 </script>
-
-<div>
-  <button on:click={() => count += 1}>Count: {count}</button>
-</div>
 
 <style>
   div {
@@ -13,3 +9,9 @@
     margin-top: 3em;
   }
 </style>
+
+<div>
+  <div class="navigation">
+    test
+  </div>
+</div>
