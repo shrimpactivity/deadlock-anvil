@@ -13,8 +13,10 @@ export const ITEMS: Item[] = [
     tier: 1,
     stats: [{ name: "bullet_shield_health", amount: 85 }],
     effect: {
-      condition: "close_range_15m",
-      stats: [{ name: "weapon_damage", amount: 0.25 }],
+      passive: {
+        condition: "close_range_15m",
+        stats: [{ name: "weapon_damage", amount: 0.25 }],
+      },
     },
   },
   {
@@ -26,9 +28,11 @@ export const ITEMS: Item[] = [
       { name: "bullet_shield_health", amount: 0.4 },
     ],
     effect: {
-      condition: 'headshot',
-      stats: [{name: 'bonus_weapon_damage', amount: 40}],
-      cooldown: 7.5
-    }
+      passive: {
+        condition: "headshot",
+        stats: [{ name: "bonus_weapon_damage", amount: 40 }],
+        cooldown: 7.5,
+      },
+    },
   },
 ];
