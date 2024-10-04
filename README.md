@@ -1,7 +1,7 @@
 
 # Thoughts
 
-## Flow EHEEHEEs
+## Flow
 
 ### Character Archetype
 Pick from:
