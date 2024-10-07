@@ -1,3 +1,12 @@
+type ItemTier = 1 | 2 | 3 | 4;
+
+type ItemCategory = "weapon" | "vitality" | "spirit";
+
+interface ItemStat {
+  name: ItemStatName;
+  amount: number;
+}
+
 export interface Item {
   name: string;
   category: ItemCategory;
@@ -6,31 +15,26 @@ export interface Item {
   stats: ItemStat[];
   effect?: {
     passive?: {
-      condition: ItemCondition;
       stats: ItemStat[];
       cooldown?: number;
       duration?: number;
+      condition?: ItemConditionName;
     };
     active?: {
       stats: ItemStat[];
       cooldown: number;
       duration?: number;
+      condition?: ItemConditionName
     };
   };
 }
 
-export type ItemTier = 1 | 2 | 3 | 4;
 
-export type ItemCategory = "weapon" | "vitality" | "spirit";
 
-export interface ItemStat {
-  name: ItemStatName;
-  amount: number;
-  type?: "percentage" | "flat";
-}
-
+// List of all stat names, useful for typescript name hinting.
 export type ItemStatName =
   | "ammo"
+  | "base_health"
   | "bleed_damage"
   | "bonus_health"
   | "bonus_spirit_damage"
@@ -65,6 +69,7 @@ export type ItemStatName =
   | "weapon_falloff_range"
   | "weapon_zoom";
 
+// List of all stat conditions, useful for typescript name hinting.
 export type ItemConditionName =
   | "active_reload"
   | "close_range_15m"

@@ -5,7 +5,7 @@ export const ITEMS: Item[] = [
     name: "basic_magazine",
     category: "weapon",
     tier: 1,
-    stats: [{ name: "ammo", amount: 0.24 }],
+    stats: [{ name: "ammo", amount: 0.24 }, {name: "weapon_damage", amount: 0.15}],
   },
   {
     name: "close_quarters",
