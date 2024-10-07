@@ -1,16 +1,22 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import { ITEMS } from "./config/items.config";
+import { calculateItemPriority } from "./lib/calc";
 
 function App() {
-  const [count, setCount] = useState(0);
+  ITEMS.forEach((item) =>
+    calculateItemPriority(item, { weapon_damage: 1 }, { headshot: 1 })
+  );
 
   return (
     <>
-      <div>
-        test
-      </div>
+      <nav>
+        <h1>Build Tool</h1>
+        <h1>Item List</h1>
+        <h1>About</h1>
+      </nav>
+      <main>
+        <div>Main Page</div>
+      </main>
     </>
   );
 }
