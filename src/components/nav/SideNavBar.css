@@ -1,0 +1,22 @@
+.side-nav-bar {
+  background: lightblue;
+  width: 15%;
+}
+
+.side-nav-bar ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.side-nav-bar a {
+  color: black;
+  text-decoration: none;
+}
+
+.side-nav-bar li:hover {
+  background-color: lightgray;
+}

@@ -5,6 +5,7 @@ import Root from "./routes/Root";
 import ErrorPage from "./routes/ErrorPage";
 
 import "./index.css";
+import BuildRoot from "./routes/build/BuildRoot";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "build",
-        element: <div>build tool</div>,
+        element: <BuildRoot />,
         children: [
           {
             path: "stats",

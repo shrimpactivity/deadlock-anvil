@@ -44,3 +44,4 @@ Calculates relative value of item based on stats and cost, and displays items in
 - show 'recent as of ... (patch #)' at top of page
 - allow download of list of items json
 - build orders should be deterministic based on selections
+- show the current item build order as a right side bar that dynamically updates

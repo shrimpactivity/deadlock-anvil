@@ -1,40 +1,30 @@
 import { NavLink } from "react-router-dom";
 
-import "./Navbar.css";
+import "./SideNavBar.css";
 
-export default function Navbar() {
+export default function SideNavBar() {
   return (
-    <div id="navbar">
+    <div className="side-nav-bar">
       <nav>
-        <ul>
+        <ul className="side-nav-bar-items">
           <li>
             <NavLink
-              to="/build"
+              to="/build/stats"
               className={({ isActive, isPending }) =>
                 isActive ? "active" : isPending ? "pending" : ""
               }
             >
-              Build Tool
+              Stat Priorities
             </NavLink>
           </li>
           <li>
-          <NavLink
-              to="/items"
+            <NavLink
+              to="/build/result"
               className={({ isActive, isPending }) =>
                 isActive ? "active" : isPending ? "pending" : ""
               }
             >
-              Items
-            </NavLink>
-          </li>
-          <li>
-          <NavLink
-              to="/about"
-              className={({ isActive, isPending }) =>
-                isActive ? "active" : isPending ? "pending" : ""
-              }
-            >
-              About
+              Results
             </NavLink>
           </li>
         </ul>
