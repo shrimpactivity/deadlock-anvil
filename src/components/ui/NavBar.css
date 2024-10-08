@@ -1,0 +1,24 @@
+nav ul {
+  background-color: lightgreen;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: lightgray;
+}
+
+nav a.active {
+  background-color: lightgray;
+  color: darkblue;
+  font-weight: bold;
+}
