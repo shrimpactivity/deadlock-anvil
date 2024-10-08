@@ -5,6 +5,7 @@ type ItemCategory = "weapon" | "vitality" | "spirit";
 interface ItemStat {
   name: ItemStatName;
   amount: number;
+  type?: "flat" | "percentage";
 }
 
 export interface Item {
@@ -13,23 +14,19 @@ export interface Item {
   tier: ItemTier;
   component?: string;
   stats: ItemStat[];
-  effect?: {
-    passive?: {
-      stats: ItemStat[];
-      cooldown?: number;
-      duration?: number;
-      condition?: ItemConditionName;
-    };
-    active?: {
-      stats: ItemStat[];
-      cooldown: number;
-      duration?: number;
-      condition?: ItemConditionName
-    };
+  passive?: {
+    stats: ItemStat[];
+    cooldown?: number;
+    duration?: number;
+    condition?: ItemConditionName;
+  };
+  active?: {
+    stats: ItemStat[];
+    cooldown: number;
+    duration?: number;
+    condition?: ItemConditionName;
   };
 }
-
-
 
 // List of all stat names, useful for typescript name hinting.
 export type ItemStatName =

@@ -44,7 +44,7 @@ function calculateItemStatPriority(
   }
 
   // Contribution from passive effect
-  const passive = item.effect?.passive;
+  const passive = item.passive;
   if (passive) {
     passive.stats.forEach((stat) => {
       if (priority[stat.name]) {
@@ -59,7 +59,7 @@ function calculateItemStatPriority(
   }
 
   // Contribution from active effect
-  const active = item.effect?.active;
+  const active = item.active;
   if (active) {
     active.stats.forEach((stat) => {
       if (priority[stat.name]) {
@@ -81,12 +81,12 @@ function calculateItemStatPriority(
  */
 function calculateItemConditionPriority(item: Item, priority: ConditionPriority) {
   let result = 0;
-  const passiveCondition = item.effect?.passive?.condition;
+  const passiveCondition = item.passive?.condition;
   if (passiveCondition && priority[passiveCondition]) {
     result += priority[passiveCondition];
   }
 
-  const activeCondition = item.effect?.active?.condition;
+  const activeCondition = item.active?.condition;
   if (activeCondition && priority[activeCondition]) {
     result += priority[activeCondition];
   }
