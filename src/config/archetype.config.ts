@@ -5,5 +5,7 @@ interface ArchetypeMapping {
 }
 
 export const Archetypes: ArchetypeMapping = {
-  "tank": ["weapon_damage", "bullet_lifesteal", "base_health"]
+  "tank": ["base_health"],
+  "gunner": ["weapon_damage"],
+  "spellcaster": ["spirit_power"],
 }
