@@ -1,11 +1,10 @@
 import "./App.css";
 import { ITEMS } from "./config/items.config";
-import { calculateItemPriority } from "./lib/calc";
 
 function App() {
-  ITEMS.forEach((item) =>
-    calculateItemPriority(item, { weapon_damage: 1 }, { headshot: 1 })
-  );
+  // ITEMS.forEach((item) =>
+  //   calculateItemPriority(item, { weapon_damage: 1 }, { headshot: 1 })
+  // );
 
   return (
     <>
