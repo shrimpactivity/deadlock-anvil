@@ -33,6 +33,7 @@ export type ItemStatName =
   | "ammo"
   | "base_health"
   | "bleed_damage"
+  | "bonus_ammo"
   | "bonus_health"
   | "bonus_spirit_damage"
   | "bonus_weapon_damage"
@@ -81,5 +82,6 @@ export type ItemConditionName =
   | "hit_hero"
   | "kinetic_dash"
   | "long_range_15m"
+  | "next_bullet"
   | "sustain_damage_from_enemies"
   | "stacking";
