@@ -1,11 +1,4 @@
 :root {
-<<<<<<< HEAD
-  background-color: darkslategray;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-}
-=======
   padding: 0;
 }
 
@@ -73,4 +66,3 @@
     @apply bg-background text-foreground;
   }
 }
->>>>>>> bf4a476ee8ff11a3dc13f0a349335a58503c784f
