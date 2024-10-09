@@ -1,6 +1,5 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+export function underscoreToCapitalCase(str: string): string {
+  const words = str.split("_");
+  const capitalWords = words.map(word => word.charAt(0))
+  
 }

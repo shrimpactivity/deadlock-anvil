@@ -6,6 +6,7 @@ import ErrorPage from "./routes/ErrorPage";
 
 import "./index.css";
 import BuildRoot from "./routes/build/BuildRoot";
+import StatsPage from "./routes/build/StatsPage";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "stats",
-            element: <div>stat priorities</div>,
+            element: <StatsPage />,
           },
           {
             path: "required-items",
