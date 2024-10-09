@@ -1,6 +1,5 @@
 .side-nav-bar {
   background: lightblue;
-  width: 15%;
 }
 
 .side-nav-bar ul {
@@ -9,7 +8,14 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  text-align: right;
+}
+
+.side-nav-bar li {
+  padding: 0.2em;
+}
+
+.side-nav-bar li:hover {
+  background-color: lightgray;
 }
 
 .side-nav-bar a {
@@ -17,6 +23,6 @@
   text-decoration: none;
 }
 
-.side-nav-bar li:hover {
-  background-color: lightgray;
+.side-nav-bar a.active {
+  font-weight: bold;
 }
