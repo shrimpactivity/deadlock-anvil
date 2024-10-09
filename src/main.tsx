@@ -3,38 +3,26 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
 import ErrorPage from "./routes/ErrorPage";
+import BuildRoot from "./routes/build/BuildRoot";
+import BuildProvider from "./context/BuildProvider";
+import { ITEMS } from "./config/items.config";
 
 import "./index.css";
-import BuildRoot from "./routes/build/BuildRoot";
-import StatsPage from "./routes/build/StatsPage";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: (
+      <BuildProvider items={ITEMS}>
+        <Root />
+      </BuildProvider>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
         path: "build",
         element: <BuildRoot />,
-        children: [
-          {
-            path: "stats",
-            element: <StatsPage />,
-          },
-          {
-            path: "required-items",
-            element: <div>required item selection</div>,
-          },
-          {
-            path: "settings",
-            element: <div>other build settings</div>,
-          },
-          {
-            path: "result",
-            element: <div>build result</div>,
-          },
-        ],
       },
       {
         path: "items",

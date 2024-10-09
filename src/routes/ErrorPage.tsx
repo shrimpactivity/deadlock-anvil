@@ -3,20 +3,29 @@ import errorImg from "../assets/shiv.png";
 
 export default function ErrorPage() {
   const error = useRouteError();
-  let errorStatus: number;
-  let errorMessage: string;
+  let errorMessage: string = "";
   if (isRouteErrorResponse(error)) {
-    errorStatus = error.status;
-    errorMessage = error.statusText;
+    if (error.status) {
+      errorMessage += error.status + " ";
+    }
+    if (error.statusText) {
+      errorMessage += error.statusText + " ";
+    }
+  } else if (error instanceof Error) {
+    if (error.message) {
+      errorMessage = error.message;
+    } else {
+      errorMessage = "An unexpected error occured";
+    }
   } else {
-    errorStatus = 404;
-    errorMessage = "";
+    errorMessage = "An unexpected error occured"
   }
+  errorMessage = errorMessage.trim();
 
   return (
     <div id="error-page">
       <h1>Error</h1>
-      <h2>{errorStatus ? errorStatus + ": " : null}{errorMessage}</h2>
+      <h2>{errorMessage}</h2>
       <img src={errorImg} />
     </div>
   );

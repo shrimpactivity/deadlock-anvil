@@ -1,10 +1,9 @@
 import { useMemo, useState } from "react";
-import { Item, ItemConditionName, ItemStatName } from "../types/item";
+import { Item } from "../types/item";
 
 function initializeStatsAndConditions(items: Item[]) {
   const initStats: Record<string, number> = {};
   const initConditions: Record<string, number> = {};
-  console.log('here');
 
   items.forEach((item) => {
     item.stats.forEach((stat) => {
@@ -43,102 +42,102 @@ export function usePriorities(items: Item[]) {
   const MAX_STAT_PRIORITY = 3;
   const MAX_CONDITION_PRIORITY = 1;
 
-  const [statPriorities, setStatPriorities] = useState(initStats);
-  const [conditionPriorities, setConditionPriorities] =
+  const [statPriority, setStatPriority] = useState(initStats);
+  const [conditionPriority, setConditionPriority] =
     useState(initConditions);
 
-  function incrementStat(name: ItemStatName) {
-    if (!(name in statPriorities)) {
+  function incrementStat(name: string) {
+    if (!(name in statPriority)) {
       throw new Error(`Invalid stat name: ${name}`);
     }
 
-    let newValue = statPriorities[name] + 1;
+    let newValue = statPriority[name] + 1;
     if (newValue > MAX_STAT_PRIORITY) {
       newValue = 0;
     }
     const newPriorities = {
-      ...statPriorities,
+      ...statPriority,
       [name]: newValue,
     };
-    setStatPriorities(newPriorities);
+    setStatPriority(newPriorities);
   }
 
-  function decrementStat(name: ItemStatName) {
-    if (!(name in statPriorities)) {
+  function decrementStat(name: string) {
+    if (!(name in statPriority)) {
       throw new Error(`Invalid stat name: ${name}`);
     }
 
-    let newValue = statPriorities[name] - 1;
+    let newValue = statPriority[name] - 1;
     if (newValue < 0) {
       newValue = MAX_STAT_PRIORITY;
     }
     const newPriorities = {
-      ...statPriorities,
+      ...statPriority,
       [name]: newValue,
     };
-    setStatPriorities(newPriorities);
+    setStatPriority(newPriorities);
   }
 
-  function incrementCondition(name: ItemConditionName) {
-    if (!(name in conditionPriorities)) {
+  function incrementCondition(name: string) {
+    if (!(name in conditionPriority)) {
       throw new Error(`Invalid condition name: ${name}`);
     }
 
-    let newValue = conditionPriorities[name] + 1;
+    let newValue = conditionPriority[name] + 1;
     if (newValue > MAX_CONDITION_PRIORITY) {
       newValue = 0;
     }
     const newPriorities = {
-      ...conditionPriorities,
+      ...conditionPriority,
       [name]: newValue,
     };
-    setConditionPriorities(newPriorities);
+    setConditionPriority(newPriorities);
   }
 
-  function decrementCondition(name: ItemConditionName) {
-    if (!(name in conditionPriorities)) {
+  function decrementCondition(name: string) {
+    if (!(name in conditionPriority)) {
       throw new Error(`Invalid condition name: ${name}`);
     }
 
-    let newValue = conditionPriorities[name] - 1;
+    let newValue = conditionPriority[name] - 1;
     if (newValue < 0) {
       newValue = MAX_CONDITION_PRIORITY;
     }
     const newPriorities = {
-      ...conditionPriorities,
+      ...conditionPriority,
       [name]: newValue,
     };
-    setConditionPriorities(newPriorities);
+    setConditionPriority(newPriorities);
   }
 
   function resetStats() {
-    const newPriorities = Object.keys(statPriorities).reduce(
+    const newPriorities = Object.keys(statPriority).reduce(
       (accum, stat) => {
         accum[stat] = 0;
         return accum;
       },
       {} as Record<string, number>
     );
-    setStatPriorities(newPriorities);
+    setStatPriority(newPriorities);
   }
 
   function resetConditions() {
-    const newPriorities = Object.keys(conditionPriorities).reduce(
+    const newPriorities = Object.keys(conditionPriority).reduce(
       (accum, condition) => {
         accum[condition] = 0;
         return accum;
       },
       {} as Record<string, number>
     );
-    setConditionPriorities(newPriorities);
+    setConditionPriority(newPriorities);
   }
 
   return {
-    stats: statPriorities,
+    stats: statPriority,
     incrementStat,
     decrementStat,
     resetStats,
-    conditions: conditionPriorities,
+    conditions: conditionPriority,
     incrementCondition,
     decrementCondition,
     resetConditions,

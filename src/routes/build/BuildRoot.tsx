@@ -7,5 +7,5 @@ export default function BuildRoot() {
       <SideNavBar />
       <Outlet />
     </div>
-  )
+  );
 }

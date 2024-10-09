@@ -13,7 +13,7 @@ export default function CheckboxInput({
   onChange,
 }: Props) {
   <div style={{ display: "flex", alignItems: "center" }}>
-    <Checkbox.Root className="CheckboxRoot" checked={checked}>
+    <Checkbox.Root className="CheckboxRoot" checked={checked} onClick={onChange}>
       <Checkbox.Indicator className="CheckboxIndicator">
         <CheckIcon />
       </Checkbox.Indicator>
