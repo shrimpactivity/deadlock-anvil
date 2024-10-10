@@ -28,7 +28,7 @@ type ItemCategory = "weapon" | "vitality" | "spirit";
 interface ItemStat {
     name: ItemStatName;
     amount: number;
-    units?: "%" | "%/sec" | "%/stack" | "/sec" | "m" | "m/sec";
+    units?: "%" | "%/sec" | "%/stack" | "/sec" | "m" | "m/sec" | "sec";
     stacks?: {
         max: number;
         duration?: number;

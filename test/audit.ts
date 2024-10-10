@@ -4,8 +4,7 @@ import { ITEMS } from "../src/config/items.config";
  * Print a sorted list of all stat names used in the items list config.
  * Can be used to cross reference with ItemStatName type and avoid duplicate values.
  */
-function printAllItemStats() {
-  console.log("=== ITEM STATS ===")
+function getAllItemStats() {
   const stats = new Set<string>();
   ITEMS.forEach(item => {
     item.stats.forEach(stat => {
@@ -22,14 +21,10 @@ function printAllItemStats() {
       })
     }
   });
-
-  const sortedStats = Array.from(stats).sort((a, b) => a.localeCompare(b));
-  sortedStats.forEach(stat => console.log(stat));
-  console.log("");
+  return Array.from(stats).sort((a, b) => a.localeCompare(b));
 }
 
-function printAllItemConditions() {
-  console.log("=== ITEM CONDITIONS ===")
+function getAllItemConditions() {
   const conditions = new Set<string>();
   ITEMS.forEach(item => {
     if (item.passive?.condition) {
@@ -39,11 +34,62 @@ function printAllItemConditions() {
       conditions.add(item.active.condition);
     }
   })
-  const sortedConditions = Array.from(conditions).sort((a, b) => a.localeCompare(b));
-  sortedConditions.forEach(cond => console.log(cond));
-  console.log("");
+  return Array.from(conditions).sort((a, b) => a.localeCompare(b));
 }
 
-printAllItemStats();
-printAllItemConditions();
+function getAllItemTags() {
+  const tags = new Set<string>();
+  ITEMS.forEach(item => {
+    if (item.tags) {
+      item.tags.forEach(tag => tags.add(tag));
+    }
+  })
+  return Array.from(tags).sort((a, b) => a.localeCompare(b));
+}
+
+function getDuplicatesBetween(stats: string[], conditions: string[], tags: string[]) {
+  const result = new Set<string>();
+  stats.forEach(stat => {
+    if (conditions.includes(stat)) {
+      result.add(stat);
+    }
+    if (tags.includes(stat)) {
+      result.add(stat);
+    }
+  });
+  conditions.forEach(cond => {
+    if (tags.includes(cond)) {
+      result.add(cond);
+    }
+  })
+  return Array.from(result).sort((a, b) => a.localeCompare(b));
+}
+
+function printResults() {
+  const stats = getAllItemStats();
+  const conditions = getAllItemConditions();
+  const tags = getAllItemTags();
+
+  const duplicates = getDuplicatesBetween(stats, conditions, tags);
+
+  console.log("=== ITEM STATS ===")
+  stats.forEach(v => console.log(v));
+  console.log("");
+
+  console.log("=== ITEM CONDITIONS ===")
+  conditions.forEach(v => console.log(v));
+  console.log("");
+
+  console.log("=== ITEM TAGS ===")
+  tags.forEach(v => console.log(v));
+  console.log("");
+
+  if (duplicates.length) {
+    console.log("WARNING: The following names appear duplicated between item stats, conditions, and tags.")
+    console.log("This may result in item over-prioritization.")
+    duplicates.forEach(dup => console.log(dup));
+  }
+}
+
+printResults();
 
