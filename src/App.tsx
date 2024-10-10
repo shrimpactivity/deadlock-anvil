@@ -1,10 +1,12 @@
 import "./App.css";
-import { ITEMS } from "./config/items.config";
+import ArchetypeForm from "./components/forms/ArchetypeForm";
+import { Archetypes } from "./config/archetype.config";
 
 function App() {
   // ITEMS.forEach((item) =>
   //   calculateItemPriority(item, { weapon_damage: 1 }, { headshot: 1 })
   // );
+  
 
   return (
     <>
@@ -14,7 +16,7 @@ function App() {
         <h1>About</h1>
       </nav>
       <main>
-        <div>Main Page</div>
+        <div><ArchetypeForm archetypes={Archetypes}/></div>
       </main>
     </>
   );

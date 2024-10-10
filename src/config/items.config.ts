@@ -41,7 +41,7 @@ export const ITEMS: Item[] = [
     stats: [
       { name: "bullet_velocity", amount: 0.25, type: "percentage" },
       { name: "weapon_damage", amount: 0.12, type: "percentage" },
-      {name: "bullet_shield_health", amount: 50, type: "flat"}
+      { name: "bullet_shield_health", amount: 50, type: "flat" },
     ],
   },
   {
@@ -54,7 +54,9 @@ export const ITEMS: Item[] = [
     ],
     passive: {
       condition: "health_above_60%",
-      stats: [{ name: "bonus_weapon_damage", amount: 0.22, type: "percentage" }],
+      stats: [
+        { name: "bonus_weapon_damage", amount: 0.22, type: "percentage" },
+      ],
     },
   },
   {
@@ -64,9 +66,9 @@ export const ITEMS: Item[] = [
     stats: [
       { name: "weapon_damage_vs_npcs", amount: 0.35, type: "percentage" },
       { name: "bullet_resist_vs_npcs", amount: 0.3, type: "percentage" },
-      {name: "bonus_health", amount: 50, type: "flat"},
-      {name: "health_regen", amount: 1, type: "flat"}
-    ]
+      { name: "bonus_health", amount: 50, type: "flat" },
+      { name: "health_regen", amount: 1, type: "flat" },
+    ],
   },
   {
     name: "rapid_rounds",
@@ -75,20 +77,20 @@ export const ITEMS: Item[] = [
     stats: [
       { name: "fire_rate", amount: 0.09, type: "percentage" },
       { name: "sprint_speed", amount: 1, type: "flat" },
-    ]
+    ],
   },
   {
     name: "restorative_shot",//TODO: consider NPC hit is different - heals for 15, not 40
     category: "weapon",
     tier: 1,
     stats: [
-      { name: "bullet_resist", amount: .07, type: "percentage" },
-      { name: "weapon_damage", amount: .08, type: "percentage" },
+      { name: "bullet_resist", amount: 0.07, type: "percentage" },
+      { name: "weapon_damage", amount: 0.08, type: "percentage" },
     ],
     passive: {
       condition: "hit_hero",
       stats: [{ name: "healing", amount: 40, type: "flat" }],
-      cooldown: 5.5
+      cooldown: 5.5,
     },
   },
   {
@@ -101,11 +103,12 @@ export const ITEMS: Item[] = [
     ],
     passive: {
       condition: "active_reload",
-      stats: [{ name: "fire_rate", amount: 0.2, type: "percentage" },
-        {name: "bullet_lifesteal", amount: 0.2, type: "percentage"}
+      stats: [
+        { name: "fire_rate", amount: 0.2, type: "percentage" },
+        { name: "bullet_lifesteal", amount: 0.2, type: "percentage" },
       ],
       duration: 7,
-      cooldown: 18
+      cooldown: 18,
     },
   },
   {
@@ -115,7 +118,7 @@ export const ITEMS: Item[] = [
     stats: [
       { name: "ammo", amount: 4, type: "flat" },
       { name: "bullet_resist", amount: 0.7, type: "percentage" },
-    ]
+    ],
   },
   {
     name: "kinetic_dash",
@@ -129,14 +132,18 @@ export const ITEMS: Item[] = [
       condition: "kinetic_dash",
       stats: [ //TODO: consider free dash jump?
         {name: "fire_rate", amount: 0.2, type: "percentage"},
-        {name: "temporary_ammo", amount: 5, type: "flat"}
-      ],
+        {name: "temporary_ammo", amount: 5, type: "flat"}],
+     /* stats: [
+        { name: "dash_jump", amount: 0, type: "flat" }, //TODO: it makes your next dash jump free, so I'm wondering if it makes sense for this modifier to be for stamina? I'm not sure how we want to remove the cost of something
+        { name: "fire_rate", amount: 0.2, type: "percentage" },
+        { name: "temporary_ammo", amount: 5, type: "flat" },
+      ],*/
       duration: 7,
-      cooldown: 10.5
-    }
+      cooldown: 10.5,
+    },
   },
   {
-    name: "long_range", 
+    name: "long_range",
     category: "weapon",
     tier: 2,
     stats: [
@@ -145,25 +152,31 @@ export const ITEMS: Item[] = [
     ],
     passive: {
       condition: "long_range_15m",
-      stats: [{name: "weapon_damage", amount: 0.4, type: "percentage"}]
-    }
+      stats: [{ name: "weapon_damage", amount: 0.4, type: "percentage" }],
+    },
   },
   {
-    name: "melee_charge", 
+    name: "melee_charge",
     category: "weapon",
     tier: 2,
     stats: [
       { name: "weapon_damage", amount: 0.15, type: "percentage" },
       { name: "bonus_health", amount: 100, type: "flat" },
-      { name: "health_regen", amount: 1, type: "flat"},
-      { name: "heavy_melee_distance", amount: 0.4, type: "percentage"}
+      { name: "health_regen", amount: 1, type: "flat" },
+      { name: "heavy_melee_distance", amount: 0.4, type: "percentage" },
     ],
     passive: {
       condition: "heavy_melee",
       stats: [{ name: "bonus_heavy_melee_damage", amount: 0.2, type: "percentage"}, {name: "bonus_ammo", amount: 1, type: "percentage"}],
       cooldown: 10 
     }
-  },
+      //TODO: there's an additional either/or passive. You either instantly reload or get up to 100% bonus ammo
+      /*condition: "heavy_melee",
+      stats: [
+        { name: "bonus_heavy_melee_damage", amount: 0.2, type: "percentage" },
+      ],
+      cooldown: 10,*/
+    },
   {
     name: "mystic_shot",
     category: "weapon",
