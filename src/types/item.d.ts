@@ -103,7 +103,7 @@ type ItemConditionName =
     | "Enemy Health Above 50%"
     | "Headshot"
     | "Health Above 60%"
-    | "Health Below 40%"
+    | "Health Below 50%"
     | "Heavy Melee Hit"
     | "Hero Kill"
     | "Long Range 15m"

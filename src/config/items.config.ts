@@ -6,7 +6,7 @@ export const ITEMS: Item[] = [
         category: "weapon",
         tier: 1,
         stats: [
-            { name: "Ammo", amount: 24, units: "%" },
+            { name: "Ammo", amount: 26, units: "%" },
             { name: "Weapon Damage", amount: 15, units: "%" },
         ],
     },
@@ -62,7 +62,7 @@ export const ITEMS: Item[] = [
         category: "weapon",
         tier: 1,
         stats: [
-            { name: "Weapon Damage vs. NPCs", amount: 35, units: "%" },
+            { name: "Weapon Damage vs. NPCs", amount: 30, units: "%" },
             { name: "Bullet Resist vs. NPCs", amount: 30, units: "%" },
             { name: "Bonus Health", amount: 50 },
             { name: "Health Regen", amount: 1 },
@@ -83,7 +83,7 @@ export const ITEMS: Item[] = [
         tier: 1,
         stats: [
             { name: "Bullet Resist", amount: 7, units: "%" },
-            { name: "Weapon Damage", amount: 8, units: "%" },
+            { name: "Weapon Damage", amount: 7, units: "%" },
         ],
         passive: {
             condition: "Bullet Hit",
@@ -181,7 +181,7 @@ export const ITEMS: Item[] = [
                 { name: "Heavy Melee Damage", amount: 20, units: "%" },
                 { name: "Bonus Ammo", amount: 100, units: "%" },
             ],
-            cooldown: 10,
+            cooldown: 16,
         },
         additionalInfo: "Either reload your weapon instantly, or gain +100% bonus ammo",
     },
@@ -384,7 +384,7 @@ export const ITEMS: Item[] = [
         tier: 3,
         component: "Long Range",
         stats: [
-            { name: "Ammo", amount: 20, units: "%" },
+            { name: "Ammo", amount: 25, units: "%" },
             { name: "Weapon Fall-off Range", amount: 15, units: "%" },
             { name: "Weapon Zoom", amount: 35, units: "%" },
             { name: "Bullet Shield Health", amount: 200 },
@@ -430,7 +430,7 @@ export const ITEMS: Item[] = [
             ],
             duration: 3,
         },
-        additionalInfo: "47% buildup per shot",
+        additionalInfo: "55% buildup per shot",
     },
     {
         name: "Alchemical Fire",
@@ -443,7 +443,7 @@ export const ITEMS: Item[] = [
         ],
         active: {
             stats: [
-                { name: "Spirit Damage", amount: 73, units: "/sec" },
+                { name: "Spirit Damage", amount: 104.5, units: "/sec" },
                 { name: "Weapon Damage", amount: 50, units: "%" },
             ],
             duration: 5,
@@ -517,7 +517,7 @@ export const ITEMS: Item[] = [
             { name: "Bonus Health", amount: 200 },
         ],
         passive: {
-            condition: "Health Below 40%",
+            condition: "Health Below 50%",
             stats: [
                 { name: "Move Speed", amount: 4, units: "m/sec" },
                 { name: "Fire Rate", amount: 40, units: "%" },
@@ -571,20 +571,20 @@ export const ITEMS: Item[] = [
                 {name: "Ricochet Damage", amount: 60, units: '%'}
             ]
         },
-        additionalInfo: "Hits 2 ricochet targets with 14m of eachother"
+        additionalInfo: "Hits 2 ricochet targets with 11m of eachother"
     },
     {
         name: "Spiritual Overflow",
         category: "weapon",
         tier: 4,
         stats: [
-            {name: 'Fire Rate', amount: 20, units: '%'},
             {name: 'Cooldown Reduction', amount: 15, units: '%'},
             {name: "Spirit Lifesteal", amount: 10, units: '%'},
             {name: "Bullet Shield Health", amount: 225},
-            {name: "Spirit Power", amount: 45}
+            {name: 'Fire Rate', amount: 35, units: '%'},
+            {name: "Spirit Power", amount: 50}
         ],
-        additionalInfo: "Spirit power bonus requires two shots on enemies, duration of 18sec"
+        additionalInfo: "Spirit power and fire rate bonus requires buildup on enemies, duration of 18sec"
     },
     {
         name: "Shadow Weave",
@@ -613,7 +613,7 @@ export const ITEMS: Item[] = [
         component: "Slowing Bullets",
         stats: [
             {name: "Weapon Damage", amount: 20, units: '%'},
-            {name: "Spirit Power", amount: 12},
+            {name: "Spirit Power", amount: 18},
         ],
         active: {
             stats: [{name: "Enemy Silence", amount: 2}],
@@ -635,9 +635,9 @@ export const ITEMS: Item[] = [
             stats: [
                 {name: "Bullet Lifesteal", amount: 100, units: "%"},
                 {name: "Fire Rate", amount: 40, units: "%"},
-                {name: "Ammo", amount: 50, units: "%"}
+                {name: "Ammo", amount: 75, units: "%"}
             ],
-            cooldown: 37,
+            cooldown: 34,
             duration: 4.5
         }
     }
