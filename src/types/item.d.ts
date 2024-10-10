@@ -3,84 +3,84 @@ type ItemTier = 1 | 2 | 3 | 4;
 type ItemCategory = "weapon" | "vitality" | "spirit";
 
 interface ItemStat {
-  name: ItemStatName;
-  amount: number;
-  type?: "flat" | "percentage";
+    name: ItemStatName;
+    amount: number;
+    type?: "flat" | "percentage";
 }
 
 export interface Item {
-  name: string;
-  category: ItemCategory;
-  tier: ItemTier;
-  component?: string;
-  stats: ItemStat[];
-  passive?: {
+    name: string;
+    category: ItemCategory;
+    tier: ItemTier;
+    component?: string;
     stats: ItemStat[];
-    cooldown?: number;
-    duration?: number;
-    condition?: ItemConditionName;
-  };
-  active?: {
-    stats: ItemStat[];
-    cooldown: number;
-    duration?: number;
-    condition?: ItemConditionName;
-  };
-  additionalInfo?: string;
+    passive?: {
+        stats: ItemStat[];
+        cooldown?: number;
+        duration?: number;
+        condition?: ItemConditionName;
+    };
+    active?: {
+        stats: ItemStat[];
+        cooldown: number;
+        duration?: number;
+        condition?: ItemConditionName;
+    };
+    additionalInfo?: string;
 }
 
 // List of all stat names, useful for typescript name hinting.
 export type ItemStatName =
-  | "ammo"
-  | "base_health"
-  | "bleed_damage"
-  | "bonus_health"
-  | "bonus_spirit_damage"
-  | "bonus_weapon_damage"
-  | "bonus_heavy_melee_damage"
-  | "bullet_heal"
-  | "bullet_lifesteal"
-  | "bullet_shield_health"
-  | "bullet_velocity"
-  | "bullet_resist_vs_npcs"
-  | "bullet_resist"
-  | "dash_jump"
-  | "fire_rate"
-  | "fire_rate_slow"
-  | "healing"
-  | "healing_reduction"
-  | "health_regen"
-  | "heavy_melee_distance"
-  | "movement_slow"
-  | "movement_speed"
-  | "reduce_enemy_bullet_resist"
-  | "reload_time"
-  | "shock_damage"
-  | "shock_change"
-  | "slide_distance"
-  | "spirit_amp"
-  | "spirit_lifesteal"
-  | "spirit_power"
-  | "spirit_resist"
-  | "spirit_shield_health"
-  | "sprint_speed"
-  | "temporary_ammo"
-  | "weapon_damage"
-  | "weapon_damage_vs_npcs"
-  | "weapon_falloff_range"
-  | "weapon_zoom";
+    | "ammo"
+    | "base_health"
+    | "bleed_damage"
+    | "bonus_health"
+    | "bonus_spirit_damage"
+    | "bonus_weapon_damage"
+    | "bonus_heavy_melee_damage"
+    | "bullet_heal"
+    | "bullet_lifesteal"
+    | "bullet_shield_health"
+    | "bullet_velocity"
+    | "bullet_resist_vs_npcs"
+    | "bullet_resist"
+    | "dash_jump"
+    | "fire_rate"
+    | "fire_rate_slow"
+    | "healing"
+    | "healing_reduction"
+    | "health_regen"
+    | "heavy_melee_distance"
+    | "movement_slow"
+    | "movement_speed"
+    | "reduce_enemy_bullet_resist"
+    | "reload_time"
+    | "shock_damage"
+    | "shock_change"
+    | "slide_distance"
+    | "spirit_amp"
+    | "spirit_lifesteal"
+    | "spirit_power"
+    | "spirit_resist"
+    | "spirit_shield_health"
+    | "sprint_speed"
+    | "temporary_ammo"
+    | "weapon_damage"
+    | "weapon_damage_vs_npcs"
+    | "weapon_falloff_range"
+    | "weapon_zoom";
 
 // List of all stat conditions, useful for typescript name hinting.
 export type ItemConditionName =
-  | "active_reload"
-  | "close_range_15m"
-  | "damage_over_time"
-  | "enemy_health_above_50%"
-  | "headshot"
-  | "health_above_60%"
-  | "heavy_melee"
-  | "hit_hero"
-  | "kinetic_dash"
-  | "long_range_15m"
-  | "sustain_damage_from_enemies"
-  | "stacking";
+    | "active_reload"
+    | "close_range_15m"
+    | "damage_over_time"
+    | "enemy_health_above_50%"
+    | "headshot"
+    | "health_above_60%"
+    | "heavy_melee"
+    | "hit_hero"
+    | "kinetic_dash"
+    | "long_range_15m"
+    | "sustain_damage_from_enemies"
+    | "stacking";

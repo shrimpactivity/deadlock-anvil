@@ -1,11 +1,12 @@
 import SideNavBar from "@/components/nav/SideNavBar";
-import { Outlet } from "react-router-dom";
+import { useState } from "react";
 
 export default function BuildRoot() {
-  return (
-    <div>
-      <SideNavBar />
-      <Outlet />
-    </div>
-  );
+    const [activePage, setActivePage] = useState<string | undefined>();
+    
+    return (
+        <div>
+            <SideNavBar />
+        </div>
+    );
 }

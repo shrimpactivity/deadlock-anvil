@@ -1,2 +1,1 @@
-
-export const COST_BREAKPOINTS = []
+export const COST_BREAKPOINTS = [];
