@@ -1,19 +1,19 @@
 import { PropsWithChildren, useMemo } from "react";
-import { Item } from "../types/item";
 import { usePriorities } from "../hooks/use-priorities";
 import { BuildContext } from "./use-build";
-import { calculateAllItemPriorities } from "../lib/calc";
+import { BuildCalculator } from "../lib/build-calculator";
+import { useDebounce } from "../hooks/use-debounce";
+import { ITEMS } from "../config/items.config";
 
-interface Props extends PropsWithChildren {
-    items: Item[];
-}
+const calc = new BuildCalculator(ITEMS);
 
-export default function BuildProvider({ items, children }: Props) {
-    const priorities = usePriorities(items);
+export default function BuildProvider({ children }: PropsWithChildren) {
+    const priorities = usePriorities(ITEMS);
+    const debouncedPriorities = useDebounce(priorities, 500);
 
     const buildOrder = useMemo(
-        () => calculateAllItemPriorities(items, priorities.stats, priorities.conditions),
-        [items, priorities],
+        () => calc.getBuildOrder(debouncedPriorities.stats, debouncedPriorities.conditions),
+        [debouncedPriorities],
     );
 
     return (

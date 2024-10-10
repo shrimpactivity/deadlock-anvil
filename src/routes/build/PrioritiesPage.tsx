@@ -9,23 +9,27 @@ export default function PrioritiesPage() {
         <div className="priority-page">
             <h2>Stat Priority</h2>
             <div>
-                {Object.keys(priorities.stats).map((stat) => {
-                    return (
-                        <PriorityInput
-                            key={stat}
-                            label={stat}
-                            value={priorities.stats[stat]}
-                            onClick={() => priorities.incrementStat(stat)}
-                            onRightClick={() => priorities.decrementStat(stat)}
-                        />
-                    );
-                })}
+                {Object.keys(priorities.stats).map((stat) => (
+                    <PriorityInput
+                        key={stat}
+                        label={underscoreToUpperCase(stat)}
+                        value={priorities.stats[stat]}
+                        onClick={() => priorities.incrementStat(stat)}
+                        onRightClick={() => priorities.decrementStat(stat)}
+                    />
+                ))}
             </div>
             <h2>Condition Priority</h2>
             <div>
-                {Object.keys(priorities.conditions).map((condition) => {
-                    return <div key={condition}>{underscoreToUpperCase(condition)}</div>;
-                })}
+                {Object.keys(priorities.conditions).map((condition) => (
+                    <PriorityInput
+                        key={condition}
+                        label={underscoreToUpperCase(condition)}
+                        value={priorities.conditions[condition]}
+                        onClick={() => priorities.incrementCondition(condition)}
+                        onRightClick={() => priorities.decrementCondition(condition)}
+                    />
+                ))}
             </div>
         </div>
     );

@@ -7,14 +7,13 @@ import BuildRoot from "./routes/build/BuildRoot";
 import ItemsPage from "./routes/ItemsPage";
 import AboutPage from "./routes/AboutPage";
 import BuildProvider from "./context/BuildProvider";
-import { ITEMS } from "./config/items.config";
 import "./index.css";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: (
-            <BuildProvider items={ITEMS}>
+            <BuildProvider>
                 <Root />
             </BuildProvider>
         ),

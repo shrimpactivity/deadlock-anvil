@@ -1,9 +1,10 @@
 import { createContext, useContext } from "react";
 import { usePriorities } from "../hooks/use-priorities";
+import { Item } from "../types/item";
 
 interface BuildContextType {
     priorities: ReturnType<typeof usePriorities>;
-    buildOrder: Record<string, number>;
+    buildOrder: Item[];
 }
 
 export const BuildContext = createContext<BuildContextType>(null!);
