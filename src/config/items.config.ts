@@ -30,7 +30,7 @@ export const ITEMS: Item[] = [
         ],
         passive: {
             condition: "Headshot",
-            stats: [{ name: "Bonus Weapon Damage", amount: 40 }],
+            stats: [{ name: "Weapon Damage", amount: 40 }],
             cooldown: 7.5,
         },
     },
@@ -43,18 +43,67 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 12, units: "%" },
             { name: "Bullet Shield Health", amount: 50 },
         ],
-        additionalInfo: "If you hit an NPC, it heals for 15. If you hit a hero, it heals for 40.",
+    },
+    {
+        name: "Hollow Point Ward",
+        category: "weapon",
+        tier: 1,
+        stats: [
+            { name: "Spirit Shield Health", amount: 95 },
+            { name: "Spirit Power", amount: 4 },
+        ],
+        passive: {
+            condition: "Health Above 60%",
+            stats: [{ name: "Weapon Damage", amount: 22, units: "%" }],
+        },
+    },
+    {
+        name: "Monster Rounds",
+        category: "weapon",
+        tier: 1,
+        stats: [
+            { name: "Weapon Damage vs. NPCs", amount: 35, units: "%" },
+            { name: "Bullet Resist vs. NPCs", amount: 30, units: "%" },
+            { name: "Bonus Health", amount: 50 },
+            { name: "Health Regen", amount: 1 },
+        ],
+    },
+    {
+        name: "Rapid Rounds",
+        category: "weapon",
+        tier: 1,
+        stats: [
+            { name: "Fire Rate", amount: 9, units: "%" },
+            { name: "Sprint Speed", amount: 1, units: "m/sec" },
+        ],
+    },
+    {
+        name: "Restorative Shot",
+        category: "weapon",
+        tier: 1,
+        stats: [
+            { name: "Bullet Resist", amount: 7, units: "%" },
+            { name: "Weapon Damage", amount: 8, units: "%" },
+        ],
+        passive: {
+            condition: "Bullet Hit",
+            stats: [
+                { name: "Healing", amount: 40 },
+                { name: "Healing From NPCs", amount: 15 },
+            ],
+            cooldown: 5.5,
+        },
     },
     {
         name: "Active Reload",
         category: "weapon",
         tier: 2,
         stats: [
-            { name: "Decrease Reload Time", amount: 20, units: "%" },
             { name: "Weapon Damage", amount: 10, units: "%" },
+            { name: "Reload Speed", amount: 20, units: "%" },
         ],
         passive: {
-            condition: "Active Reload",
+            condition: "On Active Reload",
             stats: [
                 { name: "Fire Rate", amount: 20, units: "%" },
                 { name: "Bullet Lifesteal", amount: 20, units: "%" },
@@ -69,181 +118,198 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [
             { name: "Ammo", amount: 4 },
-            { name: "Bullet Resist", amount: 70, units: "%" },
+            { name: "Bullet Resist", amount: 7, units: "%" },
         ],
-        additionalInfo:
-            "Includes stacking: +5% weapon damage per stack, 100 damage taken to stack, Max Stacks 10, 10s duration.",
+        passive: {
+            condition: "Sustained Damage",
+            stats: [
+                {
+                    name: "Weapon Damage",
+                    amount: 5,
+                    units: "%/stack",
+                    stacks: { max: 10, duration: 10 },
+                },
+            ],
+        },
+        additionalInfo: "100 damage taken to stack",
     },
     {
-        name: "kinetic_dash",
+        name: "Kinetic Dash",
         category: "weapon",
         tier: 2,
         stats: [
-            { name: "bonus_health", amount: 100 },
-            { name: "health_regen", amount: 1.5 },
+            { name: "Bonus Health", amount: 100 },
+            { name: "Health Regen", amount: 1.5 },
         ],
         passive: {
-            condition: "kinetic_dash",
+            condition: "Dash Jump",
             stats: [
-                { name: "fire_rate", amount: 0.2, units: "%" },
-                { name: "temporary_ammo", amount: 5 },
+                { name: "Fire Rate", amount: 20, units: "%" },
+                { name: "Temporary Ammo", amount: 5 },
             ],
             duration: 7,
             cooldown: 10.5,
         },
-        additionalInfo: "The passive condition also makes your next dash jump free",
+        additionalInfo: "Your next dash jump does not cost extra stamina",
     },
     {
-        name: "long_range",
+        name: "Long Range",
         category: "weapon",
         tier: 2,
         stats: [
-            { name: "ammo", amount: 0.2, units: "%" },
-            { name: "bullet_shield_health", amount: 140 },
+            { name: "Ammo", amount: 20, units: "%" },
+            { name: "Bullet Shield Health", amount: 140 },
         ],
         passive: {
-            condition: "long_range_15m",
-            stats: [{ name: "weapon_damage", amount: 0.4, units: "%" }],
+            condition: "Long Range 15m",
+            stats: [{ name: "Weapon Damage", amount: 40, units: "%" }],
         },
     },
     {
-        name: "melee_charge",
+        name: "Melee Charge",
         category: "weapon",
         tier: 2,
         stats: [
-            { name: "weapon_damage", amount: 0.15, units: "%" },
-            { name: "bonus_health", amount: 100 },
-            { name: "health_regen", amount: 1 },
-            { name: "heavy_melee_distance", amount: 0.4, units: "%" },
+            { name: "Weapon Damage", amount: 15, units: "%" },
+            { name: "Bonus Health", amount: 100 },
+            { name: "Health Regen", amount: 1 },
+            { name: "Heavy Melee Distance", amount: 40, units: "%" },
         ],
         passive: {
-            condition: "heavy_melee",
+            condition: "Heavy Melee Hit",
             stats: [
-                { name: "bonus_heavy_melee_damage", amount: 0.2, units: "%" },
-                { name: "bonus_ammo", amount: 1, units: "%" },
+                { name: "Heavy Melee Damage", amount: 20, units: "%" },
+                { name: "Bonus Ammo", amount: 100, units: "%" },
             ],
             cooldown: 10,
         },
-        additionalInfo:
-            "An additional passive effect is that you either instantly reload or get up to 100% free bonus ammo",
+        additionalInfo: "Either reload your weapon instantly, or gain +100% bonus ammo",
     },
     {
-        name: "mystic_shot",
+        name: "Mystic Shot",
         category: "weapon",
         tier: 2,
         stats: [
-            { name: "weapon_damage", amount: 0.12, units: "%" },
-            { name: "spirit_power", amount: 4 },
+            { name: "Weapon Damage", amount: 12, units: "%" },
+            { name: "Spirit Power", amount: 4 },
         ],
         passive: {
-            condition: "next_bullet",
-            stats: [{ name: "bonus_spirit_damage", amount: 60 }],
+            condition: "Bullet Hit",
+            stats: [{ name: "Spirit Damage", amount: 65 }],
             cooldown: 5.2,
         },
     },
     {
-        name: "slowing_bullets",
+        name: "Slowing Bullets",
         category: "weapon",
         tier: 2,
         stats: [
-            { name: "weapon_damage", amount: 0.16, units: "%" },
-            { name: "spirit_power", amount: 5 },
+            { name: "Weapon Damage", amount: 16, units: "%" },
+            { name: "Spirit Power", amount: 5 },
         ],
         passive: {
-            condition: "hit_hero",
-            stats: [{ name: "movement_slow", amount: 0.25, units: "%" }],
+            condition: "Bullet Hit",
+            stats: [{ name: "Enemy Movement Slow", amount: 25, units: "%" }],
             duration: 1.3,
         },
     },
     {
-        name: "soul_shredder_bullets",
+        name: "Soul Shredder Bullets",
         category: "weapon",
         tier: 2,
-        stats: [{ name: "weapon_damage", amount: 0.07, units: "%" }],
+        stats: [{ name: "Weapon Damage", amount: 7, units: "%" }],
         passive: {
-            condition: "hit_hero",
+            condition: "Bullet Hit",
             stats: [
-                { name: "spirit_amp", amount: 0.1, units: "%" },
-                { name: "spirit_lifesteal", amount: 0.2, units: "%" },
+                { name: "Spirit Amp", amount: 10, units: "%" },
+                { name: "Spirit Lifesteal", amount: 20, units: "%" },
             ],
             duration: 6,
         },
     },
     {
-        name: "swift_striker",
+        name: "Swift Striker",
         category: "weapon",
         tier: 2,
         stats: [
-            { name: "fire_rate", amount: 0.22, units: "%" },
-            { name: "ammo", amount: 0.1, units: "%" },
-            { name: "bullet_resist", amount: -0.05, units: "%" },
+            { name: "Fire Rate", amount: 22, units: "%" },
+            { name: "Ammo", amount: 10, units: "%" },
+            { name: "Bullet Resist", amount: -5, units: "%" },
         ],
     },
     {
-        name: "fleetfoot",
+        name: "Fleetfoot",
         category: "weapon",
         tier: 2,
         stats: [
-            { name: "bonus_health", amount: 90 },
-            { name: "slide_distance", amount: 0.25, units: "%" },
+            { name: "Bonus Health", amount: 90 },
+            { name: "Slide Distance", amount: 25, units: "%" },
         ],
         active: {
             stats: [
-                { name: "movement_speed", amount: 3 },
-                { name: "temporary_ammo", amount: 0.3, units: "%" },
+                { name: "Move Speed", amount: 3, units: "m/sec" },
+                { name: "Temporary Ammo", amount: 30, units: "%" },
             ],
             cooldown: 19,
             duration: 4,
         },
-        additionalInfo:
-            "This also has a passive that removes the movement speed penalty while shooting.",
+        additionalInfo: "Removes momement speed penalty while shooting",
     },
     {
-        name: "burst_fire",
+        name: "Burst Fire",
         category: "weapon",
         tier: 3,
         stats: [
-            { name: "bonus_health", amount: 70 },
-            { name: "slide_distance", amount: 0.5, units: "%" },
-            { name: "fire_rate", amount: 0.12, units: "%" },
+            { name: "Fire Rate", amount: 12, units: "%" },
+            { name: "Slide Distance", amount: 50, units: "%" },
+            { name: "Bonus Health", amount: 70 },
         ],
         passive: {
-            condition: "hit_hero",
+            condition: "Bullet Hit",
             stats: [
-                { name: "movement_speed", amount: 2 },
-                { name: "fire_rate", amount: 0.3, units: "%" },
+                { name: "Fire Rate", amount: 30, units: "%" },
+                { name: "Move Speed", amount: 2, units: "m/sec" },
             ],
             cooldown: 8.5,
             duration: 4,
         },
     },
     {
-        name: "escalating_resilience",
+        name: "Escalating Resilience",
         category: "weapon",
         tier: 3,
         stats: [
-            { name: "fire_rate", amount: 0.12, units: "%" },
-            { name: "weapon_damage", amount: 0.14, units: "%" },
-        ],
-        additionalInfo:
-            "This also has stacks of bullet resist: 40% max, 2% bullet resist per stack, 20s stack duration",
-    },
-    {
-        name: "headhunter",
-        category: "weapon",
-        tier: 3,
-        component: "headshot_booster",
-        stats: [
-            { name: "weapon_damage", amount: 0.15, units: "%" },
-            { name: "bullet_shield_health", amount: 150 },
-            { name: "fire_rate", amount: 0.05, units: "%" },
+            { name: "Fire Rate", amount: 12, units: "%" },
+            { name: "Weapon Damage", amount: 14, units: "%" },
         ],
         passive: {
-            condition: "headshot",
+            condition: "Bullet Hit",
             stats: [
-                { name: "bonus_weapon_damage", amount: 140 },
-                { name: "healing", amount: 0.08, units: "%" },
-                { name: "movement_speed", amount: 2 },
+                {
+                    name: "Bullet Resist",
+                    amount: 2,
+                    units: "%/stack",
+                    stacks: { max: 20, duration: 20 },
+                },
+            ],
+        },
+    },
+    {
+        name: "Headhunter",
+        category: "weapon",
+        tier: 3,
+        component: "Headshot Booster",
+        stats: [
+            { name: "Weapon Damage", amount: 15, units: "%" },
+            { name: "Bullet Shield Health", amount: 150 },
+            { name: "Fire Rate", amount: 5, units: "%" },
+        ],
+        passive: {
+            condition: "Headshot",
+            stats: [
+                { name: "Weapon Damage", amount: 140 },
+                { name: "Healing", amount: 8, units: "%" },
+                { name: "Move Speed", amount: 2, units: "m/sec" },
             ],
             cooldown: 6,
             duration: 3,
@@ -251,171 +317,328 @@ export const ITEMS: Item[] = [
         additionalInfo: "Note: the duration is only relevant for the increased movement speed.",
     },
     {
-        name: "hunters_aura",
+        name: "Hunter's Aura",
         category: "weapon",
         tier: 3,
-        stats: [{ name: "bonus_health", amount: 150, units: "%" }],
+        stats: [{ name: "Bonus Health", amount: 150 }],
         passive: {
-            condition: "radius",
+            condition: "Close Range 15m",
             stats: [
-                { name: "reduce_enemy_bullet_resist", amount: -0.09, units: "%" },
-                { name: "reduce_enemy_fire_rate", amount: -0.1, units: "%" },
+                { name: "Enemy Bullet Resist Reduction", amount: 27, units: "%" },
+                { name: "Enemy Fire Rate Slow", amount: 30, units: "%" },
             ],
         },
+        additionalInfo: "Effect is cut in third with more than one enemy nearby.",
     },
     {
-        name: "intensifying_magazine",
+        name: "Intensifying Magazine",
         category: "weapon",
         tier: 3,
         stats: [
-            { name: "ammo", amount: 0.25, units: "%" },
-            { name: "weapon_damage", amount: 0.2, units: "%" },
+            { name: "Ammo", amount: 25, units: "%" },
+            { name: "Weapon Damage", amount: 20, units: "%" },
         ],
         passive: {
-            condition: "continuous_fire",
-            stats: [{ name: "max_weapon_damage", amount: 0.6, units: "%" }],
+            condition: "Continuous Fire for 3 Seconds",
+            stats: [{ name: "Weapon Damage", amount: 60, units: "%" }],
             duration: 3,
         },
     },
     {
-        name: "point_blank",
+        name: "Point Blank",
         category: "weapon",
         tier: 3,
+        component: "Close Quarters",
         stats: [
-            { name: "bullet_resist", amount: 0.15, units: "%" },
-            { name: "stamina", amount: 1 },
+            { name: "Bullet Resist", amount: 15, units: "%" },
+            { name: "Stamina", amount: 1 },
         ],
         passive: {
-            condition: "close_range_15m",
+            condition: "Close Range 15m",
             stats: [
-                { name: "weapon_damage", amount: 0.45, units: "%" },
-                { name: "movement_slow", amount: 0.25, units: "%" },
+                { name: "Weapon Damage", amount: 45, units: "%" },
+                { name: "Enemy Movement Slow", amount: 25, units: "%" },
             ],
             duration: 2,
         },
     },
     {
-        name: "pristine_emblem",
+        name: "Pristine Emblem",
         category: "weapon",
         tier: 3,
-        component: "high_velocity_mag",
+        component: "High Velocity Mag",
         stats: [
-            { name: "bullet_velocity", amount: 0.35, units: "%" },
-            { name: "weapon_damage", amount: 0.25, units: "%" },
-            { name: "spirit_power", amount: 12 },
-            { name: "spirit_resist", amount: 0.12, units: "%" },
+            { name: "Bullet Velocity", amount: 35, units: "%" },
+            { name: "Weapon Damage", amount: 25, units: "%" },
+            { name: "Spirit Power", amount: 12 },
+            { name: "Spirit Resist", amount: 12, units: "%" },
         ],
         passive: {
-            condition: "enemy_health_above_50%",
-            stats: [{ name: "weapon_damage", amount: 0.25, units: "%" }],
+            condition: "Enemy Health Above 50%",
+            stats: [{ name: "Weapon Damage", amount: 25, units: "%" }],
         },
     },
     {
-        name: "sharpshooter",
+        name: "Sharpshooter",
         category: "weapon",
         tier: 3,
-        component: "long_range",
+        component: "Long Range",
         stats: [
-            { name: "ammo", amount: 0.2, units: "%" },
-            { name: "weapon_falloff_range", amount: 0.15, units: "%" },
-            { name: "weapon_zoom", amount: 0.35, units: "%" },
-            { name: "bullet_shield_health", amount: 200 },
+            { name: "Ammo", amount: 20, units: "%" },
+            { name: "Weapon Fall-off Range", amount: 15, units: "%" },
+            { name: "Weapon Zoom", amount: 35, units: "%" },
+            { name: "Bullet Shield Health", amount: 200 },
         ],
         passive: {
-            condition: "long_range_15m",
-            stats: [{ name: "weapon_damage", amount: 0.7, units: "%" }],
+            condition: "Long Range 15m",
+            stats: [{ name: "Weapon Damage", amount: 70, units: "%" }],
         },
     },
     {
-        name: "tesla_bullets",
+        name: "Tesla Bullets",
         category: "weapon",
         tier: 3,
-        stats: [{ name: "fire_rate", amount: 0.14, units: "%" }],
+        stats: [
+            { name: "Fire Rate", amount: 14, units: "%" },
+            { name: "Spirit Damage", amount: 35 },
+        ],
+        tags: ["multi-hit"],
         additionalInfo:
-            "Your bullets have a chance to shock your target. The shock will jump to a nearby enemy. 30 shock damage, 60 damage on jump, 25% proc chance, 8m jump radius, 2 max jumps",
+            "Your bullets have a chance to shock your target. The shock will jump to up to 2 nearby enemies.",
     },
     {
-        name: "titanic_magazine",
+        name: "Titanic Magazine",
         category: "weapon",
         tier: 3,
-        component: "basic_magazine",
+        component: "Basic Magazine",
         stats: [
-            { name: "ammo", amount: 1.2, units: "%" },
-            { name: "weapon_damage", amount: 0.18, units: "%" },
-            { name: "bullet_resist", amount: 0.18, units: "%" },
+            { name: "Ammo", amount: 120, units: "%" },
+            { name: "Weapon Damage", amount: 18, units: "%" },
+            { name: "Bullet Resist", amount: 18, units: "%" },
         ],
     },
     {
-        name: "toxic_bullets",
+        name: "Toxic Bullets",
         category: "weapon",
         tier: 3,
-        stats: [{ name: "bonus_health", amount: 100 }],
+        stats: [{ name: "Bonus Health", amount: 100 }],
         passive: {
-            condition: "hit_hero",
+            condition: "Bullet Hit",
             stats: [
-                { name: "bleed_damage", amount: 0.05, units: "%" },
-                { name: "healing_reduction", amount: -0.65, units: "%" },
+                { name: "Bleed Damage", amount: 0.05, units: "%/sec" },
+                { name: "Healing Reduction", amount: -65, units: "%" },
             ],
             duration: 3,
         },
-        additionalInfo: "Bleed builds up at 0.8% per shot",
+        additionalInfo: "47% buildup per shot",
     },
     {
-        name: "alchemical_fire",
+        name: "Alchemical Fire",
         category: "weapon",
         tier: 3,
         stats: [
-            { name: "bullet_shield_health", amount: 225 },
-            { name: "weapon_damage", amount: 0.14, units: "%" },
-            { name: "spirit_power", amount: 11 },
+            { name: "Bullet Shield Health", amount: 225 },
+            { name: "Weapon Damage", amount: 14, units: "%" },
+            { name: "Spirit Power", amount: 11 },
         ],
         active: {
-            condition: "radius",
             stats: [
-                { name: "spirit_dps", amount: 45 },
-                { name: "weapon_damage", amount: 0.5, units: "%" },
+                { name: "Spirit Damage", amount: 73, units: "/sec" },
+                { name: "Weapon Damage", amount: 50, units: "%" },
             ],
             duration: 5,
             cooldown: 28,
         },
-        additionalInfo: "Max Spirit DPS is 95",
+        additionalInfo: "Increasing DPS starting from 47 up to 99",
     },
     {
-        name: "heroic_aura",
+        name: "Heroic Aura",
         category: "weapon",
         tier: 3,
         stats: [
-            { name: "bullet_lifesteal", amount: 0.2, units: "%" },
-            { name: "bonus_health", amount: 150 },
-            { name: "movement_speed", amount: 1 },
+            { name: "Bullet Lifesteal", amount: 20, units: "%" },
+            { name: "Bonus Health", amount: 150 },
+            { name: "Move Speed", amount: 1, units: "m/sec" },
         ],
         passive: {
-            condition: "minions_nearby_20m",
-            stats: [{ name: "minion_fire_rate", amount: 0.4, units: "%" }],
+            condition: "Close Range 20m",
+            stats: [{ name: "Minion Fire Rate", amount: 40, units: "%" }],
         },
         active: {
-            condition: "radius",
+            condition: "Close Range 30m",
             stats: [
-                { name: "movement_speed", amount: 2 },
-                { name: "fire_rate", amount: 0.25, units: "%" },
+                { name: "Move Speed", amount: 2 },
+                { name: "Fire Rate", amount: 25, units: "%" },
             ],
             duration: 6,
             cooldown: 32,
         },
     },
     {
-        name: "warp_stone",
+        name: "Warp Stone",
         category: "weapon",
         tier: 3,
         stats: [
-            { name: "weapon_damage", amount: 0.2, units: "%" },
-            { name: "spirit_power", amount: 8 },
+            { name: "Weapon Damage", amount: 20, units: "%" },
+            { name: "Spirit Power", amount: 8 },
         ],
         active: {
-            condition: "teleport_11m",
-            stats: [{ name: "bullet_resist", amount: 0.3, units: "%" }],
+            stats: [{ name: "Bullet Resist", amount: 30, units: "%" }],
             duration: 5,
             cooldown: 16,
         },
+        tags: ["mobility"],
     },
+    {
+        name: "Crippling Headshot",
+        category: "weapon",
+        tier: 4,
+        stats: [
+            { name: "Weapon Damage", amount: 20, units: "%" },
+            { name: "Bullet Lifesteal", amount: 10, units: "%" },
+            { name: "Spirit Lifesteal", amount: 10, units: "%" },
+        ],
+        passive: {
+            condition: "Headshot",
+            stats: [
+                { name: "Enemy Bullet Resist Reduction", amount: 24, units: "%" },
+                { name: "Enemy Spirit Resist Reduction", amount: 24, units: "%" },
+            ],
+            duration: 4,
+        },
+    },
+    {
+        name: "Frenzy",
+        category: "weapon",
+        tier: 4,
+        stats: [
+            { name: "Ammo", amount: 12 },
+            { name: "Weapon Damage", amount: 30, units: "%" },
+            { name: "Bonus Health", amount: 200 },
+        ],
+        passive: {
+            condition: "Health Below 40%",
+            stats: [
+                { name: "Move Speed", amount: 4, units: "m/sec" },
+                { name: "Fire Rate", amount: 40, units: "%" },
+                { name: "Bullet Resist", amount: 45, units: "%" },
+            ],
+        },
+    },
+    {
+        name: "Glass Cannon",
+        category: "weapon",
+        tier: 4,
+        stats: [
+            { name: "Weapon Damage", amount: 70, units: "%" },
+            { name: "Fire Rate", amount: 10, units: "%" },
+            { name: "Move Speed", amount: 1, units: "m/sec" },
+            { name: "Max Health", amount: -15, units: "%" },
+        ],
+        passive: {
+            condition: "Hero Kill",
+            stats: [{ name: "Weapon Damage", amount: 10, units: "%/stack", stacks: { max: 7 } }],
+        },
+        additionalInfo: "Death results in loss of one stack",
+    },
+    {
+        name: "Lucky Shot",
+        category: "weapon",
+        tier: 4,
+        stats: [
+            { name: "Ammo", amount: 30, units: "%" },
+            { name: "Weapon Damage", amount: 31.5 },
+        ],
+        passive: {
+            condition: "Bullet Proc Chance",
+            stats: [{ name: "Enemy Movement Slow", amount: 30, units: "%" }],
+            duration: 1.5,
+        },
+        additionalInfo: "35% proc chance, Weapon Damage bonus is average over time while shooting"
+    },
+    {
+        name: 'Ricochet',
+        category: "weapon",
+        tier: 4,
+        stats: [
+            {name: 'Ammo', amount: 35, units: '%'},
+            {name: 'Fire Rate', amount: 10, units: '%'},
+            {name: 'Bonus Health', amount: 150},
+        ],
+        passive: {
+            condition: "Bullet Ricochet",
+            stats: [
+                {name: "Ricochet Damage", amount: 60, units: '%'}
+            ]
+        },
+        additionalInfo: "Hits 2 ricochet targets with 14m of eachother"
+    },
+    {
+        name: "Spiritual Overflow",
+        category: "weapon",
+        tier: 4,
+        stats: [
+            {name: 'Fire Rate', amount: 20, units: '%'},
+            {name: 'Cooldown Reduction', amount: 15, units: '%'},
+            {name: "Spirit Lifesteal", amount: 10, units: '%'},
+            {name: "Bullet Shield Health", amount: 225},
+            {name: "Spirit Power", amount: 45}
+        ],
+        additionalInfo: "Spirit power bonus requires two shots on enemies, duration of 18sec"
+    },
+    {
+        name: "Shadow Weave",
+        category: "weapon",
+        tier: 4,
+        stats: [
+            {name: "Health Regen", amount: 15},
+            {name: "Spirit Shield Health", amount: 300},
+            {name: "Ammo", amount: 30, units: '%'},
+        ],
+        active: {
+            stats: [
+                {name: "Fire Rate", amount: 30, units: '%'},
+                {name: "Spirit Power", amount: 55},
+            ],
+            cooldown: 41,
+            duration: 8
+        },
+        tags: ["stealth"],
+        additionalInfo: "Become stealthed for 25sec, attacking enemies initiates 8sec ambush"
+    },
+    {
+        name: "Silencer",
+        category: "weapon",
+        tier: 4,
+        component: "Slowing Bullets",
+        stats: [
+            {name: "Weapon Damage", amount: 20, units: '%'},
+            {name: "Spirit Power", amount: 12},
+        ],
+        active: {
+            stats: [{name: "Enemy Silence", amount: 2}],
+            cooldown: 31,
+            duration: 4
+        },
+        tags: ["silence"]
+    },
+    {
+        name: "Vampiric Burst",
+        category: "weapon",
+        tier: 4,
+        stats: [
+            {name: "Move Speed", amount: 2, units: "m/sec"},
+            {name: "Weapon Damage", amount: 25, units: '%'},
+            {name: "Bonus Health", amount: 150},
+        ],
+        active: {
+            stats: [
+                {name: "Bullet Lifesteal", amount: 100, units: "%"},
+                {name: "Fire Rate", amount: 40, units: "%"},
+                {name: "Ammo", amount: 50, units: "%"}
+            ],
+            cooldown: 37,
+            duration: 4.5
+        }
+    }
 ];
