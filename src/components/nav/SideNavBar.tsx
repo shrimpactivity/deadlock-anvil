@@ -1,36 +1,21 @@
-import { NavLink } from "react-router-dom";
-
 import "./SideNavBar.css";
-import { useState } from "react";
 
-export default function SideNavBar() {
-    const pages = ["Item Priorities", "Results"];
-    const [activePage, setActivePage] = useState(pages[0]);
+interface Props {
+    pages: string[];
+    activePage?: string;
+    onPageChange: (page: string) => void;
+}
 
+export default function SideNavBar({ pages, activePage, onPageChange }: Props) {
     return (
         <div className="side-nav-bar">
             <nav>
                 <ul className="side-nav-bar-items">
-                    <li>
-                        <NavLink
-                            to="/build/priorities"
-                            className={({ isActive, isPending }) =>
-                                isActive ? "active" : isPending ? "pending" : ""
-                            }
-                        >
-                            Item Priorities
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/build/result"
-                            className={({ isActive, isPending }) =>
-                                isActive ? "active" : isPending ? "pending" : ""
-                            }
-                        >
-                            Results
-                        </NavLink>
-                    </li>
+                    {pages.map((page) => (
+                        <li key={page} className={page === activePage ? "active" : ""}>
+                            <button onClick={() => onPageChange(page)}>{page}</button>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </div>

@@ -73,6 +73,7 @@ function calculateItemStatPriority(item: Item, priority: StatPriority): number {
  */
 function calculateItemConditionPriority(item: Item, priority: ConditionPriority) {
     let result = 0;
+
     const passiveCondition = item.passive?.condition;
     if (passiveCondition && priority[passiveCondition]) {
         result += priority[passiveCondition];
@@ -82,7 +83,7 @@ function calculateItemConditionPriority(item: Item, priority: ConditionPriority)
     if (activeCondition && priority[activeCondition]) {
         result += priority[activeCondition];
     }
-    console.log("condition:", result);
+    
     return result;
 }
 

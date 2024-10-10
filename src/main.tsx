@@ -4,9 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
 import ErrorPage from "./routes/ErrorPage";
 import BuildRoot from "./routes/build/BuildRoot";
+import ItemsPage from "./routes/ItemsPage";
+import AboutPage from "./routes/AboutPage";
 import BuildProvider from "./context/BuildProvider";
 import { ITEMS } from "./config/items.config";
-
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -25,11 +26,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "items",
-                element: <div>item list</div>,
+                element: <ItemsPage />,
             },
             {
                 path: "about",
-                element: <div>about page</div>,
+                element: <AboutPage />,
             },
         ],
     },
