@@ -28,7 +28,7 @@ type ItemCategory = "weapon" | "vitality" | "spirit";
 interface ItemStat {
     name: ItemStatName;
     amount: number;
-    units?: "%" | "%/sec" | "%/stack" | "/sec" | "m" | "m/sec";
+    units?: "%" | "%/sec" | "%/stack" | "/sec" | "m" | "m/sec" | "sec";
     stacks?: {
         max: number;
         duration?: number;
@@ -38,28 +38,19 @@ interface ItemStat {
 // List of all stat names, useful for typescript name hinting.
 type ItemStatName =
     | "Ammo"
-    | "Base Ammo"
-    | "Base Health"
     | "Bleed Damage"
-    | "Bonus Ammo"
     | "Bonus Health"
-    | "Bonus Spirit Damage"
-    | "Bonus Weapon Damage"
-    | "Bonus Heavy Melee Damage"
-    | "Bullet Armor"
-    | "Bullet Heal"
     | "Bullet Lifesteal"
-    | "Bullet Shield Health"
-    | "Bullet Velocity"
     | "Bullet Resist"
     | "Bullet Resist vs. NPCs"
+    | "Bullet Shield Health"
+    | "Bullet Velocity"
     | "Cooldown Reduction"
-    | "Duration Extender"
     | "Enemy Bullet Resist Reduction"
     | "Enemy Fire Rate Slow"
     | "Enemy Movement Slow"
-    | "Enemy Spirit Resist Reduction"
     | "Enemy Silence"
+    | "Enemy Spirit Resist Reduction"
     | "Fire Rate"
     | "Healing"
     | "Healing From NPCs"
@@ -68,14 +59,12 @@ type ItemStatName =
     | "Heavy Melee Damage"
     | "Heavy Melee Distance"
     | "Max Health"
-    | "Max Weapon Damage"
     | "Minion Fire Rate"
     | "Move Speed"
     | "Reload Speed"
     | "Ricochet Damage"
     | "Slide Distance"
     | "Spirit Amp"
-    | "Spirit Armor"
     | "Spirit Damage"
     | "Spirit Lifesteal"
     | "Spirit Power"
@@ -98,7 +87,6 @@ type ItemConditionName =
     | "Close Range 20m"
     | "Close Range 30m"
     | "Continuous Fire for 3 Seconds"
-    | "Damage Over Time"
     | "Dash Jump"
     | "Enemy Health Above 50%"
     | "Headshot"
@@ -107,11 +95,7 @@ type ItemConditionName =
     | "Heavy Melee Hit"
     | "Hero Kill"
     | "Long Range 15m"
-    | "Minions Nearby 20m"
     | "On Active Reload"
-    | "Sustained Damage"
-    | "Stacking"
-    | "Teleport 11m"
-    | "Radius";
+    | "Sustained Damage";
 
-type ItemTag = "mobility" | "multi-hit" | "silence" | "stealth";
+type ItemTag = "mobility" | "multi-hit" | "stealth";

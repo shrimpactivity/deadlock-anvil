@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write ./src && prettier --write ./test",
-    "test": "jest"
+    "test": "jest",
+    "audit": "vite-node ./test/audit.ts"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.2",
@@ -24,6 +25,7 @@
     "@types/node": "^22.7.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^9.9.0",
@@ -36,6 +38,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-node": "^2.1.2"
   }
 }

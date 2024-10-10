@@ -179,7 +179,7 @@ export const ITEMS: Item[] = [
             condition: "Heavy Melee Hit",
             stats: [
                 { name: "Heavy Melee Damage", amount: 20, units: "%" },
-                { name: "Bonus Ammo", amount: 100, units: "%" },
+                { name: "Ammo", amount: 100, units: "%" },
             ],
             cooldown: 16,
         },
