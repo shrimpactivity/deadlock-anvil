@@ -4,10 +4,11 @@ interface PriorityMapping {
     [key: string]: Record<string, (ItemStatName | ItemConditionName | ItemTag)[]>;
 }
 
+// TODO: map ui priorities to stats/conditions/tags
 export const PRIORITY_MAPPING: PriorityMapping = {
     Weapon: {
-        "Weapon Damage": [],
-        "Fire Rate": [],
+        "Weapon Damage": ["Weapon Damage", "Enemy Bullet Resist Reduction", "Bullet Hit"],
+        "Fire Rate": ["Bullet Proc Chance"],
         Ammo: ["Ammo", ],
         "Bullet Velocity": [],
         "Reload Speed": [],

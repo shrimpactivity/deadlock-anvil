@@ -98,4 +98,4 @@ type ItemConditionName =
     | "On Active Reload"
     | "Sustained Damage";
 
-type ItemTag = "mobility" | "multi-hit" | "silence" | "stealth";
+type ItemTag = "mobility" | "multi-hit" | "stealth";

@@ -65,6 +65,11 @@ function getDuplicatesBetween(stats: string[], conditions: string[], tags: strin
   return Array.from(result).sort((a, b) => a.localeCompare(b));
 }
 
+// TODO:
+// function getValuesNotInPriorityMapping(stats: string[], conditions: string[], tags: string[]) {
+
+// }
+
 function printResults() {
   const stats = getAllItemStats();
   const conditions = getAllItemConditions();
