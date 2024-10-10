@@ -26,6 +26,7 @@ export interface Item {
     duration?: number;
     condition?: ItemConditionName;
   };
+  additionalInfo?: string;
 }
 
 // List of all stat names, useful for typescript name hinting.

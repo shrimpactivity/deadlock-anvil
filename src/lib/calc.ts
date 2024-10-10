@@ -105,7 +105,7 @@ function calculateItemPriority(
   return statContribution + conditionContribution;
 }
 
-function calculateAllItemPriorities(items: Item[], statPriority: StatPriority, conditionPriority: ConditionPriority) {
+export function calculateAllItemPriorities(items: Item[], statPriority: StatPriority, conditionPriority: ConditionPriority) {
   const result: {[key: string]: number} = {};
   items.forEach(item => {
     result[item.name] = calculateItemPriority(item, statPriority, conditionPriority);
