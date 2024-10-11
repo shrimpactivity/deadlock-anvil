@@ -1,64 +1,27 @@
 import { useMemo, useState } from "react";
-import { Item } from "../types/item";
+import { PriorityMapping } from "@/types/priority";
 
-function initializeStatsAndConditions(items: Item[]) {
-    const initStats: Record<string, number> = {};
-    const initConditions: Record<string, number> = {};
+type PriorityState = Record<string, Record<string, number>>;
 
-    items.forEach((item) => {
-        item.stats.forEach((stat) => {
-            initStats[stat.name] = 0;
+function initializePriorities(priorityMapping: PriorityMapping) {
+    const initPriorities: PriorityState = {};
+    Object.keys(priorityMapping).forEach((category) => {
+        initPriorities[category] = {};
+        Object.keys(priorityMapping).forEach((priorityName) => {
+            initPriorities[category][priorityName] = 0;
         });
-
-        if (item.passive) {
-            item.passive.stats.forEach((stat) => {
-                initStats[stat.name] = 0;
-            });
-            if (item.passive.condition) {
-                initConditions[item.passive.condition] = 0;
-            }
-        }
-
-        if (item.active) {
-            item.active.stats.forEach((stat) => {
-                initStats[stat.name] = 0;
-            });
-            if (item.active.condition) {
-                initConditions[item.active.condition] = 0;
-            }
-        }
     });
-
-    return { initStats, initConditions };
+    return { initPriorities };
 }
 
-export function usePriorities(items: Item[]) {
+export function usePriorities(priorityMapping: PriorityMapping) {
     // Memoize result of initializing priority dicts to not recompute every render.
-    const { initStats, initConditions } = useMemo(
-        () => initializeStatsAndConditions(items),
-        [items],
-    );
+    const { initPriorities } = useMemo(() => initializePriorities(priorityMapping), [priorityMapping]);
 
-    const MAX_STAT_PRIORITY = 3;
-    const MAX_CONDITION_PRIORITY = 1;
+    const MAX_PRIORITY = 3;
 
-    const [statPriority, setStatPriority] = useState(initStats);
-    const [conditionPriority, setConditionPriority] = useState(initConditions);
-
-    function incrementStat(name: string) {
-        if (!(name in statPriority)) {
-            throw new Error(`Invalid stat name: ${name}`);
-        }
-
-        let newValue = statPriority[name] + 1;
-        if (newValue > MAX_STAT_PRIORITY) {
-            newValue = 0;
-        }
-        const newPriorities = {
-            ...statPriority,
-            [name]: newValue,
-        };
-        setStatPriority(newPriorities);
+    function increment(name: string) {
+        
     }
 
     function decrementStat(name: string) {

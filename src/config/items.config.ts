@@ -616,11 +616,10 @@ export const ITEMS: Item[] = [
             {name: "Spirit Power", amount: 18},
         ],
         active: {
-            stats: [{name: "Enemy Silence", amount: 2}],
+            stats: [{name: "Enemy Silence", amount: 2, units: "sec"}],
             cooldown: 31,
             duration: 4
         },
-        tags: ["silence"]
     },
     {
         name: "Vampiric Burst",

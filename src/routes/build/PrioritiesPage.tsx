@@ -15,7 +15,6 @@ export default function PrioritiesPage() {
                         label={underscoreToUpperCase(stat)}
                         value={priorities.stats[stat]}
                         onClick={() => priorities.incrementStat(stat)}
-                        onRightClick={() => priorities.decrementStat(stat)}
                     />
                 ))}
             </div>
@@ -27,7 +26,6 @@ export default function PrioritiesPage() {
                         label={underscoreToUpperCase(condition)}
                         value={priorities.conditions[condition]}
                         onClick={() => priorities.incrementCondition(condition)}
-                        onRightClick={() => priorities.decrementCondition(condition)}
                     />
                 ))}
             </div>
