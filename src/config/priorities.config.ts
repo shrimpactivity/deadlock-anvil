@@ -73,7 +73,7 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     "Resist Crowd Control": {tags: ["mobility"]},
 
     // MISCELLANEOUS
-    "Melee Damage Q Enjoyer": {
+    "Melee Damage Unga Bunga": {
         stats: ["Heavy Melee Damage", "Heavy Melee Distance"],
         conditions: ["Health Below 50%", "Heavy Melee Hit"],
     },

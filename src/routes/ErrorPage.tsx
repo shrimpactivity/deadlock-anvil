@@ -3,7 +3,8 @@ import errorImg from "../assets/shiv.png";
 
 export default function ErrorPage() {
     const error = useRouteError();
-    let errorMessage: string = "";
+    let errorMessage = "";
+    let errorStack = "";
     if (isRouteErrorResponse(error)) {
         if (error.status) {
             errorMessage += error.status + " ";
@@ -14,6 +15,7 @@ export default function ErrorPage() {
     } else if (error instanceof Error) {
         if (error.message) {
             errorMessage = error.message;
+            errorStack = error.stack ?? "";
         } else {
             errorMessage = "An unexpected error occured";
         }
@@ -26,6 +28,7 @@ export default function ErrorPage() {
         <div id="error-page">
             <h1>Error</h1>
             <h2>{errorMessage}</h2>
+            {errorStack && <p>{errorStack}</p>}
             <img src={errorImg} />
         </div>
     );

@@ -1,16 +1,17 @@
 import { useMemo, useState } from "react";
-import { PriorityGroupMapping, GroupPriorities, DetailedPriorities } from "@/types/priority";
+import { PRIORITY_MAPPING } from "../config/priorities.config";
+import { GroupPriorities, DetailedPriorities } from "@/types/priority";
 
-function initializePriorities(priorityMapping: PriorityGroupMapping) {
+function initializePriorities() {
     const initPriorities: GroupPriorities = {};
-    Object.keys(priorityMapping).forEach((priorityName) => {
+    Object.keys(PRIORITY_MAPPING).forEach((priorityName) => {
         initPriorities[priorityName] = 0;
     });
     return { initPriorities };
 }
 
-export function usePriorities(mapping: PriorityGroupMapping, maxPriorityValue?: number) {
-    const { initPriorities } = useMemo(() => initializePriorities(mapping), [mapping]);
+export function usePriorities(maxPriorityValue?: number) {
+    const { initPriorities } = initializePriorities();
 
     const [groupPriorities, setGroupPriorities] = useState(initPriorities);
 
@@ -21,11 +22,13 @@ export function usePriorities(mapping: PriorityGroupMapping, maxPriorityValue?: 
      * @param priorityGroup The name of the priority group
      */
     function increment(priorityGroup: string) {
-        const newPriorities =
-            groupPriorities[priorityGroup] >= maxPriority ? 0 : groupPriorities[priorityGroup] + 1;
+        let newValue = groupPriorities[priorityGroup] + 1;
+        if (newValue > maxPriority) {
+            newValue = 0
+        }
         setGroupPriorities({
             ...groupPriorities,
-            priority: newPriorities,
+            [priorityGroup]: newValue,
         });
     }
 
@@ -47,15 +50,15 @@ export function usePriorities(mapping: PriorityGroupMapping, maxPriorityValue?: 
      * Returns the sum of priority values for stats, conditions, and tags based
      * off of the group priority values.
      */
-    function getDetailedPriorities(): DetailedPriorities {
+    function getDetailedPriorities(groupPriorities: GroupPriorities): DetailedPriorities {
         const result: DetailedPriorities = {
             stats: {},
             conditions: {},
             tags: {},
         };
-        Object.keys(mapping).forEach((groupPriority) => {
-            const { stats, conditions, tags } = mapping[groupPriority];
-            const priorityValue = groupPriorities[groupPriority];
+        Object.keys(PRIORITY_MAPPING).forEach((groupPriorityName) => {
+            const { stats, conditions, tags } = PRIORITY_MAPPING[groupPriorityName];
+            const priorityValue = groupPriorities[groupPriorityName];
             if (stats) {
                 stats.forEach((stat) => {
                     if (result.stats[stat]) {
@@ -87,9 +90,11 @@ export function usePriorities(mapping: PriorityGroupMapping, maxPriorityValue?: 
         return result;
     }
 
+    const detailedPriorities = useMemo(() => getDetailedPriorities(groupPriorities), [groupPriorities])
+
     return {
-        group: groupPriorities,
-        detailed: getDetailedPriorities(),
+        groups: groupPriorities,
+        detailed: detailedPriorities,
         increment,
         reset,
     };

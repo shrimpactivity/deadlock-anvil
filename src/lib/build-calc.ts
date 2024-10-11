@@ -1,7 +1,6 @@
-import { Item, ItemStat, ItemStatName } from "../types/item";
+import { Item, ItemStatName } from "../types/item";
 import { CATEGORY_TIER_BONUSES } from "../config/tiers.config";
 import { NormalCalculator } from "./normal-calc";
-import { GroupPriorities, PriorityGroupMapping } from "../types/priority";
 import { BuildOptions } from "../types/build";
 
 /**
@@ -9,7 +8,6 @@ import { BuildOptions } from "../types/build";
  */
 export class BuildCalculator {
     private items: Item[];
-    private priorityMapping: PriorityGroupMapping;
     private statNormal: NormalCalculator;
 
     // Value factor of stats associated with an un-prioritized effect condition
@@ -18,9 +16,8 @@ export class BuildCalculator {
     // Additional value from prioritized tags
     private readonly TAG_VALUE = 0.5;
 
-    constructor(items: Item[], priorityMapping: PriorityGroupMapping) {
+    constructor(items: Item[]) {
         this.items = items;
-        this.priorityMapping = priorityMapping;
         this.statNormal = new NormalCalculator(items);
     }
 
@@ -141,9 +138,10 @@ export class BuildCalculator {
         });
     }
 
-    getBuildOrder({ groupPriorities, mandatedItems, settings }: BuildOptions) {
-        const buildValues = generateBuildValues();
-        const sortedItems = itemsWithBuildValues.sort((a, b) => b.buildValue! - a.buildValue!);
-        return sortedItems;
+    getBuildOrder({ priorities, mandatedItems, settings }: BuildOptions) {
+        // const buildValues = generateBuildValues();
+        // const sortedItems = itemsWithBuildValues.sort((a, b) => b.buildValue! - a.buildValue!);
+        // return sortedItems;
+        return [];
     }
 }

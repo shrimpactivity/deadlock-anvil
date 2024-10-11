@@ -81,11 +81,26 @@ function getPropsNotInPriorityMapping(stats: string[], conditions: string[], tag
         }
     });
 
-    const excludedStats = stats.filter(x => !priorityMappingDump.has(x));
-    const excludedConditions = conditions.filter(x => !priorityMappingDump.has(x));
-    const excludedTags = tags.filter(x => !priorityMappingDump.has(x));
+    const excludedStats = stats.filter((x) => !priorityMappingDump.has(x));
+    const excludedConditions = conditions.filter((x) => !priorityMappingDump.has(x));
+    const excludedTags = tags.filter((x) => !priorityMappingDump.has(x));
 
-    return {stats: excludedStats, conditions: excludedConditions, tags: excludedTags};
+    return { stats: excludedStats, conditions: excludedConditions, tags: excludedTags };
+}
+
+function getPriorityGroupsWithoutProps() {
+    const result: string[] = [];
+    Object.keys(PRIORITY_MAPPING).forEach((groupName) => {
+        const group = PRIORITY_MAPPING[groupName];
+        if (
+            (!group.stats || !group.stats.length) &&
+            (!group.conditions || !group.conditions.length) &&
+            (!group.tags || !group.tags.length)
+        ) {
+            result.push(groupName);
+        }
+    });
+    return result;
 }
 
 function printAuditResults() {
@@ -118,30 +133,42 @@ function printAuditResults() {
     }
 
     const notInPrioMapping = getPropsNotInPriorityMapping(stats, conditions, tags);
-    if (notInPrioMapping.stats.length || notInPrioMapping.conditions.length || notInPrioMapping.tags.length) {
+    if (
+        notInPrioMapping.stats.length ||
+        notInPrioMapping.conditions.length ||
+        notInPrioMapping.tags.length
+    ) {
         console.log(
             "WARNING: The following item properties do not appear in the UI priority mapping.",
         );
         console.log("Associated items may be under-prioritized.");
         console.log("");
-        
+
         if (notInPrioMapping.stats) {
-            console.log("STATS")
-            notInPrioMapping.stats.forEach(x => console.log(x));
+            console.log("STATS");
+            notInPrioMapping.stats.forEach((x) => console.log(x));
             console.log("");
         }
         if (notInPrioMapping.conditions) {
-            console.log("CONDITIONS")
-            notInPrioMapping.conditions.forEach(x => console.log(x));
+            console.log("CONDITIONS");
+            notInPrioMapping.conditions.forEach((x) => console.log(x));
             console.log("");
         }
         if (notInPrioMapping.tags) {
-            console.log("TAGS")
-            notInPrioMapping.tags.forEach(x => console.log(x));
+            console.log("TAGS");
+            notInPrioMapping.tags.forEach((x) => console.log(x));
             console.log("");
         }
     } else {
-        console.log("All item properties appear in priority mapping.")
+        console.log("All item properties appear in priority mapping.");
+        console.log("");
+    }
+
+    const priorityGroupsWithoutProps = getPriorityGroupsWithoutProps();
+    if (priorityGroupsWithoutProps.length) {
+        console.log("WARNING: The following priority mapping groups have no stats/conditions/tags.")
+        console.log("Priority group will have no effect in UI.");
+        priorityGroupsWithoutProps.forEach(x => console.log(x));
     }
 }
 
