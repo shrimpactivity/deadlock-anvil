@@ -2,6 +2,8 @@ import { Item, ItemStatName } from "../types/item";
 import { CATEGORY_TIER_BONUSES } from "../config/tiers.config";
 import { NormalCalculator } from "./normal-calc";
 import { BuildOptions } from "../types/build";
+import { DetailedPriorities } from "../types/priority";
+import { getItemByName } from "./utils";
 
 /**
  * Handles calculating build based off of selected priorities.
@@ -129,13 +131,19 @@ export class BuildCalculator {
 
 
 */
-    private getItemBuildValue(item: Item, statPriorities: Record<ItemStatName, number>) {
+    private getItemBuildValue(item: Item, priorities: DetailedPriorities) {
         let result = 0;
         item.stats.forEach((stat) => {
-            if (stat.name in statPriorities) {
+            const priorityValue = priorities.stats[stat.name];
+            if (priorityValue) {
+                const normValue = this.statNormal.calc(stat);
+                result += normValue * priorityValue; // TODO: potentially square root this or something to have diminishing priority stacking
             }
-            const normValue = this.statNormal.calc(stat);
         });
+
+        if (item.component) {
+            const component = getItemByName(item.component);
+        }
     }
 
     getBuildOrder({ priorities, mandatedItems, settings }: BuildOptions) {

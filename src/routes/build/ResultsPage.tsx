@@ -8,7 +8,7 @@ export default function ResultsPage() {
             <h1>Build Order</h1>
             {build.buildOrder.map(item => (
                 <div key={item.name}>
-                    <p>{item.name} - {item.buildValue}</p>
+                    <p>{item.name}</p>
                 </div>
             ))}
         </div>

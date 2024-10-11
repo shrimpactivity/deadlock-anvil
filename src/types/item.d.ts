@@ -18,7 +18,6 @@ export interface Item {
     };
     tags?: ItemTag[];
     additionalInfo?: string;
-    buildValue?: number;
 }
 
 type ItemTier = 1 | 2 | 3 | 4;
