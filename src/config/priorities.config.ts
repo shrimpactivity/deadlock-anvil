@@ -1,55 +1,94 @@
+import { PriorityMapping } from "../types/priority";
 
-
-// TODO: map ui priorities to stats/conditions/tags
+/**
+ * A mapping of UI priority inputs to item stats, conditions, and tags.
+ */
 export const PRIORITY_MAPPING: PriorityMapping = {
+    // WEAPON
+    "Weapon Damage": {
+        stats: ["Weapon Damage", "Enemy Bullet Resist Reduction"],
+        conditions: ["Bullet Hit"],
+    },
+    "Fire Rate": {
+        stats: ["Fire Rate"],
+        conditions: ["Bullet Proc Chance"],
+    },
+    Ammo: { stats: ["Ammo", "Temporary Ammo"], conditions: ["Continuous Fire for 3 Seconds"] },
+    "Bullet Velocity": { stats: ["Bullet Velocity"] },
+    "Reload Speed": { stats: ["Reload Speed"], conditions: ["On Active Reload"] },
+    Headshots: { conditions: ["Headshot"] },
+    "Close Range": { conditions: ["Close Range 15m", "Close Range 20m", "Close Range 30m"] },
+    "Long Range": {
+        stats: ["Weapon Fall-off Range", "Weapon Zoom"],
+        conditions: ["Long Range 15m"],
+    },
+    "Multi Hit": { stats: ["Ricochet Damage"], tags: ["multi-hit"] },
 
-        "Weapon Damage": {
-            stats: ["Weapon Damage", "Enemy Bullet Resist Reduction"],
-            conditions: ["Bullet Hit"],
-        },
-        "Fire Rate": {
-            conditions: ["Bullet Proc Chance"],
-        },
-        Ammo: { stats: ["Ammo"] },
-        "Bullet Velocity": {},
-        "Reload Speed": {},
-        Headshots: {},
-        "Close Range": {},
-        "Long Range": {},
-        "Multi Hit": {},
+    // SPIRIT
+    "Spirit Damage": {
+        stats: ["Spirit Power", "Spirit Damage", "Spirit Amp", "Enemy Spirit Resist Reduction"],
+    },
+    "Spirit Burst Damage": { stats: ["Spirit Amp", "Enemy Spirit Resist Reduction"] },
+    "Cooldown Reduction": { stats: ["Cooldown Reduction"] },
+    "Ability Charges": {},
+    "Ability Range": {},
+    "Ability Duration": {},
 
-    Spirit: {
-        "Spirit Damage": {},
-        "Burst Damage": {},
-        "Silence enemies": {},
-        "Ability Charges": {},
-        "Ability Range": {},
-        "Ability Duration": {},
+    // VITALITY
+    Health: { stats: ["Bonus Health", "Max Health"], conditions: ["Health Above 60%"] },
+    "Health Regen": { stats: ["Health Regen"], conditions: ["Health Above 60%"] },
+    "General Healing": {
+        stats: ["Healing", "Healing From NPCs"],
+        conditions: ["Health Above 60%"],
     },
-    Health: {
-        Health: {},
-        "Health Regen": {},
-        "Bullet Lifesteal": {},
-        "Spirit Lifesteal": {},
-        "Melee Lifesteal": {},
-        "Bullet Armor / Shield": {},
-        "Spirit Armor / Shield": {},
+    "Bullet Lifesteal": { stats: ["Bullet Lifesteal"] },
+    "Bullet Tankiness": {
+        stats: ["Bullet Resist", "Bullet Shield Health", "Enemy Fire Rate Slow"],
+        conditions: ["Sustained Damage"],
     },
-    Mobility: {
-        "Move Speed": {},
-        "Sprint Speed": {},
-        Stamina: {},
-        "Slide Distance": {},
-        "Mobility/Escape Tools": {},
+    "Spirit Lifesteal": { stats: ["Spirit Lifesteal"] },
+    "Spirit Tankiness": {
+        stats: ["Spirit Resist", "Spirit Shield Health"],
+        conditions: ["Sustained Damage"],
     },
-    "Crowd Control": {
-        "Movement Slow": {},
-        Silence: {},
-        Stun: {},
-        "Resist Crowd Control": {},
+    "Melee Lifesteal": {},
+
+    // MOBILITY
+    "Move Speed": { stats: ["Move Speed"] },
+    "Sprint Speed": { stats: ["Sprint Speed"] },
+    "Stamina - Dash Jump Slide": {
+        stats: ["Slide Distance", "Stamina"],
+        conditions: ["Dash Jump"],
     },
-    Misc: {
-        "Melee Damage": {},
-        "NPC Damage": {},
+    "Mobility / Escape Tools": { tags: ["mobility"]},
+
+    // CROWD CONTROL
+    "Movement Slow": { stats: ["Enemy Movement Slow"] },
+    "Anti-tank": {
+        stats: ["Bleed Damage", "Healing Reduction"],
+        conditions: ["Enemy Health Above 50%"],
+    },
+    Silence: { stats: ["Enemy Silence"] },
+    Stun: {},
+    "Resist Crowd Control": {tags: ["mobility"]},
+
+    // MISCELLANEOUS
+    "Melee Damage Q Enjoyer": {
+        stats: ["Heavy Melee Damage", "Heavy Melee Distance"],
+        conditions: ["Health Below 50%", "Heavy Melee Hit"],
+    },
+    Assassinations: {
+        conditions: ["Hero Kill"],
+    },
+    Stealth: {
+        tags: ["stealth"]
+    },
+    "NPC Destroyer": {
+        stats: [
+            "Bullet Resist vs. NPCs",
+            "Healing From NPCs",
+            "Minion Fire Rate",
+            "Weapon Damage vs. NPCs",
+        ],
     },
 };

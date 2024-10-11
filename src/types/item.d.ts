@@ -35,7 +35,6 @@ interface ItemStat {
     };
 }
 
-// List of all stat names, useful for typescript name hinting.
 type ItemStatName =
     | "Ammo"
     | "Bleed Damage"
@@ -78,11 +77,9 @@ type ItemStatName =
     | "Weapon Fall-off Range"
     | "Weapon Zoom";
 
-// List of all stat conditions, useful for typescript name hinting.
 type ItemConditionName =
     | "Bullet Hit"
     | "Bullet Proc Chance"
-    | "Bullet Ricochet"
     | "Close Range 15m"
     | "Close Range 20m"
     | "Close Range 30m"

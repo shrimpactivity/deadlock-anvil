@@ -1,4 +1,4 @@
-import { PRIORITY_MAPPING } from "@/config/priorities.config";
+import { PRIORITY_MAPPING } from "../src/config/priorities.config";
 import { ITEMS } from "../src/config/items.config";
 
 /**
@@ -68,27 +68,24 @@ function getDuplicatesBetween(stats: string[], conditions: string[], tags: strin
 
 function getValuesNotInPriorityMapping(stats: string[], conditions: string[], tags: string[]) {
     const priorityMappingDump = new Set<string>();
-    Object.keys(PRIORITY_MAPPING).forEach((category) => {
-        Object.keys(PRIORITY_MAPPING[category]).forEach((priorityName) => {
-            const priority = PRIORITY_MAPPING[category][priorityName];
-            if (priority.stats) {
-                priority.stats.forEach((stat) => priorityMappingDump.add(stat));
-            }
-            if (priority.conditions) {
-                priority.conditions.forEach((conditions) => priorityMappingDump.add(conditions));
-            }
-            if (priority.tags) {
-                priority.tags.forEach((tags) => priorityMappingDump.add(tags));
-            }
-        });
+    Object.keys(PRIORITY_MAPPING).forEach((priorityName) => {
+        const priority = PRIORITY_MAPPING[priorityName];
+        if (priority.stats) {
+            priority.stats.forEach((stat) => priorityMappingDump.add(stat));
+        }
+        if (priority.conditions) {
+            priority.conditions.forEach((conditions) => priorityMappingDump.add(conditions));
+        }
+        if (priority.tags) {
+            priority.tags.forEach((tags) => priorityMappingDump.add(tags));
+        }
     });
 
-    const currentValues = new Set<string>(stats.concat());
-    const result = Array.from(currentValues)
-        .filter((value) => !priorityMappingDump.has(value))
-        .sort((a, b) => a.localeCompare(b));
+    const excludedStats = stats.filter(x => !priorityMappingDump.has(x));
+    const excludedConditions = conditions.filter(x => !priorityMappingDump.has(x));
+    const excludedTags = tags.filter(x => !priorityMappingDump.has(x));
 
-    return result;
+    return {stats: excludedStats, conditions: excludedConditions, tags: excludedTags};
 }
 
 function printAuditResults() {
@@ -115,18 +112,36 @@ function printAuditResults() {
             "WARNING: The following names appear duplicated between item stats, conditions, and tags.",
         );
         console.log("This may result in item over-prioritization.");
-        console.log("")
+        console.log("");
         duplicates.forEach((dup) => console.log(dup));
-        console.log("")
+        console.log("");
     }
 
-    const valuesNotInPriorityMapping = getValuesNotInPriorityMapping(stats, conditions, tags);
-    if (valuesNotInPriorityMapping.length) {
-      console.log("WARNING: The following item stats/conditions/tags do not appear in the UI priority mapping.");
-      console.log("Associated items may be under-prioritized.");
-      console.log("")
-      valuesNotInPriorityMapping.forEach(val => console.log(val));
-      console.log("")
+    const notInPrioMapping = getValuesNotInPriorityMapping(stats, conditions, tags);
+    if (notInPrioMapping.stats.length || notInPrioMapping.conditions.length || notInPrioMapping.tags.length) {
+        console.log(
+            "WARNING: The following item stats/conditions/tags do not appear in the UI priority mapping.",
+        );
+        console.log("Associated items may be under-prioritized.");
+        console.log("");
+        
+        if (notInPrioMapping.stats) {
+            console.log("STATS")
+            notInPrioMapping.stats.forEach(x => console.log(x));
+            console.log("");
+        }
+        if (notInPrioMapping.conditions) {
+            console.log("CONDITIONS")
+            notInPrioMapping.conditions.forEach(x => console.log(x));
+            console.log("");
+        }
+        if (notInPrioMapping.tags) {
+            console.log("TAGS")
+            notInPrioMapping.tags.forEach(x => console.log(x));
+            console.log("");
+        }
+    } else {
+        console.log("All stats/conditions/tags appear in priority mapping.")
     }
 }
 

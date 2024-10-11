@@ -430,7 +430,7 @@ export const ITEMS: Item[] = [
             ],
             duration: 3,
         },
-        additionalInfo: "55% buildup per shot",
+        additionalInfo: "Bullets build up bleed effect (different rate for each gun)",
     },
     {
         name: "Alchemical Fire",
@@ -566,7 +566,6 @@ export const ITEMS: Item[] = [
             {name: 'Bonus Health', amount: 150},
         ],
         passive: {
-            condition: "Bullet Ricochet",
             stats: [
                 {name: "Ricochet Damage", amount: 60, units: '%'}
             ]
@@ -584,7 +583,7 @@ export const ITEMS: Item[] = [
             {name: 'Fire Rate', amount: 35, units: '%'},
             {name: "Spirit Power", amount: 50}
         ],
-        additionalInfo: "Spirit power and fire rate bonus requires buildup on enemies, duration of 18sec"
+        additionalInfo: "Spirit power and fire rate bonus builds up with bullet hits, duration of 18sec"
     },
     {
         name: "Shadow Weave",
