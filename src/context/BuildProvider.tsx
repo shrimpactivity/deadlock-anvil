@@ -1,15 +1,15 @@
 import { PropsWithChildren, useMemo, useState } from "react";
-import { usePriorities } from "../hooks/use-priorities";
+import { BuildCalculator } from "../lib/build-calc";
 import { BuildContext } from "./use-build";
+import { usePriorities } from "../hooks/use-priorities";
 import { useDebounce } from "../hooks/use-debounce";
-import { BuildCalculator } from "../lib/build-calculator";
 import { ITEMS } from "../config/items.config";
 import { PRIORITY_MAPPING } from "../config/priorities.config";
-import { SettingsType } from "../types/settings";
+import { Settings } from "../types/build";
 
 const calc = new BuildCalculator(ITEMS, PRIORITY_MAPPING);
 
-const initSettings: SettingsType = {
+const initSettings: Settings = {
     openWeaponSlots: 0,
     openVitalitySlots: 0,
     openSpiritSlots: 0,

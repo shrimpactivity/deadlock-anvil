@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
-import { PriorityMapping } from "@/types/priority";
+import { PriorityMapping, Priorities } from "@/types/priority";
 
-type Priorities = Record<string, number>;
 
 function initializePriorities(priorityMapping: PriorityMapping) {
     const initPriorities: Priorities = {};

@@ -66,7 +66,7 @@ function getDuplicatesBetween(stats: string[], conditions: string[], tags: strin
     return Array.from(result).sort((a, b) => a.localeCompare(b));
 }
 
-function getValuesNotInPriorityMapping(stats: string[], conditions: string[], tags: string[]) {
+function getPropsNotInPriorityMapping(stats: string[], conditions: string[], tags: string[]) {
     const priorityMappingDump = new Set<string>();
     Object.keys(PRIORITY_MAPPING).forEach((priorityName) => {
         const priority = PRIORITY_MAPPING[priorityName];
@@ -117,10 +117,10 @@ function printAuditResults() {
         console.log("");
     }
 
-    const notInPrioMapping = getValuesNotInPriorityMapping(stats, conditions, tags);
+    const notInPrioMapping = getPropsNotInPriorityMapping(stats, conditions, tags);
     if (notInPrioMapping.stats.length || notInPrioMapping.conditions.length || notInPrioMapping.tags.length) {
         console.log(
-            "WARNING: The following item stats/conditions/tags do not appear in the UI priority mapping.",
+            "WARNING: The following item properties do not appear in the UI priority mapping.",
         );
         console.log("Associated items may be under-prioritized.");
         console.log("");
@@ -141,7 +141,7 @@ function printAuditResults() {
             console.log("");
         }
     } else {
-        console.log("All stats/conditions/tags appear in priority mapping.")
+        console.log("All item properties appear in priority mapping.")
     }
 }
 

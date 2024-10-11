@@ -7,3 +7,5 @@ export interface PriorityMapping {
         tags?: ItemTag[];
     };
 }
+
+export type Priorities = Record<string, number>;

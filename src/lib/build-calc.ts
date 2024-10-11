@@ -1,14 +1,24 @@
 import { Item } from "../types/item";
 import { CATEGORY_TIER_BONUSES } from "../config/tiers.config";
+import { PriorityMapping } from "../types/priority";
+import { BuildOptions } from "../types/build";
 
 /**
  * Handles calculating build based off of selected priorities.
  */
 export class BuildCalculator {
     private items: Item[];
+    private priorityMapping: PriorityMapping;
 
-    constructor(items: Item[]) {
+    // Value factor of stats associated with an un-prioritized effect condition
+    private readonly CONDITION_NOT_MET_FACTOR = 0.5;
+
+    // Additional value from prioritized tags
+    private readonly TAG_VALUE = 0.5;
+
+    constructor(items: Item[], priorityMapping: PriorityMapping) {
         this.items = items;
+        this.priorityMapping = priorityMapping;
     }
 
     /**
@@ -124,7 +134,8 @@ To calculate priority:
 
 */
 
-    getBuildOrder(statPriority: Record<string, number>, conditionPriority: Record<string, number>) {
+
+    getBuildOrder({ priorities, mandatedItems, settings }: BuildOptions) {
         this.addPriorityValueToItems(statPriority, conditionPriority);
         const itemsWithBuildValues = this.items.filter((item) => !!item.buildValue);
         const sortedItems = itemsWithBuildValues.sort((a, b) => b.buildValue! - a.buildValue!);
