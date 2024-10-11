@@ -1,9 +1,14 @@
 import { createContext, useContext } from "react";
 import { usePriorities } from "../hooks/use-priorities";
 import { Item } from "../types/item";
+import { SettingsType } from "../types/settings";
 
 interface BuildContextType {
     priorities: ReturnType<typeof usePriorities>;
+    mandatedItems: string[];
+    setMandatedItems: (items: string[]) => void;
+    settings: SettingsType;
+    setSettings: (settings: SettingsType) => void;
     buildOrder: Item[];
 }
 

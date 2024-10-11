@@ -41,7 +41,7 @@ export function usePriorities(priorityMapping: PriorityMapping, maxPriorityValue
     }
 
     return {
-        priorities,
+        all: priorities,
         increment,
         reset,
     };
