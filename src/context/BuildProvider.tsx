@@ -22,7 +22,7 @@ export default function BuildProvider({ children }: PropsWithChildren) {
     const [mandatedItems, setMandatedItems] = useState<string[]>([]);
     const [settings, setSettings] = useState(initSettings);
 
-    const buildOptions = { priorities: priorities.all, mandatedItems, settings };
+    const buildOptions = { groupPriorities: priorities.all, mandatedItems, settings };
     const debouncedBuildOptions = useDebounce(buildOptions);
 
     const buildOrder = useMemo(() => calc.getBuildOrder(debouncedBuildOptions), [debouncedBuildOptions]);

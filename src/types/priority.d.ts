@@ -1,6 +1,6 @@
 import { ItemConditionName, ItemStatName, ItemTag } from "./item";
 
-export interface PriorityMapping {
+export interface PriorityGroupMapping {
     [key: string]: {
         stats?: ItemStatName[];
         conditions?: ItemConditionName[];
@@ -8,4 +8,10 @@ export interface PriorityMapping {
     };
 }
 
-export type Priorities = Record<string, number>;
+export type GroupPriorities = Record<string, number>;
+
+export interface DetailedPriorities {
+    stats: Record<string, number>;
+    conditions: Record<string, number>;
+    tags: Record<string, number>;
+}

@@ -1,6 +1,7 @@
-import { Item } from "../types/item";
+import { Item, ItemStat, ItemStatName } from "../types/item";
 import { CATEGORY_TIER_BONUSES } from "../config/tiers.config";
-import { PriorityMapping } from "../types/priority";
+import { NormalCalculator } from "./normal-calc";
+import { GroupPriorities, PriorityGroupMapping } from "../types/priority";
 import { BuildOptions } from "../types/build";
 
 /**
@@ -8,7 +9,8 @@ import { BuildOptions } from "../types/build";
  */
 export class BuildCalculator {
     private items: Item[];
-    private priorityMapping: PriorityMapping;
+    private priorityMapping: PriorityGroupMapping;
+    private statNormal: NormalCalculator;
 
     // Value factor of stats associated with an un-prioritized effect condition
     private readonly CONDITION_NOT_MET_FACTOR = 0.5;
@@ -16,9 +18,10 @@ export class BuildCalculator {
     // Additional value from prioritized tags
     private readonly TAG_VALUE = 0.5;
 
-    constructor(items: Item[], priorityMapping: PriorityMapping) {
+    constructor(items: Item[], priorityMapping: PriorityGroupMapping) {
         this.items = items;
         this.priorityMapping = priorityMapping;
+        this.statNormal = new NormalCalculator(items);
     }
 
     /**
@@ -125,19 +128,21 @@ export class BuildCalculator {
             item.buildValue = this.calculateItemBuildValue(item, statPriority, conditionPriority);
         });
     }
-
     /*
-To calculate priority:
-- normalize stats based off of units
-
 
 
 */
+    private getItemBuildValue(item: Item, statPriorities: Record<ItemStatName, number>) {
+        let result = 0;
+        item.stats.forEach((stat) => {
+            if (stat.name in statPriorities) {
+            }
+            const normValue = this.statNormal.calc(stat);
+        });
+    }
 
-
-    getBuildOrder({ priorities, mandatedItems, settings }: BuildOptions) {
-        this.addPriorityValueToItems(statPriority, conditionPriority);
-        const itemsWithBuildValues = this.items.filter((item) => !!item.buildValue);
+    getBuildOrder({ groupPriorities, mandatedItems, settings }: BuildOptions) {
+        const buildValues = generateBuildValues();
         const sortedItems = itemsWithBuildValues.sort((a, b) => b.buildValue! - a.buildValue!);
         return sortedItems;
     }

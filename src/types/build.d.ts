@@ -1,4 +1,4 @@
-import { Priorities } from "./priority";
+import { GroupPriorities } from "./priority";
 
 export interface Settings {
     openWeaponSlots: number;
@@ -9,7 +9,7 @@ export interface Settings {
 }
 
 export interface BuildOptions {
-    priorities: Priorities;
+    groupPriorities: GroupPriorities;
     mandatedItems: string[];
     settings: Settings;
 }

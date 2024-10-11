@@ -1,9 +1,9 @@
-import { PriorityMapping } from "../types/priority";
+import { PriorityGroupMapping } from "../types/priority";
 
 /**
  * A mapping of UI priority inputs to item stats, conditions, and tags.
  */
-export const PRIORITY_MAPPING: PriorityMapping = {
+export const PRIORITY_MAPPING: PriorityGroupMapping = {
     // WEAPON
     "Weapon Damage": {
         stats: ["Weapon Damage", "Enemy Bullet Resist Reduction"],
