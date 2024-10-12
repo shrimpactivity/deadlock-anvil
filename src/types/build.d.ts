@@ -9,6 +9,7 @@ export interface Settings {
 }
 
 export interface BuildOptions {
+    items: Item[];
     priorities: DetailedPriorities;
     mandatedItems: string[];
     settings: Settings;

@@ -27,6 +27,7 @@ export default function BuildProvider({ children }: PropsWithChildren) {
 
     const buildOrder = useMemo(() => {
         const buildOptions = {
+            items: ITEMS,
             priorities: debouncedDetailedPriorities,
             mandatedItems: debouncedMandatedItems,
             settings: debouncedSettings,

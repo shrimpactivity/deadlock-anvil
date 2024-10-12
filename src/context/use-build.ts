@@ -9,7 +9,7 @@ interface BuildContextType {
     setMandatedItems: (items: string[]) => void;
     settings: Settings;
     setSettings: (settings: Settings) => void;
-    buildOrder: Item[];
+    buildOrder: any[]; // FIXME:
 }
 
 export const BuildContext = createContext<BuildContextType>(null!);

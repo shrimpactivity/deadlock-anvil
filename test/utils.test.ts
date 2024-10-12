@@ -1,16 +1,28 @@
-import { underscoreToUpperCase } from "../src/lib/utils";
+import { ITEMS } from "../src/config/items.config";
+import { getItemByName, getItemCost } from "../src/lib/utils";
 
-describe("Underscore to upper case conversion should", () => {
-    test("return empty for empty string", () => {
-        const result = underscoreToUpperCase("");
-        expect(result).toBe("");
+describe("getItemByName should", () => {
+    test("get the correct item", () => {
+        const item = ITEMS[0];
+
+        const getItem = getItemByName(item.name);
+        expect(getItem.name).toBe(item.name);
+        expect(getItem.category).toBe(item.category);
     });
 
-    test("return capitalized single word", () => {
-        expect(underscoreToUpperCase("daisy")).toBe("Daisy");
-    });
-
-    test("returns correct capital case", () => {
-        expect(underscoreToUpperCase("this_is_a_test")).toBe("This Is A Test");
-    });
+    test("throws an error for item that doesn't exist", () => {
+        expect(() => getItemByName("Daisy")).toThrow("Invalid item name: Daisy");
+    })
 });
+
+describe("getItemCost", () => {
+    test("returns correct cost for component-less item", () => {
+        const item = getItemByName("Basic Magazine")
+        expect(getItemCost(item)).toBe(500);
+    })
+
+    test("returns correct cost for item with component", () => {
+        const item = getItemByName("Titanic Magazine")
+        expect(getItemCost(item)).toBe(3500);
+    }) 
+})
