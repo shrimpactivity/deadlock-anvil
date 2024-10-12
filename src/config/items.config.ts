@@ -554,56 +554,55 @@ export const ITEMS: Item[] = [
             stats: [{ name: "Enemy Movement Slow", amount: 30, units: "%" }],
             duration: 1.5,
         },
-        additionalInfo: "35% proc chance, Weapon Damage bonus is average over time while shooting"
+        additionalInfo: "35% proc chance, Weapon Damage bonus is average over time while shooting",
     },
     {
-        name: 'Ricochet',
+        name: "Ricochet",
         category: "weapon",
         tier: 4,
         stats: [
-            {name: 'Ammo', amount: 35, units: '%'},
-            {name: 'Fire Rate', amount: 10, units: '%'},
-            {name: 'Bonus Health', amount: 150},
+            { name: "Ammo", amount: 35, units: "%" },
+            { name: "Fire Rate", amount: 10, units: "%" },
+            { name: "Bonus Health", amount: 150 },
         ],
         passive: {
-            stats: [
-                {name: "Ricochet Damage", amount: 60, units: '%'}
-            ]
+            stats: [{ name: "Ricochet Damage", amount: 60, units: "%" }],
         },
-        additionalInfo: "Hits 2 ricochet targets with 11m of eachother"
+        additionalInfo: "Hits 2 ricochet targets with 11m of eachother",
     },
     {
         name: "Spiritual Overflow",
         category: "weapon",
         tier: 4,
         stats: [
-            {name: 'Cooldown Reduction', amount: 15, units: '%'},
-            {name: "Spirit Lifesteal", amount: 10, units: '%'},
-            {name: "Bullet Shield Health", amount: 225},
-            {name: 'Fire Rate', amount: 35, units: '%'},
-            {name: "Spirit Power", amount: 50}
+            { name: "Cooldown Reduction", amount: 15, units: "%" },
+            { name: "Spirit Lifesteal", amount: 10, units: "%" },
+            { name: "Bullet Shield Health", amount: 225 },
+            { name: "Fire Rate", amount: 35, units: "%" },
+            { name: "Spirit Power", amount: 50 },
         ],
-        additionalInfo: "Spirit power and fire rate bonus builds up with bullet hits, duration of 18sec"
+        additionalInfo:
+            "Spirit power and fire rate bonus builds up with bullet hits, duration of 18sec",
     },
     {
         name: "Shadow Weave",
         category: "weapon",
         tier: 4,
         stats: [
-            {name: "Health Regen", amount: 15},
-            {name: "Spirit Shield Health", amount: 300},
-            {name: "Ammo", amount: 30, units: '%'},
+            { name: "Health Regen", amount: 15 },
+            { name: "Spirit Shield Health", amount: 300 },
+            { name: "Ammo", amount: 30, units: "%" },
         ],
         active: {
             stats: [
-                {name: "Fire Rate", amount: 30, units: '%'},
-                {name: "Spirit Power", amount: 55},
+                { name: "Fire Rate", amount: 30, units: "%" },
+                { name: "Spirit Power", amount: 55 },
             ],
             cooldown: 41,
-            duration: 8
+            duration: 8,
         },
         tags: ["stealth"],
-        additionalInfo: "Become stealthed for 25sec, attacking enemies initiates 8sec ambush"
+        additionalInfo: "Become stealthed for 25sec, attacking enemies initiates 8sec ambush",
     },
     {
         name: "Silencer",
@@ -611,13 +610,13 @@ export const ITEMS: Item[] = [
         tier: 4,
         component: "Slowing Bullets",
         stats: [
-            {name: "Weapon Damage", amount: 20, units: '%'},
-            {name: "Spirit Power", amount: 18},
+            { name: "Weapon Damage", amount: 20, units: "%" },
+            { name: "Spirit Power", amount: 18 },
         ],
         active: {
-            stats: [{name: "Enemy Silence", amount: 2, units: "sec"}],
+            stats: [{ name: "Enemy Silence", amount: 2, units: "sec" }],
             cooldown: 31,
-            duration: 4
+            duration: 4,
         },
     },
     {
@@ -625,18 +624,406 @@ export const ITEMS: Item[] = [
         category: "weapon",
         tier: 4,
         stats: [
-            {name: "Move Speed", amount: 2, units: "m/sec"},
-            {name: "Weapon Damage", amount: 25, units: '%'},
-            {name: "Bonus Health", amount: 150},
+            { name: "Move Speed", amount: 2, units: "m/sec" },
+            { name: "Weapon Damage", amount: 25, units: "%" },
+            { name: "Bonus Health", amount: 150 },
         ],
         active: {
             stats: [
-                {name: "Bullet Lifesteal", amount: 100, units: "%"},
-                {name: "Fire Rate", amount: 40, units: "%"},
-                {name: "Ammo", amount: 75, units: "%"}
+                { name: "Bullet Lifesteal", amount: 100, units: "%" },
+                { name: "Fire Rate", amount: 40, units: "%" },
+                { name: "Ammo", amount: 75, units: "%" },
             ],
             cooldown: 34,
-            duration: 4.5
-        }
+            duration: 4.5,
+        },
+    },
+    {
+        name: "Enduring Spirit",
+        category: "vitality",
+        tier: 1,
+        stats: [
+            { name: "Spirit Lifesteal", amount: 10, units: "%" },
+            { name: "Bonus Health", amount: 75 },
+            { name: "Spirit Power", amount: 4 },
+        ],
+    },
+    {
+        name: "Extra Health",
+        category: "vitality",
+        tier: 1,
+        stats: [
+            { name: "Bonus Health", amount: 160 },
+            { name: "Weapon Damage", amount: 6, units: "%" },
+        ],
+    },
+    {
+        name: "Extra Regen",
+        category: "vitality",
+        tier: 1,
+        stats: [
+            { name: "Health Regen", amount: 3 },
+            { name: "Ammo", amount: 10, units: "%" },
+            { name: "Bonus Health", amount: 25 },
+        ],
+    },
+    {
+        name: "Extra Stamina",
+        category: "vitality",
+        tier: 1,
+        stats: [
+            { name: "Stamina", amount: 1 },
+            { name: "Stamina Recovery", amount: 16, units: "%" },
+            { name: "Fire Rate", amount: 6, units: "%" },
+            { name: "Bonus Health", amount: 25 },
+        ],
+    },
+    {
+        name: "Melee Lifesteal",
+        category: "vitality",
+        tier: 1,
+        stats: [
+            { name: "Melee Damage", amount: 12, units: "%" },
+            { name: "Bonus Health", amount: 75 },
+        ],
+        passive: {
+            condition: "Melee Hit",
+            stats: [
+                { name: "Melee Lifesteal", amount: 20, units: "%" },
+                { name: "Melee Lifesteal", amount: 90 },
+            ],
+        },
+    },
+    {
+        name: "Sprint Boots",
+        category: "vitality",
+        tier: 1,
+        stats: [
+            { name: "Sprint Speed", amount: 2, units: "m/sec" },
+            { name: "Health Regen", amount: 1 },
+            { name: "Weapon Damage", amount: 4, units: "%" },
+        ],
+    },
+    {
+        name: "Healing Rite",
+        category: "vitality",
+        tier: 1,
+        stats: [
+            { name: "Bonus Health", amount: 45 },
+            { name: "Spirit Power", amount: 3 },
+        ],
+        active: {
+            stats: [
+                { name: "Healing", amount: 370 },
+                { name: "Sprint Speed", amount: 2, units: "m/sec" },
+            ],
+            duration: 19,
+            cooldown: 64,
+        },
+        additionalInfo: "Has a cast range of 30m",
+    },
+    {
+        name: "Bullet Armor",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Bullet Resist", amount: 25, units: "%" },
+            { name: "Weapon Damage", amount: 6, units: "%" },
+        ],
+    },
+    {
+        name: "Bullet Lifesteal",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Bullet Lifesteal", amount: 28, units: "%" },
+            { name: "Bonus Health", amount: 75 },
+        ],
+    },
+    {
+        name: "Combat Barrier",
+        category: "vitality",
+        tier: 2,
+        stats: [{ name: "Bullet Shield Health", amount: 325 }],
+        passive: {
+            condition: "Bullet Shield Up",
+            stats: [
+                { name: "Weapon Damage", amount: 22, units: "%" },
+                { name: "Fire Rate", amount: 6, units: "%" },
+            ],
+        },
+    },
+    {
+        name: "Debuff Reducer",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Bonus Health", amount: 75 },
+            { name: "Weapon Damage", amount: 6, units: "%" },
+            { name: "Debuff Resist", amount: 30, units: "%" },
+        ],
+    },
+    {
+        name: "Enchanter's Barrier",
+        category: "vitality",
+        tier: 2,
+        stats: [{ name: "Spirit Shield Health", amount: 300 }],
+        passive: {
+            condition: "Spirit Shield Up",
+            stats: [
+                { name: "Spirit Power", amount: 20 },
+                { name: "Cooldown Reduction", amount: 8, units: "%" },
+            ],
+        },
+    },
+    {
+        name: "Enduring Speed",
+        category: "vitality",
+        tier: 2,
+        component: "Sprint Boots",
+        stats: [
+            { name: "Move Speed", amount: 1.1, units: "m/sec" },
+            { name: "Sprint Speed", amount: 2, units: "m/sec" },
+            { name: "Bonus Health", amount: 75 },
+            { name: "Health Regen", amount: 1.5 },
+            { name: "Movement Slow Resist", amount: 35, units: "%" },
+        ],
+    },
+    {
+        name: "Healbane",
+        category: "vitality",
+        tier: 2,
+        stats: [{ name: "Bonus Health", amount: 75 }],
+        passive: {
+            condition: "Spirit Hit",
+            stats: [{ name: "Healing Reduction", amount: 40, units: "%" }],
+            duration: 6,
+        },
+        additionalInfo: "If the enemy hero dies under the healing reduction effect, heal 350",
+    },
+    {
+        name: "Healing Booster",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Spirit Resist", amount: 6, units: "%" },
+            { name: "Health Regen", amount: 2 },
+            { name: "Healing Amp", amount: 25, units: "%" },
+            { name: "Healing Reduction Resistance", amount: 15, units: "%" },
+        ],
+    },
+    {
+        name: "Reactive Barrier",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Ammo", amount: 15, units: "%" },
+            { name: "Bonus Health", amount: 75 },
+            { name: "Health Regen", amount: 2 },
+        ],
+        passive: {
+            condition: "Movement Locked",
+            stats: [
+                { name: "Bullet Shield Health", amount: 400 },
+                { name: "Spirit Shield Health", amount: 200 },
+            ],
+            cooldown: 32,
+            duration: 9,
+        },
+    },
+    {
+        name: "Spirit Armor",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Spirit Resist", amount: 20, units: "%" },
+            { name: "Spirit Power", amount: 5 },
+        ],
+    },
+    {
+        name: "Spirit Lifesteal",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Spirit Lifesteal", amount: 23, units: "%" },
+            { name: "Bonus Health", amount: 75 },
+        ],
+    },
+    {
+        name: "Divine Barrier",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Ability Range", amount: 8, units: "%" },
+            { name: "Bonus Health", amount: 50 },
+            { name: "Sprint Speed", amount: 1, units: "m/sec" },
+        ],
+        active: {
+            stats: [
+                { name: "Bullet Shield Health", amount: 260 },
+                { name: "Spirit Shield Health", amount: 260 },
+                { name: "Move Speed", amount: 2, units: "m/sec" },
+            ],
+            duration: 5,
+            cooldown: 30,
+        },
+        additionalInfo: "Cast Range is 35m",
+    },
+    {
+        name: "Healing Nova",
+        category: "vitality",
+        tier: 2,
+        component: "Healing Rite",
+        stats: [
+            { name: "Weapon Damage", amount: 12, units: "%" },
+            { name: "Bonus Health", amount: 100 },
+            { name: "Spirit Power", amount: 6 },
+        ],
+        active: {
+            stats: [{ name: "Healing", amount: 260 }],
+            cooldown: 64,
+        },
+        additionalInfo: "Heal an additional 20% per ally for 2 seconds if they're within 15m",
+    },
+    {
+        name: "Restorative Locket",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Spirit Resist", amount: 10, units: "%" },
+            { name: "Spirit Power", amount: 5 },
+            { name: "Sprint Speed", amount: 1, units: "m/sec" },
+        ],
+        active: {
+            stats: [{ name: "Healing", amount: 35, units: "/stack", stacks: { max: 15 } }],
+            cooldown: 30,
+        },
+    },
+    {
+        name: "Return Fire",
+        category: "vitality",
+        tier: 2,
+        stats: [
+            { name: "Bonus Health", amount: 125 },
+            { name: "Spirit Power", amount: 9 },
+        ],
+        active: {
+            stats: [
+                { name: "Bullet Damage Returned", amount: 60, units: "%" },
+                { name: "Spirit Damage Returned", amount: 30, units: "%" },
+                { name: "Bullet Resist", amount: 20, units: "%" },
+            ],
+            duration: 7,
+            cooldown: 30,
+        },
+    },
+    {
+        name: "Fortitude",
+        category: "vitality",
+        tier: 3,
+        stats: [
+            { name: "Bonus Health", amount: 325 },
+            { name: "Health Regen", amount: 4, units: "%" },
+        ],
+        passive: {
+            condition: "Health Above 75%",
+            stats: [
+                { name: "Weapon Damage", amount: 25, units: "%" },
+                { name: "Move Speed", amount: 2, units: "m/sec" },
+            ],
+        },
+        additionalInfo: "4% Max Health Regen only kicks in after not taking damage for 11 seconds",
+    },
+    {
+        name: "Improved Bullet Armor",
+        category: "vitality",
+        tier: 3,
+        component: "Bullet Armor",
+        stats: [
+            { name: "Bullet Resist", amount: 50, units: "%" },
+            { name: "Weapon Damage", amount: 10, units: "%" },
+        ],
+    },
+    {
+        name: "Improved Spirit Armor",
+        category: "vitality",
+        tier: 3,
+        component: "Spirit Armor",
+        stats: [
+            { name: "Spirit Resist", amount: 45, units: "%" },
+            { name: "Spirit Power", amount: 8 },
+        ],
+    },
+    {
+        name: "Lifestrike",
+        category: "vitality",
+        tier: 3,
+        component: "Melee Lifesteal",
+        stats: [
+            { name: "Melee Damage", amount: 35, units: "%" },
+            { name: "Bonus Health", amount: 125 },
+            { name: "Bullet Resist", amount: 8, units: "%" },
+        ],
+        passive: {
+            condition: "Melee Hit",
+            stats: [
+                { name: "Enemy Movement Slow", amount: 60, units: "%" },
+                { name: "Melee Lifesteal", amount: 65, units: "%" },
+                { name: "Melee Lifesteal", amount: 110 },
+            ],
+        },
+        additionalInfo: "Melee Lifesteal is only 40% effective against non-heroes",
+    },
+    {
+        name: "Superior Stamina",
+        category: "vitality",
+        tier: 3,
+        component: "Extra Stamina",
+        stats: [
+            { name: "Stamina", amount: 3 },
+            { name: "Stamina Recovery", amount: 25, units: "%" },
+            { name: "Jump Dash Distance", amount: 30, units: "%" },
+            { name: "Fire Rate", amount: 7, units: "%" },
+            { name: "Spirit Power", amount: 8 },
+        ],
+        tags: ["mobility"],
+    },
+    {
+        name: "Veil Walker",
+        category: "vitality",
+        tier: 3,
+        stats: [
+            { name: "Bullet Shield Health", amount: 200 },
+            { name: "Spirit Shield Health", amount: 200 },
+            { name: "Ammo", amount: 12, units: "%" },
+            { name: "Weapon Damage", amount: 10, units: "%" },
+        ],
+        passive: {
+            condition: "Go Thru Cosmic Veil",
+            stats: [{ name: "Move Speed", amount: 4, units: "m/sec" }],
+            duration: 5,
+            cooldown: 18,
+        },
+        tags: ["stealth"],
+        additionalInfo:
+            "Walking through the cosmic veil also restores all bullet and spirit shields",
+    },
+    {
+      name: "Debuff Remover",
+      category: "vitality",
+      tier: 3,
+      component: "Debuff Reducer",
+      stats: [
+        {name: "Bonus Health", amount: 125},
+        {name: "Weapon Damage", amount: 20, units: "%"},
+        {name: "Debuff Resist", amount: 35, units: "%"}
+      ],
+      active: {
+        stats: [
+          {name: "Move Speed", amount: 3, units: "m/sec"},
+        ],
+        duration: 3,
+        cooldown: 48
+      }
     }
 ];

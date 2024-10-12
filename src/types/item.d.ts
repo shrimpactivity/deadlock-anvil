@@ -27,7 +27,7 @@ type ItemCategory = "weapon" | "vitality" | "spirit";
 interface ItemStat {
     name: ItemStatName;
     amount: number;
-    units?: "%" | "%/sec" | "%/stack" | "/sec" | "m" | "m/sec" | "sec";
+    units?: "%" | "%/sec" | "%/stack" | "/sec" | "/stack" | "m" | "m/sec" | "sec";
     stacks?: {
         max: number;
         duration?: number;
@@ -35,15 +35,18 @@ interface ItemStat {
 }
 
 type ItemStatName =
+    | "Ability Range"
     | "Ammo"
     | "Bleed Damage"
     | "Bonus Health"
+    | "Bullet Damage Returned"
     | "Bullet Lifesteal"
     | "Bullet Resist"
     | "Bullet Resist vs. NPCs"
     | "Bullet Shield Health"
     | "Bullet Velocity"
     | "Cooldown Reduction"
+    | "Debuff Resist"
     | "Enemy Bullet Resist Reduction"
     | "Enemy Fire Rate Slow"
     | "Enemy Movement Slow"
@@ -51,25 +54,33 @@ type ItemStatName =
     | "Enemy Spirit Resist Reduction"
     | "Fire Rate"
     | "Healing"
+    | "Healing Amp"
     | "Healing From NPCs"
     | "Healing Reduction"
+    | "Healing Reduction Resistance"
     | "Health Regen"
     | "Heavy Melee Damage"
     | "Heavy Melee Distance"
+    | "Jump Dash Distance"
     | "Max Health"
+    | "Melee Damage"
+    | "Melee Lifesteal"
     | "Minion Fire Rate"
     | "Move Speed"
+    | "Movement Slow Resist"
     | "Reload Speed"
     | "Ricochet Damage"
     | "Slide Distance"
     | "Spirit Amp"
     | "Spirit Damage"
+    | "Spirit Damage Returned"
     | "Spirit Lifesteal"
     | "Spirit Power"
     | "Spirit Resist"
     | "Spirit Shield Health"
     | "Sprint Speed"
     | "Stamina"
+    | "Stamina Recovery"
     | "Temporary Ammo"
     | "Weapon Damage"
     | "Weapon Damage vs. NPCs"
@@ -79,19 +90,27 @@ type ItemStatName =
 type ItemConditionName =
     | "Bullet Hit"
     | "Bullet Proc Chance"
+    | "Bullet Shield Up"
     | "Close Range 15m"
     | "Close Range 20m"
     | "Close Range 30m"
     | "Continuous Fire for 3 Seconds"
     | "Dash Jump"
     | "Enemy Health Above 50%"
+    | "Go Thru Cosmic Veil"
     | "Headshot"
     | "Health Above 60%"
+    | "Health Above 75%"
     | "Health Below 50%"
     | "Heavy Melee Hit"
     | "Hero Kill"
     | "Long Range 15m"
+    | "Melee Hit"
+    | "Movement Locked"
     | "On Active Reload"
-    | "Sustained Damage";
+    | "Spirit Hit"
+    | "Spirit Shield Up"
+    | "Sustained Damage"
+    | "Take No Damage 11s";
 
 type ItemTag = "mobility" | "multi-hit" | "stealth";
