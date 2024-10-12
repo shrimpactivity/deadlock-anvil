@@ -6,11 +6,11 @@ export default function ResultsPage() {
     return (
         <div>
             <h1>Build Order</h1>
-            {build.buildOrder.map(item => (
+            {/* {build.buildOrder.map(item => (
                 <div key={item.name}>
                     <p>{item.name}</p>
                 </div>
-            ))}
+            ))} */}
         </div>
     );
 }

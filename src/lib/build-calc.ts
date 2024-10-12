@@ -1,9 +1,9 @@
-import { Item, ItemStatName } from "../types/item";
 import { CATEGORY_TIER_BONUSES } from "../config/tiers.config";
 import { NormalCalculator } from "./normal-calc";
+import { getItemByName, getItemCost } from "./utils";
+import { Item, ItemStat } from "../types/item";
 import { BuildOptions } from "../types/build";
 import { DetailedPriorities } from "../types/priority";
-import { getItemByName } from "./utils";
 
 /**
  * Handles calculating build based off of selected priorities.
@@ -13,7 +13,12 @@ export class BuildCalculator {
     private statNormal: NormalCalculator;
 
     // Value factor of stats associated with an un-prioritized effect condition
-    private readonly CONDITION_NOT_MET_FACTOR = 0.5;
+    private readonly CONDITION_MET_FACTOR = 0.5;
+    private readonly CONDITION_NOT_MET_FACTOR = 0.25;
+
+    // Value factor for component items. Components are 'valuable' since they fill
+    // the same slot, but the stats are overridden by the parents.
+    private readonly COMPONENT_FACTOR = 0.5;
 
     // Additional value from prioritized tags
     private readonly TAG_VALUE = 0.5;
@@ -24,132 +29,79 @@ export class BuildCalculator {
     }
 
     /**
-     * Calculate the 'average' contribution of a stat based on its cooldown and duration
+     * Returns the sum of each stat's bonus * the stat's priority value
      */
-    private averageTimedStat(statAmount: number, cooldown?: number, duration?: number) {
-        let result = statAmount;
-        if (cooldown) {
-            result = result / cooldown;
-        }
-        if (duration) {
-            result = result * duration;
-        }
-        return result;
-    }
-
-    /**
-     * Calculate the priority contribution from an item's innate, passive effect, and active effect stats.
-     */
-    private calculateItemStatPriority(item: Item, priority: Record<string, number>): number {
+    private calcStatsPriorityValue(stats: ItemStat[], priorities: DetailedPriorities) {
         let result = 0;
-
-        // Contribution from base item stats
-        item.stats.forEach((stat) => {
-            if (priority[stat.name]) {
-                result += stat.amount * priority[stat.name]!;
-            }
-        });
-
-        // Contribution from item tier bonus.
-        const tier = CATEGORY_TIER_BONUSES[item.category];
-        if (priority[tier.bonusStatName]) {
-            result += tier.tierBonusAmount[item.tier] * priority[tier.bonusStatName]!;
-        }
-
-        // Contribution from passive effect
-        const passive = item.passive;
-        if (passive) {
-            passive.stats.forEach((stat) => {
-                if (priority[stat.name]) {
-                    const statContribution = this.averageTimedStat(
-                        stat.amount,
-                        passive.cooldown,
-                        passive.duration,
-                    );
-                    result += statContribution * priority[stat.name]!;
-                }
-            });
-        }
-
-        // Contribution from active effect
-        const active = item.active;
-        if (active) {
-            active.stats.forEach((stat) => {
-                if (priority[stat.name]) {
-                    const statContribution = this.averageTimedStat(
-                        stat.amount,
-                        active.cooldown,
-                        active.duration,
-                    );
-                    result += statContribution * priority[stat.name]!;
-                }
-            });
-        }
-
-        return result;
-    }
-
-    /**
-     * Calculate priority contribution from an item's effect conditions.
-     */
-    private calculateItemConditionPriority(item: Item, priority: Record<string, number>) {
-        let result = 0;
-
-        const passiveCondition = item.passive?.condition;
-        if (passiveCondition && priority[passiveCondition]) {
-            result += priority[passiveCondition];
-        }
-
-        const activeCondition = item.active?.condition;
-        if (activeCondition && priority[activeCondition]) {
-            result += priority[activeCondition];
-        }
-
-        return result;
-    }
-
-    private calculateItemBuildValue(
-        item: Item,
-        statPriority: Record<string, number>,
-        conditionPriority: Record<string, number>,
-    ) {
-        const statContribution = this.calculateItemStatPriority(item, statPriority);
-        const conditionContribution = this.calculateItemConditionPriority(item, conditionPriority);
-
-        return statContribution + conditionContribution;
-    }
-
-    private addPriorityValueToItems(
-        statPriority: Record<string, number>,
-        conditionPriority: Record<string, number>,
-    ) {
-        this.items.forEach((item) => {
-            item.buildValue = this.calculateItemBuildValue(item, statPriority, conditionPriority);
-        });
-    }
-    /*
-
-
-*/
-    private getItemBuildValue(item: Item, priorities: DetailedPriorities) {
-        let result = 0;
-        item.stats.forEach((stat) => {
+        stats.forEach((stat) => {
             const priorityValue = priorities.stats[stat.name];
             if (priorityValue) {
                 const normValue = this.statNormal.calc(stat);
                 result += normValue * priorityValue; // TODO: potentially square root this or something to have diminishing priority stacking
             }
         });
+        return result;
+    }
 
+    private calcEffectStatsPriorityValue(
+        effect: "active" | "passive",
+        item: Item,
+        priorities: DetailedPriorities,
+    ) {
+        let result = 0;
+        if (item[effect]) {
+            result += this.calcStatsPriorityValue(item[effect].stats, priorities);
+            // TODO: potentially change how active timers affect priority
+            if (item[effect].duration) {
+                result *= item[effect].duration;
+            }
+            if (item[effect].cooldown) {
+                result /= item[effect].cooldown;
+            }
+            if (item[effect].condition) {
+                if (item[effect].condition in priorities.conditions) {
+                    result *= priorities.conditions[item[effect].condition] * this.CONDITION_MET_FACTOR;
+                } else {
+                    result *= this.CONDITION_NOT_MET_FACTOR;
+                }
+            }
+        }
+        return result;
+    }
+
+    private calcItemBuildValue(item: Item, priorities: DetailedPriorities): number {
+        let result = 0;
+        result += this.calcStatsPriorityValue(item.stats, priorities);
+        result += this.calcEffectStatsPriorityValue("active", item, priorities);
+        result += this.calcEffectStatsPriorityValue("passive", item, priorities);
+
+        // TODO: add item shop tier stat priorities
+
+        // TODO: consider stacking things in calc
+
+        // TODO: add tag priority
+
+        // TODO: Compute value of component and add to result, maybe with a scale factor?
+        // This is to account for components and parents taking up a single item slot, increasing
+        // the value of the parent
+        // Since parent overrides component stats, should definitely be scaled down.
         if (item.component) {
             const component = getItemByName(item.component);
         }
+
+        return result / getItemCost(item) * 100000;
     }
 
-    getBuildOrder({ priorities, mandatedItems, settings }: BuildOptions) {
-        // const buildValues = generateBuildValues();
+    getBuildOrder({ items, priorities, mandatedItems, settings }: BuildOptions) {
+        const buildValues: any[] = [];
+        items.forEach(item => {
+            buildValues.push({
+                item,
+                value: this.calcItemBuildValue(item, priorities)
+            })
+        });
         // const sortedItems = itemsWithBuildValues.sort((a, b) => b.buildValue! - a.buildValue!);
         // return sortedItems;
-        return [];
+        return buildValues;
     }
 }
