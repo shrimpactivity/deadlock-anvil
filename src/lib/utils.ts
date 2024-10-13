@@ -1,6 +1,6 @@
 import { ITEMS } from "../config/items.config";
-import { Item, ItemStat } from "../types/item";
-import { TIER_COSTS } from "../config/tiers.config";
+import { Item, ItemCategory, ItemStat, ItemTier } from "../types/item";
+import { CATEGORY_TIER_BONUSES, TIER_COSTS } from "../config/tiers.config";
 
 /**
  * Returns the item with the specified name, or undefined if it does not exist.
@@ -45,4 +45,15 @@ export function getItemCost(item: Item): number {
         cost += getItemCost(component);
     }
     return cost;
+}
+
+export function getTierBonusStat(tier: ItemTier, category: ItemCategory): ItemStat {
+    const name = CATEGORY_TIER_BONUSES[category].bonusStatName;
+    const amount = CATEGORY_TIER_BONUSES[category].tierBonusAmount[tier];
+    const units = CATEGORY_TIER_BONUSES[category].bonusStatUnits; 
+    return {
+        name,
+        amount,
+        units,
+    }
 }

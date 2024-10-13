@@ -24,10 +24,12 @@ type ItemTier = 1 | 2 | 3 | 4;
 
 type ItemCategory = "weapon" | "vitality" | "spirit";
 
-interface ItemStat {
+export type ItemStatUnits = "%" | "%/sec" | "%/stack" | "/sec" | "/stack" | "m" | "m/sec" | "sec";
+
+export interface ItemStat {
     name: ItemStatName;
     amount: number;
-    units?: "%" | "%/sec" | "%/stack" | "/sec" | "/stack" | "m" | "m/sec" | "sec";
+    units?: ItemStatUnits;
     stacks?: {
         max: number;
         duration?: number;
@@ -89,12 +91,12 @@ type ItemStatName =
 
 type ItemConditionName =
     | "Bullet Hit"
+    | "Bullet Hit Buildup"
     | "Bullet Proc Chance"
     | "Bullet Shield Up"
     | "Close Range 15m"
     | "Close Range 20m"
-    | "Close Range 30m"
-    | "Continuous Fire for 3 Seconds"
+    | "Continuous Fire"
     | "Dash Jump"
     | "Enemy Health Above 50%"
     | "Go Thru Cosmic Veil"
@@ -106,6 +108,7 @@ type ItemConditionName =
     | "Hero Kill"
     | "Long Range 15m"
     | "Melee Hit"
+    | "Minions Near 20m"
     | "Movement Locked"
     | "On Active Reload"
     | "Spirit Hit"

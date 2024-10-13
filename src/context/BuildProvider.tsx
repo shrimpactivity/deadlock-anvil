@@ -4,6 +4,7 @@ import { BuildContext } from "./use-build";
 import { usePriorities } from "../hooks/use-priorities";
 import { useDebounce } from "../hooks/use-debounce";
 import { ITEMS } from "../config/items.config";
+import { PRIORITY_MAPPING } from "../config/priorities.config";
 import { Settings } from "../types/build";
 
 const calc = new BuildCalculator(ITEMS);
@@ -17,7 +18,7 @@ const initSettings: Settings = {
 };
 
 export default function BuildProvider({ children }: PropsWithChildren) {
-    const priorities = usePriorities();
+    const priorities = usePriorities(PRIORITY_MAPPING);
     const [mandatedItems, setMandatedItems] = useState<string[]>([]);
     const [settings, setSettings] = useState(initSettings);
 

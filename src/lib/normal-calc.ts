@@ -1,5 +1,5 @@
 import { Item, ItemStat } from "../types/item";
-import { getAllItemStats, getStatUnitsString } from "./utils";
+import { getAllItemStats, getStatUnitsString, getTierBonusStat } from "./utils";
 
 /*
 Suppose you had weapon damage 20% and move speed 1m/s.
@@ -53,6 +53,13 @@ export class NormalCalculator {
                 this.addToStatMaximums(stat);
             });
         });
+        // Include base item 
+        // const weaponBonusStat = getTierBonusStat(4, 'weapon');
+        // this.addToStatMaximums(weaponBonusStat);
+        // const vitBonusStat = getTierBonusStat(4, 'vitality');
+        // this.addToStatMaximums(vitBonusStat);
+        // const spiritBonusStat = getTierBonusStat(4, 'spirit');
+        // this.addToStatMaximums(spiritBonusStat);
     }
 
     calc(stat: ItemStat): number {
@@ -62,6 +69,7 @@ export class NormalCalculator {
           console.error(`Error while normalizing: stat ${key} has no max value`);
           return 0;
         }
+        
         return stat.amount / max;
     }
 }

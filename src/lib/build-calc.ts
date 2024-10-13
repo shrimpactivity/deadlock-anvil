@@ -1,6 +1,5 @@
-import { CATEGORY_TIER_BONUSES } from "../config/tiers.config";
 import { NormalCalculator } from "./normal-calc";
-import { getItemByName, getItemCost } from "./utils";
+import { getItemByName, getItemCost, getTierBonusStat } from "./utils";
 import { Item, ItemStat } from "../types/item";
 import { BuildOptions } from "../types/build";
 import { DetailedPriorities } from "../types/priority";
@@ -13,7 +12,7 @@ export class BuildCalculator {
     private statNormal: NormalCalculator;
 
     // Value factor of stats associated with an un-prioritized effect condition
-    private readonly CONDITION_MET_FACTOR = 0.5;
+    private readonly CONDITION_MET_FACTOR = 0.75;
     private readonly CONDITION_NOT_MET_FACTOR = 0.25;
 
     // Value factor for component items. Components are 'valuable' since they fill
@@ -24,43 +23,71 @@ export class BuildCalculator {
     private readonly TAG_VALUE = 0.5;
 
     constructor(items: Item[]) {
-        this.items = items;
-        this.statNormal = new NormalCalculator(items);
+        this.items = this.addTierBonusStatToItems(items);
+        this.statNormal = new NormalCalculator(this.items);
     }
 
     /**
-     * Returns the sum of each stat's bonus * the stat's priority value
+     * Adds items' shop tier stat to it's list of innate stats (in-place).
      */
-    private calcStatsPriorityValue(stats: ItemStat[], priorities: DetailedPriorities) {
+    private addTierBonusStatToItems(items: Item[]) {
+        items.forEach((item) => {
+            const bonusStat = getTierBonusStat(item.tier, item.category);
+            const existingStat: ItemStat | undefined = item.stats.filter(
+                (stat) => stat.name === bonusStat.name && stat.units === bonusStat.units,
+            )[0];
+
+            if (existingStat) {
+                existingStat.amount += bonusStat.amount;
+            } else {
+                item.stats = [...item.stats, bonusStat];
+            }
+        });
+        return items;
+    }
+
+    /**
+     * Returns the sum of each stat's bonus * the stat's priority value as a 'build value'.
+     */
+    private calcStatsBuildValue(stats: ItemStat[], priorities: DetailedPriorities) {
         let result = 0;
         stats.forEach((stat) => {
             const priorityValue = priorities.stats[stat.name];
             if (priorityValue) {
                 const normValue = this.statNormal.calc(stat);
-                result += normValue * priorityValue; // TODO: potentially square root this or something to have diminishing priority stacking
+                result += normValue * Math.sqrt(priorityValue); // TODO: potentially square root this or something to have diminishing priority stacking
             }
         });
         return result;
     }
 
-    private calcEffectStatsPriorityValue(
+    // FIXME: fix bullet hit being double counted with weapon damage
+
+    /**
+     * Returns either the active or passive effect stats 'build value' for an item.
+     */
+    private calcEffectStatsBuildValue(
         effect: "active" | "passive",
         item: Item,
         priorities: DetailedPriorities,
     ) {
         let result = 0;
         if (item[effect]) {
-            result += this.calcStatsPriorityValue(item[effect].stats, priorities);
+            result += this.calcStatsBuildValue(item[effect].stats, priorities);
             // TODO: potentially change how active timers affect priority
-            if (item[effect].duration) {
-                result *= item[effect].duration;
-            }
+            // Currently, we use the percentage of uptime as the factor.
+            // Do not consider duration unless there's also an associated cooldown.
             if (item[effect].cooldown) {
                 result /= item[effect].cooldown;
+                if (item[effect].duration) {
+                    result *= item[effect].duration;
+                }
             }
             if (item[effect].condition) {
                 if (item[effect].condition in priorities.conditions) {
-                    result *= priorities.conditions[item[effect].condition] * this.CONDITION_MET_FACTOR;
+                    const conditionPriority = priorities.conditions[item[effect].condition];
+                    result += Math.sqrt(conditionPriority) / 3;
+                    result *= this.CONDITION_MET_FACTOR;
                 } else {
                     result *= this.CONDITION_NOT_MET_FACTOR;
                 }
@@ -71,9 +98,9 @@ export class BuildCalculator {
 
     private calcItemBuildValue(item: Item, priorities: DetailedPriorities): number {
         let result = 0;
-        result += this.calcStatsPriorityValue(item.stats, priorities);
-        result += this.calcEffectStatsPriorityValue("active", item, priorities);
-        result += this.calcEffectStatsPriorityValue("passive", item, priorities);
+        result += this.calcStatsBuildValue(item.stats, priorities);
+        result += this.calcEffectStatsBuildValue("active", item, priorities);
+        result += this.calcEffectStatsBuildValue("passive", item, priorities);
 
         // TODO: add item shop tier stat priorities
 
@@ -85,23 +112,31 @@ export class BuildCalculator {
         // This is to account for components and parents taking up a single item slot, increasing
         // the value of the parent
         // Since parent overrides component stats, should definitely be scaled down.
-        if (item.component) {
-            const component = getItemByName(item.component);
-        }
+        // if (item.component) {
+        //     const component = getItemByName(item.component);
+        //     const value = this.calcItemBuildValue(component, priorities);
+        //     result += value * this.COMPONENT_FACTOR;
+        // }
 
-        return result / getItemCost(item) * 100000;
+        //result *= 10000 / getItemCost(item);
+        return result;
     }
 
+    /**
+     * Calculates a build order as a list of items.
+     * Considers the stats 'build value' based on priorities, as well as
+     * item costs and other arguments.
+     */
     getBuildOrder({ items, priorities, mandatedItems, settings }: BuildOptions) {
         const buildValues: any[] = [];
-        items.forEach(item => {
+        items.forEach((item) => {
             buildValues.push({
                 item,
-                value: this.calcItemBuildValue(item, priorities)
-            })
+                value: this.calcItemBuildValue(item, priorities),
+            });
         });
         // const sortedItems = itemsWithBuildValues.sort((a, b) => b.buildValue! - a.buildValue!);
         // return sortedItems;
-        return buildValues;
+        return buildValues.filter((x) => x.value !== 0);
     }
 }

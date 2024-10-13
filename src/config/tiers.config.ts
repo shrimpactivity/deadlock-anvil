@@ -1,4 +1,4 @@
-import { ItemStatName } from "../types/item";
+import { ItemStatName, ItemStatUnits } from "../types/item";
 
 export const TIER_COSTS = {
     1: 500,
@@ -11,17 +11,20 @@ interface CategoryTierBonusConfig {
     [key: string]: {
         bonusStatName: ItemStatName;
         tierBonusAmount: Record<number, number>;
+        bonusStatUnits?: ItemStatUnits;
     };
 }
 
 export const CATEGORY_TIER_BONUSES: CategoryTierBonusConfig = {
     weapon: {
         bonusStatName: "Weapon Damage",
-        tierBonusAmount: { 1: 0.06, 2: 0.1, 3: 0.14, 4: 0.18 },
+        tierBonusAmount: { 1: 6, 2: 10, 3: 14, 4: 18 },
+        bonusStatUnits: "%"
     },
     vitality: {
         bonusStatName: "Bonus Health",
-        tierBonusAmount: { 1: 0.11, 2: 0.14, 3: 0.17, 4: 0.2 },
+        tierBonusAmount: { 1: 11, 2: 14, 3: 17, 4: 20 },
+        bonusStatUnits: "%"
     },
     spirit: {
         bonusStatName: "Spirit Power",

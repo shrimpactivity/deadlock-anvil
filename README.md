@@ -107,3 +107,7 @@ Calculates relative value of item based on stats and cost, and displays items in
 - check component items exist
 - check that each stat/condition is included in a priority category
 - generate many random builds and print percentage of item inclusion in each build
+
+If an item has a a condition, but no relevant stats, add the condition priority
+If an item has a condition and relevant stats, add the condition priority + the stats priority
+If an item has the stats but not the condition priority, add the stats priority 

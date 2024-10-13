@@ -13,16 +13,16 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
         stats: ["Fire Rate"],
         conditions: ["Bullet Proc Chance"],
     },
-    Ammo: { stats: ["Ammo", "Temporary Ammo"], conditions: ["Continuous Fire for 3 Seconds"] },
+    Ammo: { stats: ["Ammo", "Temporary Ammo"], conditions: ["Continuous Fire"] },
     "Bullet Velocity": { stats: ["Bullet Velocity"] },
     "Reload Speed": { stats: ["Reload Speed"], conditions: ["On Active Reload"] },
     Headshots: { conditions: ["Headshot"] },
-    "Close Range": { conditions: ["Close Range 15m", "Close Range 20m", "Close Range 30m"] },
+    "Close Range": { conditions: ["Close Range 15m", "Close Range 20m"] },
     "Long Range": {
         stats: ["Weapon Fall-off Range", "Weapon Zoom"],
         conditions: ["Long Range 15m"],
     },
-    "Multi Hit": { stats: ["Ricochet Damage"], tags: ["multi-hit"] },
+    "Multi Hit": { stats: ["Ricochet Damage"], conditions: ['Bullet Hit', 'Bullet Proc Chance'], tags: ["multi-hit"] },
 
     // SPIRIT
     "Spirit Damage": {
@@ -73,7 +73,7 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     "Resist Crowd Control": {tags: ["mobility"]},
 
     // MISCELLANEOUS
-    "Melee Damage Unga Bunga": {
+    "Melee Damage (Unga Bunga Mode)": {
         stats: ["Heavy Melee Damage", "Heavy Melee Distance"],
         conditions: ["Health Below 50%", "Heavy Melee Hit"],
     },
@@ -90,5 +90,8 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
             "Minion Fire Rate",
             "Weapon Damage vs. NPCs",
         ],
+        conditions: [
+            "Minions Near 20m"
+        ]
     },
 };

@@ -1,17 +1,16 @@
 import { useMemo, useState } from "react";
-import { PRIORITY_MAPPING } from "../config/priorities.config";
-import { GroupPriorities, DetailedPriorities } from "@/types/priority";
+import { GroupPriorities, DetailedPriorities, PriorityGroupMapping } from "@/types/priority";
 
-function initializePriorities() {
+function initializePriorities(priorityMapping: PriorityGroupMapping) {
     const initPriorities: GroupPriorities = {};
-    Object.keys(PRIORITY_MAPPING).forEach((priorityName) => {
-        initPriorities[priorityName] = 0;
+    Object.keys(priorityMapping).forEach((priorityName) => {
+        initPriorities[priorityName] = 1;
     });
     return { initPriorities };
 }
 
-export function usePriorities(maxPriorityValue?: number) {
-    const { initPriorities } = initializePriorities();
+export function usePriorities(priorityMapping: PriorityGroupMapping, maxPriorityValue?: number) {
+    const { initPriorities } = initializePriorities(priorityMapping);
 
     const [groupPriorities, setGroupPriorities] = useState(initPriorities);
 
@@ -56,8 +55,8 @@ export function usePriorities(maxPriorityValue?: number) {
             conditions: {},
             tags: {},
         };
-        Object.keys(PRIORITY_MAPPING).forEach((groupPriorityName) => {
-            const { stats, conditions, tags } = PRIORITY_MAPPING[groupPriorityName];
+        Object.keys(priorityMapping).forEach((groupPriorityName) => {
+            const { stats, conditions, tags } = priorityMapping[groupPriorityName];
             const priorityValue = groupPriorities[groupPriorityName];
             if (stats) {
                 stats.forEach((stat) => {

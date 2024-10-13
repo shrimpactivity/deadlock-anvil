@@ -339,10 +339,10 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 20, units: "%" },
         ],
         passive: {
-            condition: "Continuous Fire for 3 Seconds",
+            condition: "Continuous Fire",
             stats: [{ name: "Weapon Damage", amount: 60, units: "%" }],
-            duration: 3,
         },
+        additionalInfo: "Max buildup requires 3 seconds of continuous fire"
     },
     {
         name: "Point Blank",
@@ -461,11 +461,10 @@ export const ITEMS: Item[] = [
             { name: "Move Speed", amount: 1, units: "m/sec" },
         ],
         passive: {
-            condition: "Close Range 20m",
+            condition: "Minions Near 20m",
             stats: [{ name: "Minion Fire Rate", amount: 40, units: "%" }],
         },
         active: {
-            condition: "Close Range 30m",
             stats: [
                 { name: "Move Speed", amount: 2 },
                 { name: "Fire Rate", amount: 25, units: "%" },
@@ -578,11 +577,16 @@ export const ITEMS: Item[] = [
             { name: "Cooldown Reduction", amount: 15, units: "%" },
             { name: "Spirit Lifesteal", amount: 10, units: "%" },
             { name: "Bullet Shield Health", amount: 225 },
-            { name: "Fire Rate", amount: 35, units: "%" },
-            { name: "Spirit Power", amount: 50 },
         ],
+        passive: {
+            condition: "Bullet Hit Buildup",
+            stats: [
+                { name: "Fire Rate", amount: 35, units: "%" },
+                { name: "Spirit Power", amount: 50 },
+            ],
+        },
         additionalInfo:
-            "Spirit power and fire rate bonus builds up with bullet hits, duration of 18sec",
+            "Spirit power and fire rate bonus builds up 0.8% per bullet, duration of 18sec",
     },
     {
         name: "Shadow Weave",
@@ -1009,21 +1013,19 @@ export const ITEMS: Item[] = [
             "Walking through the cosmic veil also restores all bullet and spirit shields",
     },
     {
-      name: "Debuff Remover",
-      category: "vitality",
-      tier: 3,
-      component: "Debuff Reducer",
-      stats: [
-        {name: "Bonus Health", amount: 125},
-        {name: "Weapon Damage", amount: 20, units: "%"},
-        {name: "Debuff Resist", amount: 35, units: "%"}
-      ],
-      active: {
+        name: "Debuff Remover",
+        category: "vitality",
+        tier: 3,
+        component: "Debuff Reducer",
         stats: [
-          {name: "Move Speed", amount: 3, units: "m/sec"},
+            { name: "Bonus Health", amount: 125 },
+            { name: "Weapon Damage", amount: 20, units: "%" },
+            { name: "Debuff Resist", amount: 35, units: "%" },
         ],
-        duration: 3,
-        cooldown: 48
-      }
-    }
+        active: {
+            stats: [{ name: "Move Speed", amount: 3, units: "m/sec" }],
+            duration: 3,
+            cooldown: 48,
+        },
+    },
 ];
