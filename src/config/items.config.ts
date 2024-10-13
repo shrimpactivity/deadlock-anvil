@@ -29,7 +29,7 @@ export const ITEMS: Item[] = [
             { name: "Bullet Shield Health", amount: 40 },
         ],
         passive: {
-            condition: "Headshot",
+            condition: "On Headshot",
             stats: [{ name: "Weapon Damage", amount: 40 }],
             cooldown: 7.5,
         },
@@ -86,7 +86,7 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 7, units: "%" },
         ],
         passive: {
-            condition: "Bullet Hit",
+            condition: "On Bullet Hit",
             stats: [
                 { name: "Healing", amount: 40 },
                 { name: "Healing From NPCs", amount: 15 },
@@ -142,7 +142,7 @@ export const ITEMS: Item[] = [
             { name: "Health Regen", amount: 1.5 },
         ],
         passive: {
-            condition: "Dash Jump",
+            condition: "On Dash Jump",
             stats: [
                 { name: "Fire Rate", amount: 20, units: "%" },
                 { name: "Temporary Ammo", amount: 5 },
@@ -194,7 +194,7 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 4 },
         ],
         passive: {
-            condition: "Bullet Hit",
+            condition: "On Bullet Hit",
             stats: [{ name: "Spirit Damage", amount: 65 }],
             cooldown: 5.2,
         },
@@ -208,7 +208,7 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 5 },
         ],
         passive: {
-            condition: "Bullet Hit",
+            condition: "On Bullet Hit",
             stats: [{ name: "Enemy Movement Slow", amount: 25, units: "%" }],
             duration: 1.3,
         },
@@ -219,7 +219,7 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [{ name: "Weapon Damage", amount: 7, units: "%" }],
         passive: {
-            condition: "Bullet Hit",
+            condition: "On Bullet Hit",
             stats: [
                 { name: "Spirit Amp", amount: 10, units: "%" },
                 { name: "Spirit Lifesteal", amount: 20, units: "%" },
@@ -265,7 +265,7 @@ export const ITEMS: Item[] = [
             { name: "Bonus Health", amount: 70 },
         ],
         passive: {
-            condition: "Bullet Hit",
+            condition: "On Bullet Hit",
             stats: [
                 { name: "Fire Rate", amount: 30, units: "%" },
                 { name: "Move Speed", amount: 2, units: "m/sec" },
@@ -283,7 +283,7 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 14, units: "%" },
         ],
         passive: {
-            condition: "Bullet Hit",
+            condition: "On Bullet Hit",
             stats: [
                 {
                     name: "Bullet Resist",
@@ -305,7 +305,7 @@ export const ITEMS: Item[] = [
             { name: "Fire Rate", amount: 5, units: "%" },
         ],
         passive: {
-            condition: "Headshot",
+            condition: "On Headshot",
             stats: [
                 { name: "Weapon Damage", amount: 140 },
                 { name: "Healing", amount: 8, units: "%" },
@@ -423,7 +423,7 @@ export const ITEMS: Item[] = [
         tier: 3,
         stats: [{ name: "Bonus Health", amount: 100 }],
         passive: {
-            condition: "Bullet Hit",
+            condition: "On Bullet Hit",
             stats: [
                 { name: "Bleed Damage", amount: 0.05, units: "%/sec" },
                 { name: "Healing Reduction", amount: -65, units: "%" },
@@ -498,7 +498,7 @@ export const ITEMS: Item[] = [
             { name: "Spirit Lifesteal", amount: 10, units: "%" },
         ],
         passive: {
-            condition: "Headshot",
+            condition: "On Headshot",
             stats: [
                 { name: "Enemy Bullet Resist Reduction", amount: 24, units: "%" },
                 { name: "Enemy Spirit Resist Reduction", amount: 24, units: "%" },
@@ -535,7 +535,7 @@ export const ITEMS: Item[] = [
             { name: "Max Health", amount: -15, units: "%" },
         ],
         passive: {
-            condition: "Hero Kill",
+            condition: "On Hero Kill",
             stats: [{ name: "Weapon Damage", amount: 10, units: "%/stack", stacks: { max: 7 } }],
         },
         additionalInfo: "Death results in loss of one stack",
@@ -691,7 +691,7 @@ export const ITEMS: Item[] = [
             { name: "Bonus Health", amount: 75 },
         ],
         passive: {
-            condition: "Melee Hit",
+            condition: "On Melee Hit",
             stats: [
                 { name: "Melee Lifesteal", amount: 20, units: "%" },
                 { name: "Melee Lifesteal", amount: 90 },
@@ -799,7 +799,7 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [{ name: "Bonus Health", amount: 75 }],
         passive: {
-            condition: "Spirit Hit",
+            condition: "On Spirit Hit",
             stats: [{ name: "Healing Reduction", amount: 40, units: "%" }],
             duration: 6,
         },
@@ -969,7 +969,7 @@ export const ITEMS: Item[] = [
             { name: "Bullet Resist", amount: 8, units: "%" },
         ],
         passive: {
-            condition: "Melee Hit",
+            condition: "On Melee Hit",
             stats: [
                 { name: "Enemy Movement Slow", amount: 60, units: "%" },
                 { name: "Melee Lifesteal", amount: 65, units: "%" },
@@ -1003,7 +1003,7 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 10, units: "%" },
         ],
         passive: {
-            condition: "Go Thru Cosmic Veil",
+            condition: "Pass Through Cosmic Veil",
             stats: [{ name: "Move Speed", amount: 4, units: "m/sec" }],
             duration: 5,
             cooldown: 18,

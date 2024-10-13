@@ -118,7 +118,7 @@ export class BuildCalculator {
         //     result += value * this.COMPONENT_FACTOR;
         // }
 
-        //result *= 10000 / getItemCost(item);
+        result *= 10000 / getItemCost(item);
         return result;
     }
 

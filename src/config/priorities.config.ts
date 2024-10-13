@@ -7,7 +7,6 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     // WEAPON
     "Weapon Damage": {
         stats: ["Weapon Damage", "Enemy Bullet Resist Reduction"],
-        conditions: ["Bullet Hit"],
     },
     "Fire Rate": {
         stats: ["Fire Rate"],
@@ -16,13 +15,16 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     Ammo: { stats: ["Ammo", "Temporary Ammo"], conditions: ["Continuous Fire"] },
     "Bullet Velocity": { stats: ["Bullet Velocity"] },
     "Reload Speed": { stats: ["Reload Speed"], conditions: ["On Active Reload"] },
-    Headshots: { conditions: ["Headshot"] },
+    Headshots: { conditions: ["On Headshot"] },
     "Close Range": { conditions: ["Close Range 15m", "Close Range 20m"] },
     "Long Range": {
         stats: ["Weapon Fall-off Range", "Weapon Zoom"],
         conditions: ["Long Range 15m"],
     },
-    "Multi Hit": { stats: ["Ricochet Damage"], conditions: ['Bullet Hit', 'Bullet Proc Chance'], tags: ["multi-hit"] },
+    "Multi Hit": { stats: ["Ricochet Damage"], conditions: ['On Bullet Hit', 'Bullet Proc Chance'], tags: ["multi-hit"] },
+    "Bullet Effects": {
+        conditions: ["On Bullet Hit", "Bullet Hit Buildup", "Bullet Proc Chance"],
+    },
 
     // SPIRIT
     "Spirit Damage": {
@@ -58,7 +60,7 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     "Sprint Speed": { stats: ["Sprint Speed"] },
     "Stamina - Dash Jump Slide": {
         stats: ["Slide Distance", "Stamina"],
-        conditions: ["Dash Jump"],
+        conditions: ["On Dash Jump"],
     },
     "Mobility / Escape Tools": { tags: ["mobility"]},
 
@@ -78,7 +80,7 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
         conditions: ["Health Below 50%", "Heavy Melee Hit"],
     },
     Assassinations: {
-        conditions: ["Hero Kill"],
+        conditions: ["On Hero Kill"],
     },
     Stealth: {
         tags: ["stealth"]
