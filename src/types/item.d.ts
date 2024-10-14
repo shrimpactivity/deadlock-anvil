@@ -90,6 +90,7 @@ type ItemStatName =
     | "Weapon Zoom";
 
 type ItemConditionName =
+    | "Avoid Damage"
     | "Bullet Hit Buildup"
     | "Bullet Proc Chance"
     | "Bullet Shield Up"
@@ -113,7 +114,6 @@ type ItemConditionName =
     | "On Melee Hit"
     | "On Spirit Hit"
     | "Spirit Shield Up"
-    | "Sustained Damage"
-    | "Take No Damage 11s";
+    | "Sustained Damage";
 
-type ItemTag = "mobility" | "multi-hit" | "stealth";
+type ItemTag = "mobility" | "bullet multi-hit" | "spirit multi-hit" | "stealth";

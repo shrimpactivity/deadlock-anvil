@@ -402,7 +402,7 @@ export const ITEMS: Item[] = [
             { name: "Fire Rate", amount: 14, units: "%" },
             { name: "Spirit Damage", amount: 35 },
         ],
-        tags: ["multi-hit"],
+        tags: ["spirit multi-hit"],
         additionalInfo:
             "Your bullets have a chance to shock your target. The shock will jump to up to 2 nearby enemies.",
     },
@@ -449,6 +449,7 @@ export const ITEMS: Item[] = [
             duration: 5,
             cooldown: 28,
         },
+        tags: ["spirit multi-hit"],
         additionalInfo: "Increasing DPS starting from 47 up to 99",
     },
     {
@@ -546,7 +547,7 @@ export const ITEMS: Item[] = [
         tier: 4,
         stats: [
             { name: "Ammo", amount: 30, units: "%" },
-            { name: "Weapon Damage", amount: 31.5 },
+            { name: "Weapon Damage", amount: 31.5, units: "%" },
         ],
         passive: {
             condition: "Bullet Proc Chance",

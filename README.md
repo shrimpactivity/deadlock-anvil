@@ -115,5 +115,6 @@ If an item has the stats but not the condition priority, add the stats priority
 
 ## Calculation
 
-- Conditions alone should not have value
-- Conditions only mean the associated stat has it's value fully considered.
+- Item has condition but not stat value? use sqrt condition prio
+- Item has condition and stat value? use sqrt condition prio * stat value
+- Item has no condition but stat value? use decreased stat value

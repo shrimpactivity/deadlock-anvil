@@ -1,5 +1,6 @@
 import PriorityInput from "../../components/ui/PriorityInput";
 import { useBuild } from "../../context/use-build";
+import { getItemCost } from "../../lib/utils";
 
 export default function PrioritiesPage() {
     const { priorities, buildOrder } = useBuild();
@@ -26,7 +27,7 @@ export default function PrioritiesPage() {
                         .sort((a, b) => b.value - a.value)
                         //.slice(0, 15)
                         .map((x) => (
-                            <div key={x.item.name}>{`${x.item.name} - ${Math.round(x.value * 1000) / 1000}`}</div>
+                            <div key={x.item.name}>{`${getItemCost(x.item)} - ${x.item.name} - ${Math.round(x.value * 1000) / 1000}`}</div>
                         ))}
                 </div>
             </div>
