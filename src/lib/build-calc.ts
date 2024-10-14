@@ -85,8 +85,8 @@ export class BuildCalculator {
             }
             if (item[effect].condition) {
                 if (item[effect].condition in priorities.conditions) {
-                    const conditionPriority = priorities.conditions[item[effect].condition];
-                    result += Math.sqrt(conditionPriority) / 3;
+                    //const conditionPriority = priorities.conditions[item[effect].condition];
+                    //result += Math.sqrt(conditionPriority) / 3;
                     result *= this.CONDITION_MET_FACTOR;
                 } else {
                     result *= this.CONDITION_NOT_MET_FACTOR;

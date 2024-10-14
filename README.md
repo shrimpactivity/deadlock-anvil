@@ -111,3 +111,9 @@ Calculates relative value of item based on stats and cost, and displays items in
 If an item has a a condition, but no relevant stats, add the condition priority
 If an item has a condition and relevant stats, add the condition priority + the stats priority
 If an item has the stats but not the condition priority, add the stats priority 
+
+
+## Calculation
+
+- Conditions alone should not have value
+- Conditions only mean the associated stat has it's value fully considered.
