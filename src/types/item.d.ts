@@ -24,7 +24,7 @@ type ItemTier = 1 | 2 | 3 | 4;
 
 type ItemCategory = "weapon" | "vitality" | "spirit";
 
-export type ItemStatUnits = "%" | "%/sec" | "%/stack" | "/sec" | "/stack" | "m" | "m/sec" | "sec";
+export type ItemStatUnits = "%" | "%/sec" | "%/stack" | "/sec" | "/stack" | "m" | "m/sec" | "sec" | "ac" | "/soul"; //TODO: ac = action, ideally for just like, you do it or you don't
 
 export interface ItemStat {
     name: ItemStatName;
@@ -37,9 +37,11 @@ export interface ItemStat {
 }
 
 type ItemStatName =
+    | "Ability Duration"
     | "Ability Range"
     | "Ammo"
     | "Bleed Damage"
+    | "Bonus Ability Charge"
     | "Bonus Health"
     | "Bullet Damage Returned"
     | "Bullet Lifesteal"
@@ -48,9 +50,12 @@ type ItemStatName =
     | "Bullet Shield Health"
     | "Bullet Velocity"
     | "Cooldown Reduction"
+    | "Damage Penalty"
     | "Debuff Resist"
+    | "Disarm" //TODO: used for Phantom Strike
     | "Enemy Bullet Resist Reduction"
     | "Enemy Fire Rate Slow"
+    | "Enemy Healing Reduction"
     | "Enemy Movement Slow"
     | "Enemy Silence"
     | "Enemy Spirit Resist Reduction"
@@ -63,14 +68,19 @@ type ItemStatName =
     | "Health Regen"
     | "Heavy Melee Damage"
     | "Heavy Melee Distance"
+    | "Immunity" //TODO: used for Metal Skin and Unstoppable
     | "Jump Dash Distance"
+    | "Launch" //TODO: used for majestic leap
     | "Max Health"
+    | "Max HP Lifesteal"
     | "Melee Damage"
     | "Melee Lifesteal"
     | "Minion Fire Rate"
     | "Move Speed"
     | "Movement Slow Resist"
     | "Reload Speed"
+    | "Respawn" //TODO: used for Soul Rebirth
+    | "Respawn Time"
     | "Ricochet Damage"
     | "Slide Distance"
     | "Spirit Amp"
@@ -83,6 +93,7 @@ type ItemStatName =
     | "Sprint Speed"
     | "Stamina"
     | "Stamina Recovery"
+    | "Teleport" //TODO: used for Phantom Strike
     | "Temporary Ammo"
     | "Weapon Damage"
     | "Weapon Damage vs. NPCs"
@@ -90,6 +101,8 @@ type ItemStatName =
     | "Weapon Zoom";
 
 type ItemConditionName =
+    | "Ability Hit 80+ Damage"
+    | "Ability Hit 125+ Damage"
     | "Avoid Damage"
     | "Bullet Hit Buildup"
     | "Bullet Proc Chance"
@@ -97,12 +110,14 @@ type ItemConditionName =
     | "Close Range 15m"
     | "Close Range 20m"
     | "Continuous Fire"
+    | "Death"
     | "Enemy Health Above 50%"
     | "Pass Through Cosmic Veil"
     | "Health Above 60%"
     | "Health Above 75%"
     | "Health Below 50%"
     | "Heavy Melee Hit"
+    | "Hit Soul"
     | "Long Range 15m"
     | "Minions Near 20m"
     | "Movement Locked"
@@ -114,6 +129,7 @@ type ItemConditionName =
     | "On Melee Hit"
     | "On Spirit Hit"
     | "Spirit Shield Up"
-    | "Sustained Damage";
+    | "Sustained Damage"
+    | "Use Imbued Ability";
 
-type ItemTag = "mobility" | "bullet multi-hit" | "spirit multi-hit" | "stealth";
+type ItemTag = "mobility" | "bullet multi-hit" | "silence" | "spirit multi-hit" | "stealth";
