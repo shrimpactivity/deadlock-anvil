@@ -7,6 +7,7 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     // WEAPON
     "Weapon Damage": {
         stats: ["Weapon Damage", "Enemy Bullet Resist Reduction"],
+        conditions: ["On Bullet Hit"]
     },
     "Fire Rate": {
         stats: ["Fire Rate"],
@@ -15,26 +16,30 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     Ammo: { stats: ["Ammo", "Temporary Ammo"], conditions: ["Continuous Fire"] },
     "Bullet Velocity": { stats: ["Bullet Velocity"] },
     "Reload Speed": { stats: ["Reload Speed"], conditions: ["On Active Reload"] },
+    
+    // WEAPON EFFECTS / CONDITIONS
+    "Multi Hit": { stats: ["Ricochet Damage"], conditions: ['On Bullet Hit', 'Bullet Proc Chance'], tags: ["bullet multi-hit"] },
     Headshots: { conditions: ["On Headshot"] },
     "Close Range": { conditions: ["Close Range 15m", "Close Range 20m"] },
     "Long Range": {
         stats: ["Weapon Fall-off Range", "Weapon Zoom"],
         conditions: ["Long Range 15m"],
     },
-    "Multi Hit": { stats: ["Ricochet Damage"], conditions: ['On Bullet Hit', 'Bullet Proc Chance'], tags: ["multi-hit"] },
-    "Bullet Effects": {
-        conditions: ["On Bullet Hit", "Bullet Hit Buildup", "Bullet Proc Chance"],
-    },
+
 
     // SPIRIT
     "Spirit Damage": {
         stats: ["Spirit Power", "Spirit Damage", "Spirit Amp", "Enemy Spirit Resist Reduction"],
     },
-    "Spirit Burst Damage": { stats: ["Spirit Amp", "Enemy Spirit Resist Reduction"] },
     "Cooldown Reduction": { stats: ["Cooldown Reduction"] },
     "Ability Charges": {},
     "Ability Range": {},
     "Ability Duration": {},
+    
+    // SPIRIT EFFECTS / CONDITIONS
+    "Spirit Burst Damage": { stats: ["Spirit Amp", "Enemy Spirit Resist Reduction"] },
+    "Multi-hit & AOE": {tags: ["spirit multi-hit"]},
+
 
     // VITALITY
     Health: { stats: ["Bonus Health", "Max Health"], conditions: ["Health Above 60%"] },
@@ -44,14 +49,20 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
         conditions: ["Health Above 60%"],
     },
     "Bullet Lifesteal": { stats: ["Bullet Lifesteal"] },
-    "Bullet Tankiness": {
-        stats: ["Bullet Resist", "Bullet Shield Health", "Enemy Fire Rate Slow"],
-        conditions: ["Sustained Damage"],
+    "Bullet Resist": {
+        stats: ["Bullet Resist", "Enemy Fire Rate Slow"],
+    },
+    "Bullet Shields": {
+        stats: ["Bullet Shield Health"],
+        conditions: ["Bullet Shield Up"]
     },
     "Spirit Lifesteal": { stats: ["Spirit Lifesteal"] },
-    "Spirit Tankiness": {
-        stats: ["Spirit Resist", "Spirit Shield Health"],
-        conditions: ["Sustained Damage"],
+    "Spirit Resist": {
+        stats: ["Spirit Resist"]
+    },
+    "Spirit Shields": {
+        stats: ["Spirit Shield Health"],
+        conditions: ["Spirit Shield Up"],
     },
     "Melee Lifesteal": {},
 

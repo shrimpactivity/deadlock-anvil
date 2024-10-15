@@ -342,7 +342,7 @@ export const ITEMS: Item[] = [
             condition: "Continuous Fire",
             stats: [{ name: "Weapon Damage", amount: 60, units: "%" }],
         },
-        additionalInfo: "Max buildup requires 3 seconds of continuous fire"
+        additionalInfo: "Max buildup requires 3 seconds of continuous fire",
     },
     {
         name: "Point Blank",
@@ -402,7 +402,7 @@ export const ITEMS: Item[] = [
             { name: "Fire Rate", amount: 14, units: "%" },
             { name: "Spirit Damage", amount: 35 },
         ],
-        tags: ["multi-hit"],
+        tags: ["spirit multi-hit"],
         additionalInfo:
             "Your bullets have a chance to shock your target. The shock will jump to up to 2 nearby enemies.",
     },
@@ -449,6 +449,7 @@ export const ITEMS: Item[] = [
             duration: 5,
             cooldown: 28,
         },
+        tags: ["spirit multi-hit"],
         additionalInfo: "Increasing DPS starting from 47 up to 99",
     },
     {
@@ -546,7 +547,7 @@ export const ITEMS: Item[] = [
         tier: 4,
         stats: [
             { name: "Ammo", amount: 30, units: "%" },
-            { name: "Weapon Damage", amount: 31.5 },
+            { name: "Weapon Damage", amount: 31.5, units: "%" },
         ],
         passive: {
             condition: "Bullet Proc Chance",
@@ -1028,4 +1029,433 @@ export const ITEMS: Item[] = [
             cooldown: 48,
         },
     },
+    {
+        name: "Majestic Leap",
+        category: "vitality",
+        tier: 3,
+        stats: [
+            { name: "Spirit Power", amount: 10 },
+            { name: "Bonus Health", amount: 125 },
+        ],
+        active: {
+            stats: [{ name: "Launch", amount: 1, units: "ac" }],
+            cooldown: 26,
+        },
+        tags: ["mobility"],
+        additionalInfo: "Cannot be used for 5s if attacked by enemy Hero",
+    },
+    {
+        name: "Metal Skin",
+        category: "vitality",
+        tier: 3,
+        stats: [
+            { name: "Bonus Health", amount: 125 },
+            { name: "Spirit Power", amount: 8 },
+            { name: "Fire Rate", amount: 8, units: "%" },
+        ],
+        active: {
+            stats: [{ name: "Immunity", amount: 1, units: "ac" }],
+            duration: 3.5,
+            cooldown: 21,
+        },
+    },
+    {
+        name: "Rescue Beam",
+        category: "vitality",
+        tier: 3,
+        stats: [
+            { name: "Bonus Health", amount: 125 },
+            { name: "Sprint Speed", amount: 2, units: "m/sec" },
+            { name: "Spirit Power", amount: 9 },
+        ],
+        active: {
+            stats: [{ name: "Healing", amount: 26, units: "%" }],
+            duration: 2.5,
+            cooldown: 26,
+        },
+        tags: ["mobility"],
+        additionalInfo: "Cast range of 32m",
+    },
+    {
+        name: "Inhibitor",
+        category: "vitality",
+        tier: 4,
+        stats: [
+            { name: "Weapon Damage", amount: 25, units: "%" },
+            { name: "Bonus Health", amount: 175 },
+        ],
+        passive: {
+            condition: "On Bullet Hit",
+            stats: [
+                { name: "Enemy Movement Slow", amount: 25, units: "%" },
+                { name: "Damage Penalty", amount: 35, units: "%" },
+            ],
+            duration: 2.5,
+        },
+    },
+    {
+        name: "Leech",
+        category: "vitality",
+        tier: 4,
+        stats: [
+            { name: "Spirit Lifesteal", amount: 35, units: "%" },
+            { name: "Bullet Lifesteal", amount: 35, units: "%" },
+            { name: "Bonus Health", amount: 175 },
+            { name: "Spirit Power", amount: 18 },
+            { name: "Weapon Damage", amount: 20, units: "%" },
+        ],
+    },
+    {
+        name: "Siphon Bullets",
+        category: "vitality",
+        tier: 4,
+        stats: [{ name: "Bullet Resist", amount: 18, units: "%" }],
+        passive: {
+            condition: "On Bullet Hit",
+            stats: [{ name: "Max HP Lifesteal", amount: 50 }],
+            duration: 20,
+        },
+        additionalInfo:
+            "Max frequency is 0.8s. Permanently steal one stack of health if a siphoned target dies, and lose 2 stacks if you die.",
+    },
+    {
+        name: "Soul Rebirth",
+        category: "vitality",
+        tier: 4,
+        stats: [
+            { name: "Respawn Time", amount: 15, units: "sec" },
+            { name: "Cooldown Reduction", amount: 15, units: "%" },
+            { name: "Spirit Power", amount: 12 },
+        ],
+        passive: {
+            condition: "Death",
+            stats: [
+                { name: "Respawn", amount: 1, units: "ac" },
+                { name: "Bonus Health", amount: 50, units: "%" },
+            ],
+            cooldown: 212,
+        },
+    },
+    {
+        name: "Colossus",
+        category: "vitality",
+        tier: 4,
+        stats: [
+            { name: "Bonus Health", amount: 600 },
+            { name: "Melee Damage", amount: 20, units: "%" },
+            { name: "Weapon Damage", amount: 20, units: "%" },
+        ],
+        active: {
+            stats: [
+                { name: "Bullet Resist", amount: 40, units: "%" },
+                { name: "Spirit Resist", amount: 40, units: "%" },
+                { name: "Enemy Movement Slow", amount: 35, units: "%" },
+            ],
+            duration: 7,
+            cooldown: 37,
+        },
+        additionalInfo: "Your model size grows by 20%, 14m Radius for enemy movement and dash slow",
+    },
+    {
+        name: "Phantom Strike",
+        category: "vitality",
+        tier: 4,
+        stats: [
+            { name: "Bullet Resist", amount: 15, units: "%" },
+            { name: "Weapon Damage", amount: 30, units: "%" },
+        ],
+        active: {
+            stats: [
+                { name: "Teleport", amount: 1, units: "ac" },
+                { name: "Disarm", amount: 1, units: "ac" },
+                { name: "Enemy Movement Slow", amount: 50, units: "%" },
+                { name: "Spirit Damage", amount: 75 },
+            ],
+            duration: 3,
+            cooldown: 26,
+        },
+    },
+    {
+        name: "Unstoppable",
+        category: "vitality",
+        tier: 4,
+        stats: [
+            { name: "Bonus Health", amount: 150 },
+            { name: "Spirit Resist", amount: 15, units: "%" },
+            { name: "Move Speed", amount: 1, units: "m/sec" },
+            { name: "Spirit Power", amount: 12 },
+        ],
+        active: {
+            stats: [
+                { name: "Immunity", amount: 1, units: "ac" },
+                { name: "Debuff Resist", amount: 100, units: "%" },
+            ],
+            duration: 6,
+            cooldown: 64,
+        },
+        additionalInfo: "Cannot be used while Stunned or Slept",
+    },
+    {
+        name: "Ammo Scavenger",
+        category: "spirit",
+        tier: 1,
+        stats: [
+            { name: "Ammo", amount: 15, units: "%" },
+            { name: "Bonus Health", amount: 40 },
+        ],
+        passive: {
+            condition: "Hit Soul",
+            stats: [
+                { name: "Ammo", amount: 2, units: "/soul" },
+                {
+                    name: "Spirit Power",
+                    amount: 1,
+                    units: "/soul",
+                    stacks: { max: 20, duration: 30 },
+                },
+            ],
+        },
+    },
+    {
+        name: "Extra Charge",
+        category: "spirit",
+        tier: 1,
+        stats: [
+            { name: "Bonus Ability Charge", amount: 1 },
+            { name: "Cooldown Reduction", amount: 10, units: "%" },
+            { name: "Weapon Damage", amount: 6, units: "%" },
+        ],
+    },
+    {
+        name: "Extra Spirit",
+        category: "spirit",
+        tier: 1,
+        stats: [
+            { name: "Spirit Power", amount: 10 },
+            { name: "Health Regen", amount: 1 },
+            { name: "Bonus Health", amount: 35 },
+        ],
+    },
+    {
+        name: "Mystic Burst",
+        category: "spirit",
+        tier: 1,
+        stats: [
+            { name: "Spirit Shield Health", amount: 40 },
+            { name: "Weapon Damage", amount: 6, units: "%" },
+        ],
+        passive: {
+            condition: "Ability Hit 80+ Damage",
+            stats: [{ name: "Spirit Damage", amount: 35 }],
+            cooldown: 6.2,
+        },
+    },
+    {
+        name: "Mystic Reach",
+        category: "spirit",
+        tier: 1,
+        stats: [
+            { name: "Ability Range", amount: 18, units: "%" },
+            { name: "Bullet Resist", amount: 6, units: "%" },
+        ],
+    },
+    {
+        name: "Spirit Strike",
+        category: "spirit",
+        tier: 1,
+        stats: [
+            { name: "Melee Damage", amount: 12, units: "%" },
+            { name: "Spirit Shield Health", amount: 80 },
+        ],
+        passive: {
+            condition: "On Melee Hit",
+            stats: [
+                { name: "Spirit Damage", amount: 50 },
+                { name: "Enemy Spirit Resist Reduction", amount: 12, units: "%" },
+            ],
+            duration: 12,
+            cooldown: 8.5,
+        },
+    },
+    {
+        name: "Infuser",
+        category: "spirit",
+        tier: 1,
+        stats: [
+            { name: "Bonus Health", amount: 50 },
+            { name: "Ammo", amount: 10, units: "%" },
+        ],
+        active: {
+            stats: [
+                { name: "Spirit Power", amount: 16 },
+                { name: "Spirit Lifesteal", amount: 20, units: "%" },
+            ],
+            duration: 6,
+            cooldown: 37,
+        },
+    },
+    {
+        name: "Bullet Resist Shredder",
+        category: "spirit",
+        tier: 2,
+        stats: [
+            { name: "Bonus Health", amount: 100 },
+            { name: "Bullet Resist", amount: 5, units: "%" },
+        ],
+        passive: {
+            condition: "On Spirit Hit",
+            stats: [{ name: "Enemy Bullet Resist Reduction", amount: 12, units: "%" }],
+            duration: 8,
+        },
+    },
+    {
+        name: "Duration Extender",
+        category: "spirit",
+        tier: 2,
+        stats: [
+            { name: "Ability Duration", amount: 16, units: "%" },
+            { name: "Health Regen", amount: 1.75 },
+        ],
+    },
+    {
+        name: "Improved Cooldown",
+        category: "spirit",
+        tier: 2,
+        stats: [
+            { name: "Cooldown Reduction", amount: 16, units: "%" },
+            { name: "Health Regen", amount: 1.5 },
+        ],
+    },
+    {
+        name: "Mystic Vulnerability",
+        category: "spirit",
+        tier: 2,
+        stats: [{ name: "Spirit Resist", amount: 6, units: "%" }],
+        passive: {
+            condition: "On Spirit Hit",
+            stats: [{ name: "Enemy Spirit Resist Reduction", amount: 12, units: "%" }],
+            duration: 6,
+        },
+    },
+    {
+        name: "Quicksilver Reload",
+        category: "spirit",
+        tier: 2,
+        stats: [],
+        passive: {
+            condition: "Use Imbued Ability",
+            stats: [
+                { name: "Spirit Damage", amount: 65 },
+                { name: "Fire Rate", amount: 15, units: "%" },
+            ],
+        },
+        additionalInfo: "Only activates when Ammo is not full. 12s Max Frequency",
+    },
+    {
+        name: "Suppressor",
+        category: "spirit",
+        tier: 2,
+        stats: [
+            { name: "Bonus Health", amount: 50 },
+            { name: "Health Regen", amount: 2.5 },
+            { name: "Spirit Power", amount: 4 },
+        ],
+        passive: {
+            condition: "On Spirit Hit",
+            stats: [{ name: "Enemy Fire Rate Slow", amount: 25, units: "%" }],
+            duration: 2,
+        },
+    },
+    {
+        name: "Cold Front",
+        category: "spirit",
+        tier: 2,
+        stats: [{ name: "Spirit Resist", amount: 10, units: "%" }],
+        active: {
+            stats: [
+                { name: "Spirit Damage", amount: 75 },
+                { name: "Enemy Movement Slow", amount: 40, units: "%" },
+            ],
+            duration: 3,
+            cooldown: 28,
+        },
+        additionalInfo: "End radius is 14m",
+    },
+    {
+        name: "Decay",
+        category: "spirit",
+        tier: 2,
+        stats: [{ name: "Spirit Power", amount: 7 }],
+        active: {
+            stats: [
+                { name: "Enemy Healing Reduction", amount: 50, units: "%" },
+                { name: "Bleed Damage", amount: 3.1, units: "%/sec" },
+            ],
+            duration: 10,
+            cooldown: 45,
+        },
+        additionalInfo: "Cast range is 15m",
+    },
+    {
+        name: "Slowing Hex",
+        category: "spirit",
+        tier: 2,
+        stats: [
+            { name: "Sprint Speed", amount: 1, units: "m/sec" },
+            { name: "Spirit Power", amount: 5 },
+        ],
+        active: {
+            stats: [
+                { name: "Spirit Damage", amount: 70 },
+                { name: "Enemy Movement Slow", amount: 25, units: "%" },
+            ],
+            duration: 3,
+            cooldown: 26,
+        },
+        tags: ["silence"],
+        additionalInfo: "Cast range is 25m",
+    },
+    {
+        name: "Withering Whip",
+        category: "spirit",
+        tier: 2,
+        stats: [
+            { name: "Bullet Shield Health", amount: 100 },
+            { name: "Spirit Power", amount: 6 },
+            { name: "Sprint Speed", amount: 1, units: "m/sec" },
+        ],
+        active: {
+            stats: [
+                { name: "Enemy Fire Rate Slow", amount: 45, units: "%" },
+                { name: "Enemy Bullet Resist Reduction", amount: 14, units: "%" },
+            ],
+            duration: 4.5,
+            cooldown: 22,
+        },
+        additionalInfo: "Cast range is 30m",
+    },
+    {
+        name: "Improved Burst",
+        category: "spirit",
+        tier: 3,
+        component: "Mystic Burst",
+        stats: [
+            { name: "Spirit Shield Health", amount: 100 },
+            { name: "Weapon Damage", amount: 8, units: "%" },
+        ],
+        passive: {
+            condition: "Ability Hit 125+ Damage",
+            stats: [{ name: "Spirit Damage", amount: 7, units: "%" }],
+            cooldown: 5,
+        },
+    },
+    {
+        name: "Improved Reach",
+        category: "spirit",
+        tier: 3,
+        component: "Mystic Reach",
+        stats: [
+            {name: ""}
+        ]
+    }
 ];

@@ -1,5 +1,5 @@
 import { Item, ItemStat } from "../types/item";
-import { getAllItemStats, getStatUnitsString, getTierBonusStat } from "./utils";
+import { getAllItemStats, getStatUnitsString } from "./utils";
 
 /*
 Suppose you had weapon damage 20% and move speed 1m/s.
@@ -27,11 +27,27 @@ And all for only one item with negative stats, Swift Striker.
 But hey, it works for future item updates.
  */
 
+/**
+ * We can fine tune some calculations with a modifying factor.
+ * For example, if only one item has a certain stat with a certain unit, it will
+ * always normalize to 1. This might be an overprioritization.
+ */
+const modifiers: {[key: string]: number} = {
+    "Temporary Ammo %": 0.3,
+    "Temporary Ammo flat": 0.3,
+    "Weapon Fall-off Range %": 0.5,
+    "Weapon Zoom %": 0.5,
+    "Weapon Damage vs. NPCs %": 0.5,
+    "Bullet Resist vs. NPCs": 0.5,
+    "Movement Slow Resist %": 0.5,
+}
+
 export class NormalCalculator {
     private statMaximums: Record<string, number> = {};
 
     constructor(items: Item[]) {
         this.initStatMaximums(items);
+        console.log(this.statMaximums)
     }
 
     private getKey(stat: ItemStat) {
@@ -69,7 +85,8 @@ export class NormalCalculator {
           console.error(`Error while normalizing: stat ${key} has no max value`);
           return 0;
         }
-        
-        return stat.amount / max;
+        let result = stat.amount / max;
+        if (key in modifiers) result *= modifiers[key];
+        return result;
     }
 }

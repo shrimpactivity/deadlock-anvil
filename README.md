@@ -126,3 +126,6 @@ Prioritizing conditions gives a flat bonus. Conditional stats have a percentage 
 
 
 Split page into 'stats' and 'style'.
+- Item has condition but not stat value? use sqrt condition prio
+- Item has condition and stat value? use sqrt condition prio * stat value
+- Item has no condition but stat value? use decreased stat value
