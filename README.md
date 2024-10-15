@@ -108,12 +108,21 @@ Calculates relative value of item based on stats and cost, and displays items in
 - check that each stat/condition is included in a priority category
 - generate many random builds and print percentage of item inclusion in each build
 
-If an item has a a condition, but no relevant stats, add the condition priority
-If an item has a condition and relevant stats, add the condition priority + the stats priority
-If an item has the stats but not the condition priority, add the stats priority 
-
 
 ## Calculation
 
-- Conditions alone should not have value
-- Conditions only mean the associated stat has it's value fully considered.
+Innate Stats:
+Suppose I prioritize weapon damage.
+That should give the highest value of (priority level) to items with either the max % or max flat value.
+Scales down to 0 for items without prioritized stat.
+So, prioritizing say weapon damage and bonus health would give the max priority to the items
+with the highest combination of the two.
+
+Consider re-working units then. For instance, %/sec might not be compatible with % or flat values? Just needs to be categorized differently
+
+Conditions:
+Prioritizing conditions gives a flat bonus. Conditional stats have a percentage modifier, say 60%
+
+
+
+Split page into 'stats' and 'style'.
