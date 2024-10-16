@@ -47,7 +47,6 @@ export class NormalCalculator {
 
     constructor(items: Item[]) {
         this.initStatMaximums(items);
-        console.log(this.statMaximums)
     }
 
     private getKey(stat: ItemStat) {
