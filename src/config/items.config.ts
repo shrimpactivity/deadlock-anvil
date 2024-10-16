@@ -5,6 +5,7 @@ export const ITEMS: Item[] = [
         name: "Basic Magazine",
         category: "weapon",
         tier: 1,
+        componentOf: "Titanic Magazine",
         stats: [
             { name: "Ammo", amount: 26, units: "%" },
             { name: "Weapon Damage", amount: 15, units: "%" },
@@ -14,6 +15,7 @@ export const ITEMS: Item[] = [
         name: "Close Quarters",
         category: "weapon",
         tier: 1,
+        componentOf: "Point Blank",
         stats: [{ name: "Bullet Shield Health", amount: 85 }],
         passive: {
             condition: "Close Range 15m",
@@ -24,6 +26,7 @@ export const ITEMS: Item[] = [
         name: "Headshot Booster",
         category: "weapon",
         tier: 1,
+        componentOf: "Headhunter",
         stats: [
             { name: "Fire Rate", amount: 4, units: "%" },
             { name: "Bullet Shield Health", amount: 40 },
@@ -38,6 +41,7 @@ export const ITEMS: Item[] = [
         name: "High Velocity Mag",
         category: "weapon",
         tier: 1,
+        componentOf: "Pristine Emblem",
         stats: [
             { name: "Bullet Velocity", amount: 25, units: "%" },
             { name: "Weapon Damage", amount: 12, units: "%" },
@@ -318,11 +322,11 @@ export const ITEMS: Item[] = [
         passive: {
             condition: "Close Range 15m",
             stats: [
-                { name: "Enemy Bullet Resist Reduction", amount: 27, units: "%" },
-                { name: "Enemy Fire Rate Slow", amount: 30, units: "%" },
+                { name: "Enemy Bullet Resist Reduction", amount: 9, units: "%" },
+                { name: "Enemy Fire Rate Slow", amount: 10, units: "%" },
             ],
         },
-        additionalInfo: "Effect is cut in third with more than one enemy nearby.",
+        additionalInfo: "Effect is tripled with only one enemy nearby.",
     },
     {
         name: "Intensifying Magazine",
@@ -790,7 +794,6 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [{ name: "Bonus Health", amount: 75 }],
         passive: {
-            condition: "On Spirit Hit",
             stats: [{ name: "Enemy Healing Reduction", amount: 40, units: "%" }],
             duration: 6,
         }, // FIXME: include healing effect in stats?
@@ -962,14 +965,15 @@ export const ITEMS: Item[] = [
             { name: "Bullet Resist", amount: 8, units: "%" },
         ],
         passive: {
-            condition: "On Melee Hit",
             stats: [
                 { name: "Enemy Movement Slow", amount: 60, units: "%" },
                 { name: "Melee Lifesteal", amount: 65, units: "%" },
                 { name: "Melee Lifesteal", amount: 110 },
             ],
+            cooldown: 5,
+            duration: 2.5
         },
-        additionalInfo: "Melee Lifesteal is only 40% effective against non-heroes",
+        additionalInfo: "Lifesteal is only 40% effective against non-heroes",
     },
     {
         name: "Superior Stamina",
@@ -1102,7 +1106,6 @@ export const ITEMS: Item[] = [
         passive: {
             stats: [{ name: "Max Health Lifesteal", amount: 50 }],
             duration: 20,
-            cooldown: 0.8,
         },
         additionalInfo:
             "Permanently steal one stack of health if a siphoned target dies, and lose 2 stacks if you die.",
@@ -1289,7 +1292,6 @@ export const ITEMS: Item[] = [
             { name: "Bullet Resist", amount: 5, units: "%" },
         ],
         passive: {
-            condition: "On Spirit Hit",
             stats: [{ name: "Enemy Bullet Resist Reduction", amount: 12, units: "%" }],
             duration: 8,
         },

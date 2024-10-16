@@ -3,6 +3,7 @@ export interface Item {
     category: ItemCategory;
     tier: ItemTier;
     component?: string;
+    componentOf?: string;
     stats: ItemStat[];
     passive?: {
         stats: ItemStat[];
@@ -138,9 +139,7 @@ type ItemConditionName =
     | "On Heavy Melee Hit"
     | "On Hero Kill"
     | "On Imbued Ability"
-    | "On Melee Hit"
     | "On Soul Secure"
-    | "On Spirit Hit"
     | "On Ultimate"
     | "Pulse Radius 9m"
     | "Spirit Burst Damage 80+"

@@ -32,11 +32,10 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     // SPIRIT
     "Spirit Damage": {
         stats: ["Spirit Power", "Spirit Damage", "Spirit Amp", "Enemy Spirit Resist Reduction"],
-        conditions: ["On Spirit Hit"],
     },
     "Spirit Burst Damage": {
         stats: ["Spirit Amp", "Enemy Spirit Resist Reduction", "Max Health Spirit Damage"],
-        conditions: ["Spirit Burst Damage 125+", "Spirit Burst Damage 80+", "On Spirit Hit"],
+        conditions: ["Spirit Burst Damage 125+", "Spirit Burst Damage 80+"],
     },
     "Cooldown Reduction": { stats: ["Cooldown Reduction"] },
     "Ability Charges": {
@@ -45,7 +44,7 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     "Ability Range": { stats: ["Ability Range"] },
     "Ability Duration": { stats: ["Ability Duration"] },
     "Imbue Ability": { conditions: ["On Imbued Ability"] },
-    AOE: { tags: ["spirit multi-hit"], conditions: ["On Spirit Hit"] },
+    AOE: { tags: ["spirit multi-hit"] },
 
     // VITALITY
     Health: {
@@ -124,12 +123,14 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
         tags: ["respawn"],
     },
     "Melee Damage": {
-        stats: ["Melee Damage", "Melee Lifesteal"],
-        conditions: ["On Melee Hit"],
+        stats: ["Melee Damage"],
     },
     "Heavy Melee Damage (Unga Bunga Mode)": {
-        stats: ["Heavy Melee Damage", "Heavy Melee Distance", "Melee Lifesteal"],
-        conditions: ["Health Below 50%", "On Heavy Melee Hit", "On Melee Hit", "Sustained Damage"],
+        stats: ["Heavy Melee Damage", "Heavy Melee Distance"],
+        conditions: ["Health Below 50%", "On Heavy Melee Hit", "Sustained Damage"],
+    },
+    "Melee Lifesteal": {
+        stats: ["Melee Lifesteal"],
     },
     Assassinations: {
         conditions: ["On Hero Kill"],

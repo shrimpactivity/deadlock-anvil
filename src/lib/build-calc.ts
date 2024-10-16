@@ -12,7 +12,7 @@ export class BuildCalculator {
     private statNormal: NormalCalculator;
 
     // Value factor of stats associated with an un-prioritized effect condition
-    private readonly CONDITIONAL_STATS_FACTOR = 0.4;
+    private readonly CONDITIONAL_STATS_FACTOR = 0.3;
     
     private readonly STACKING_STAT_MODIFIER = 0.5;
 
