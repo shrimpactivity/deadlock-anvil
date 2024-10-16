@@ -10,6 +10,7 @@ export default function BuildRoot() {
         Results: <ResultsPage />,
     };
     const defaultPage = "Item Priorities";
+    
     const pageNav = usePageNav(Object.keys(pages), defaultPage);
 
     return (

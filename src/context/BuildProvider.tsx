@@ -3,11 +3,9 @@ import { BuildCalculator } from "../lib/build-calc";
 import { BuildContext } from "./use-build";
 import { usePriorities } from "../hooks/use-priorities";
 import { useDebounce } from "../hooks/use-debounce";
-import { ITEMS } from "../config/items.config";
-import { PRIORITY_MAPPING } from "../config/priorities.config";
 import { Settings } from "../types/build";
-
-const calc = new BuildCalculator(ITEMS);
+import { Item } from "@/types/item";
+import { DetailedPriorities, PriorityGroupMapping } from "@/types/priority";
 
 const initSettings: Settings = {
     openWeaponSlots: 0,
@@ -17,8 +15,13 @@ const initSettings: Settings = {
     maxActiveItems: 4,
 };
 
-export default function BuildProvider({ children }: PropsWithChildren) {
-    const priorities = usePriorities(PRIORITY_MAPPING);
+interface Props extends PropsWithChildren {
+    items: Item[];
+    priorityGroupMapping: PriorityGroupMapping;
+}
+
+export default function BuildProvider({ items, priorityGroupMapping, children }: Props) {
+    const priorities = usePriorities(priorityGroupMapping);
     const [mandatedItems, setMandatedItems] = useState<string[]>([]);
     const [settings, setSettings] = useState(initSettings);
 
@@ -26,9 +29,11 @@ export default function BuildProvider({ children }: PropsWithChildren) {
     const debouncedMandatedItems = useDebounce(mandatedItems);
     const debouncedSettings = useDebounce(settings);
 
+    const calc = useMemo(() => new BuildCalculator(items), [items]);
+
     const buildOrder = useMemo(() => {
         const buildOptions = {
-            items: ITEMS,
+            items,
             priorities: debouncedDetailedPriorities,
             mandatedItems: debouncedMandatedItems,
             settings: debouncedSettings,

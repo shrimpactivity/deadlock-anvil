@@ -7,7 +7,6 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
     // WEAPON
     "Weapon Damage": {
         stats: ["Weapon Damage", "Enemy Bullet Resist Reduction"],
-        conditions: ["On Bullet Hit"]
     },
     "Fire Rate": {
         stats: ["Fire Rate"],
@@ -64,7 +63,6 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
         stats: ["Spirit Shield Health"],
         conditions: ["Spirit Shield Up"],
     },
-    "Melee Lifesteal": {},
 
     // MOBILITY
     "Move Speed": { stats: ["Move Speed"] },
@@ -87,7 +85,7 @@ export const PRIORITY_MAPPING: PriorityGroupMapping = {
 
     // MISCELLANEOUS
     "Melee Damage (Unga Bunga Mode)": {
-        stats: ["Heavy Melee Damage", "Heavy Melee Distance"],
+        stats: ["Heavy Melee Damage", "Heavy Melee Distance", "Melee Lifesteal"],
         conditions: ["Health Below 50%", "Heavy Melee Hit"],
     },
     Assassinations: {

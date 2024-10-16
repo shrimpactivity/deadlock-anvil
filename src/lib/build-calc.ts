@@ -12,12 +12,12 @@ export class BuildCalculator {
     private statNormal: NormalCalculator;
 
     // Value factor of stats associated with an un-prioritized effect condition
-    private readonly CONDITION_MET_FACTOR = 0.6;
+    private readonly CONDITIONAL_STATS_FACTOR = 0.4;
     private readonly CONDITION_NOT_MET_FACTOR = 0.25;
 
     // Value factor for component items. Components are 'valuable' since they fill
     // the same slot, but the stats are overridden by the parents.
-    private readonly COMPONENT_FACTOR = 0.5;
+    private readonly COMPONENT_FACTOR = 0.4;
 
     // Additional value from prioritized tags
     private readonly TAG_VALUE = 0.5;
@@ -66,7 +66,7 @@ export class BuildCalculator {
     /**
      * Returns either the active or passive effect stats 'build value' for an item.
      */
-    private calcEffectStatsBuildValue(
+    private calcEffectBuildValue(
         effect: "active" | "passive",
         item: Item,
         priorities: DetailedPriorities,
@@ -74,8 +74,8 @@ export class BuildCalculator {
         let result = 0;
         if (item[effect]) {
             // Start with the effect stats' value.
-            result += this.calcStatsBuildValue(item[effect].stats, priorities);
-
+            let statsValue = this.calcStatsBuildValue(item[effect].stats, priorities);
+            
             // Effects with a cooldown / duration don't have 100% uptime, so we decrease the value a bit.
             // Current function is sqrt(duration / cooldown).
             if (item[effect].cooldown) {
@@ -85,13 +85,17 @@ export class BuildCalculator {
                     // Only include duration in calc if there's a cooldown.
                     timedFactor *= item[effect].duration;
                 }
-                result *= Math.sqrt(timedFactor);
+                statsValue *= Math.sqrt(timedFactor);
             }
 
+            result += statsValue 
+
             if (item[effect].condition) {
-                const conditionPriority = priorities.conditions[item[effect].condition] + 1;
-                console.log(item[effect].condition, conditionPriority);
-                result += Math.sqrt(conditionPriority) * this.CONDITION_MET_FACTOR;
+                result *= this.CONDITIONAL_STATS_FACTOR
+                const conditionPriority = priorities.conditions[item[effect].condition];
+                if (conditionPriority) {
+                    result += Math.sqrt(conditionPriority);
+                }
                 // if (conditionPriority) {
                 //     result *= Math.sqrt(conditionPriority) * this.CONDITION_MET_FACTOR;
                 // } else {
@@ -106,8 +110,8 @@ export class BuildCalculator {
     private calcItemBuildValue(item: Item, priorities: DetailedPriorities): number {
         let result = 0;
         result += this.calcStatsBuildValue(item.stats, priorities);
-        result += this.calcEffectStatsBuildValue("active", item, priorities);
-        result += this.calcEffectStatsBuildValue("passive", item, priorities);
+        result += this.calcEffectBuildValue("active", item, priorities);
+        result += this.calcEffectBuildValue("passive", item, priorities);
 
         if (item.tags) {
             item.tags.forEach((tag) => {
