@@ -47,10 +47,7 @@ export class BuildCalculator {
         return items;
     }
 
-    /**
-     * Returns the sum of each stat's bonus * the stat's priority value as a 'build value'.
-     */
-    private calcStatsBuildValue(stats: ItemStat[], priorities: DetailedPriorities) {
+    private getValueForStats(stats: ItemStat[], priorities: DetailedPriorities) {
         let result = 0;
         stats.forEach((stat) => {
             const priorityValue = priorities.stats[stat.name];
@@ -69,64 +66,87 @@ export class BuildCalculator {
         return result;
     }
 
-    /**
-     * Returns either the active or passive effect stats 'build value' for an item.
-     */
-    private calcEffectBuildValue(
-        effect: "active" | "passive",
-        item: Item,
-        priorities: DetailedPriorities,
-    ) {
-        let result = 0;
-        if (item[effect]) {
-            // Start with the effect stats' value.
-            let statsValue = this.calcStatsBuildValue(item[effect].stats, priorities);
-            
-            // Effects with a cooldown / duration don't have 100% uptime, so we decrease the value a bit.
-            // Current function is sqrt(duration / cooldown).
-            if (item[effect].cooldown) {
-                let timedFactor = 1;
-                timedFactor /= item[effect].cooldown;
-                if (item[effect].duration) {
-                    // Only include duration in calc if there's a cooldown.
-                    timedFactor *= item[effect].duration;
-                }
-                statsValue *= Math.sqrt(timedFactor);
-            }
-
-            result += statsValue 
-
-            if (item[effect].condition) {
-                result *= this.CONDITIONAL_STATS_FACTOR
-                const conditionPriority = priorities.conditions[item[effect].condition];
-                if (conditionPriority) {
-                    result += Math.sqrt(conditionPriority);
-                }
-                // if (conditionPriority) {
-                //     result *= Math.sqrt(conditionPriority) * this.CONDITION_MET_FACTOR;
-                // } else {
-                //     // Item does not have prioritized condition
-                //     result *= this.CONDITION_NOT_MET_FACTOR;
-                // }
-            }
+    private getTimedFactor(cooldown: number, duration?: number) {
+        if (duration) {
+            return duration / cooldown;
         }
-        return result;
+        return 1 / cooldown;
     }
 
-    private calcItemBuildValue(item: Item, priorities: DetailedPriorities): number {
-        let result = 0;
-        result += this.calcStatsBuildValue(item.stats, priorities);
-        result += this.calcEffectBuildValue("active", item, priorities);
-        result += this.calcEffectBuildValue("passive", item, priorities);
+    /**
+     * Returns the sum of each stat's bonus * the stat's priority value as a 'build value'.
+     */
+    private calcStatsBuildValue(item: Item, priorities: DetailedPriorities) {
+        let statsValue = 0;
 
+        // Innate item stats
+        statsValue += this.getValueForStats(item.stats, priorities); 
+
+        // Active effect stats
+        if (item.active) { 
+            let activeStatsValue = this.getValueForStats(item.active.stats, priorities);
+            if (item.active.condition) activeStatsValue *= this.CONDITIONAL_STATS_FACTOR;
+            const { cooldown, duration } = item.active;
+            activeStatsValue *= this.getTimedFactor(cooldown, duration);
+            statsValue += activeStatsValue;
+        }
+
+        // Passive effect stats
+        if (item.passive) {
+            let passiveStatsValue = this.getValueForStats(item.passive.stats, priorities)
+            if (item.passive.condition) passiveStatsValue *= this.CONDITIONAL_STATS_FACTOR;
+            const { cooldown, duration } = item.passive;
+            if (cooldown) {
+                passiveStatsValue *= this.getTimedFactor(cooldown, duration);
+            }
+            statsValue += passiveStatsValue;
+        }
+
+        return statsValue;
+    }
+
+    private calcConditionsBuildValue(item: Item, priorities: DetailedPriorities) {
+        let conditionsValue = 0;
+
+        const activeCondition = item.active?.condition;
+        if (activeCondition) {
+            const activeConditionPriority = priorities.conditions[activeCondition];
+            if (activeConditionPriority) {
+                conditionsValue += Math.sqrt(activeConditionPriority);
+            }
+
+        }
+
+        const passiveCondition = item.passive?.condition;
+        if (passiveCondition) {
+            const passiveConditionPriority = priorities.conditions[passiveCondition];
+            if (passiveConditionPriority) {
+                conditionsValue += Math.sqrt(passiveConditionPriority);
+            }
+        }
+
+        return conditionsValue;
+    }
+
+    private calcTagsBuildValue(item: Item, priorities: DetailedPriorities) {
+        let tagsValue = 0;
         if (item.tags) {
-            item.tags.forEach((tag) => {
+            item.tags.forEach(tag => {
                 const tagPriority = priorities.tags[tag];
                 if (tagPriority) {
-                    result += Math.sqrt(tagPriority);
+                    tagsValue += Math.sqrt(tagPriority);
                 }
-            });
+            })
         }
+        return tagsValue;
+    }
+
+    calcItemBuildValue(item: Item, priorities: DetailedPriorities): number {
+        let result = 0;
+        result += this.calcStatsBuildValue(item, priorities);
+        result += this.calcConditionsBuildValue(item, priorities);
+        result += this.calcTagsBuildValue(item, priorities);
+        //result += this.calcComponentBuildValue(item, priorities);
 
         // TODO: add item shop tier stat priorities
 

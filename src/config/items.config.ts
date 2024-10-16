@@ -125,7 +125,7 @@ export const ITEMS: Item[] = [
                 {
                     name: "Weapon Damage",
                     amount: 5,
-                    units: "%/stack",
+                    units: "%",
                     stacks: { max: 10, duration: 10 },
                 },
             ],
@@ -282,7 +282,7 @@ export const ITEMS: Item[] = [
                 {
                     name: "Bullet Resist",
                     amount: 2,
-                    units: "%/stack",
+                    units: "%",
                     stacks: { max: 20, duration: 20 },
                 },
             ],
@@ -530,7 +530,7 @@ export const ITEMS: Item[] = [
         ],
         passive: {
             condition: "On Hero Kill",
-            stats: [{ name: "Weapon Damage", amount: 10, units: "%/stack", stacks: { max: 7 } }],
+            stats: [{ name: "Weapon Damage", amount: 10, units: "%", stacks: { max: 7 } }],
         },
         additionalInfo: "Death results in loss of one stack",
     },
@@ -892,7 +892,7 @@ export const ITEMS: Item[] = [
         ],
         active: {
             condition: "Enemy Ability Use",
-            stats: [{ name: "Healing", amount: 35, units: "/stack", stacks: { max: 15 } }],
+            stats: [{ name: "Healing", amount: 35, stacks: { max: 15 } }],
             cooldown: 30,
         },
     },
@@ -1197,7 +1197,6 @@ export const ITEMS: Item[] = [
                 {
                     name: "Spirit Power",
                     amount: 1,
-                    units: "/stack",
                     stacks: { max: 20, duration: 30 },
                 },
             ],
