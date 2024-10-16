@@ -4,7 +4,7 @@ import { GroupPriorities, DetailedPriorities, PriorityGroupMapping } from "@/typ
 function initializePriorities(priorityMapping: PriorityGroupMapping) {
     const initPriorities: GroupPriorities = {};
     Object.keys(priorityMapping).forEach((priorityName) => {
-        initPriorities[priorityName] = 0;
+        initPriorities[priorityName] = 1;
     });
     return { initPriorities };
 }

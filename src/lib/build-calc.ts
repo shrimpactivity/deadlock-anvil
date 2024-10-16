@@ -13,7 +13,8 @@ export class BuildCalculator {
 
     // Value factor of stats associated with an un-prioritized effect condition
     private readonly CONDITIONAL_STATS_FACTOR = 0.4;
-    private readonly CONDITION_NOT_MET_FACTOR = 0.25;
+    
+    private readonly STACKING_STAT_MODIFIER = 0.5;
 
     // Value factor for component items. Components are 'valuable' since they fill
     // the same slot, but the stats are overridden by the parents.
@@ -53,15 +54,20 @@ export class BuildCalculator {
         let result = 0;
         stats.forEach((stat) => {
             const priorityValue = priorities.stats[stat.name];
+            let statValue = 0;
             if (priorityValue) {
-                const normValue = this.statNormal.calc(stat);
-                result += normValue * Math.sqrt(priorityValue); // TODO: potentially square root this or something to have diminishing priority stacking
+                statValue += this.statNormal.calc(stat);
+                // Include effect of stacking stat
+                if (stat.stacks) {
+                    statValue *= stat.stacks.max * this.STACKING_STAT_MODIFIER;
+                }
+                // Use sqrt to have diminishing priority returns
+                statValue *= Math.sqrt(priorityValue);
+                result += statValue;
             }
         });
         return result;
     }
-
-    // FIXME: fix bullet hit being double counted with weapon damage
 
     /**
      * Returns either the active or passive effect stats 'build value' for an item.
