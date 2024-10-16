@@ -979,7 +979,7 @@ export const ITEMS: Item[] = [
         stats: [
             { name: "Stamina", amount: 3 },
             { name: "Stamina Recovery", amount: 25, units: "%" },
-            { name: "Jump Dash Distance", amount: 30, units: "%" },
+            { name: "Dash Jump Distance", amount: 30, units: "%" },
             { name: "Fire Rate", amount: 7, units: "%" },
             { name: "Spirit Power", amount: 8 },
         ],
@@ -1646,10 +1646,10 @@ export const ITEMS: Item[] = [
         stats: [
             { name: "Spirit Resist", amount: 15, units: "%" },
             { name: "Bonus Health", amount: 125 },
-            { name: "Spirit Resist", amount: -12, units: "%" }, //TODO: this is actually a bad thing (reduces your spirit resist when you take spirit damage)
         ],
         passive: {
             stats: [
+                { name: "Enemy Spirit Resist Reduction", amount: 12, units: "%" }, //TODO: this is actually a bad thing (reduces your spirit resist when you take spirit damage)
                 { name: "Spirit Amp", amount: 5, units: "%", stacks: { max: 20, duration: 12 } },
             ],
             cooldown: 0.7

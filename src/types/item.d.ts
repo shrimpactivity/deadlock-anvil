@@ -61,6 +61,7 @@ type ItemStatName =
     | "Cooldown Reduction"
     | "Charge Cooldown Reduction"
     | "Charge Time Reduction"
+    | "Dash Jump Distance"
     | "Debuff Immunity"
     | "Debuff Resist"
     | "Disarm"
@@ -72,7 +73,7 @@ type ItemStatName =
     | "Enemy Movement Slow"
     | "Enemy Silence"
     | "Enemy Spirit Resist Reduction"
-    | "Enemy Stun" //TODO: used for Knockdown
+    | "Enemy Stun"
     | "Fire Rate"
     | "Healing"
     | "Healing Amp"
@@ -82,7 +83,6 @@ type ItemStatName =
     | "Heavy Melee Damage"
     | "Heavy Melee Distance"
     | "Invincible"
-    | "Jump Dash Distance"
     | "Max Health"
     | "Max Health Lifesteal"
     | "Max Health Spirit Damage"
@@ -106,7 +106,6 @@ type ItemStatName =
     | "Stamina"
     | "Stamina Recovery"
     | "Stealth"
-    | "Teleport" //TODO: used for Phantom Strike
     | "Temporary Ammo"
     | "Weapon Damage"
     | "Weapon Damage vs. NPCs"
