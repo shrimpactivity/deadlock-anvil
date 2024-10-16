@@ -1455,7 +1455,307 @@ export const ITEMS: Item[] = [
         tier: 3,
         component: "Mystic Reach",
         stats: [
-            {name: ""}
-        ]
-    }
+            { name: "Ability Range", amount: 25, units: "%" },
+            { name: "Bullet Resist", amount: 12, units: "%" },
+            { name: "Spirit Power", amount: 8 },
+        ],
+        passive: {
+            condition: "Use Imbued Ability",
+            stats: [{ name: "Ability Range", amount: 35, units: "%" }],
+        },
+    },
+    {
+        name: "Improved Spirit",
+        category: "spirit",
+        tier: 3,
+        component: "Extra Spirit",
+        stats: [
+            { name: "Spirit Power", amount: 28 },
+            { name: "Health Regen", amount: 3 },
+            { name: "Sprint Speed", amount: 1, units: "m/sec" },
+            { name: "Bonus Health", amount: 100 },
+        ],
+    },
+    {
+        name: "Mystic Slow",
+        category: "spirit",
+        tier: 3,
+        component: "Suppressor",
+        stats: [
+            { name: "Bonus Health", amount: 100 },
+            { name: "Health Regen", amount: 3 },
+            { name: "Spirit Power", amount: 6 },
+        ],
+        passive: {
+            condition: "On Spirit Hit",
+            stats: [
+                { name: "Enemy Movement Slow", amount: 30, units: "%" },
+                { name: "Enemy Fire Rate Slow", amount: 40, units: "%" },
+            ],
+            duration: 2,
+        },
+    },
+    {
+        name: "Rapid Recharge",
+        category: "spirit",
+        tier: 3,
+        component: "Extra Charge",
+        stats: [
+            { name: "Bonus Ability Charge", amount: 2 },
+            { name: "Time Between Charges Reduction", amount: 65, units: "%" },
+            { name: "Cooldown Reduction", amount: 30, units: "%" },
+            { name: "Weapon Damage", amount: 12, units: "%" },
+        ],
+    },
+    {
+        name: "Superior Cooldown",
+        category: "spirit",
+        tier: 3,
+        component: "Improved Cooldown",
+        stats: [
+            { name: "Ability Cooldown Reduction", amount: 24, units: "%" },
+            { name: "Spirit Shield Health", amount: 100 },
+            { name: "Health Regen", amount: 4 },
+        ],
+        passive: {
+            condition: "Use Imbued Ability",
+            stats: [{ name: "Ability Cooldown Reduction", amount: 32, units: "%" }],
+        },
+    },
+    {
+        name: "Superior Duration",
+        category: "spirit",
+        tier: 3,
+        component: "Duration Extender",
+        stats: [
+            { name: "Ability Duration", amount: 26, units: "%" },
+            { name: "Bonus Health", amount: 175 },
+            { name: "Weapon Damage", amount: 15, units: "%" },
+            { name: "Health Regen", amount: 4 },
+        ],
+        passive: {
+            condition: "Use Imbued Ability",
+            stats: [{ name: "Ability Duration", amount: 32, units: "%" }],
+        },
+    },
+    {
+        name: "Surge of Power",
+        category: "spirit",
+        tier: 3,
+        stats: [{ name: "Bonus Health", amount: 75 }],
+        passive: {
+            condition: "Use Imbued Ability",
+            stats: [
+                { name: "Spirit Power", amount: 34 },
+                { name: "Fire Rate", amount: 10, units: "%" },
+                { name: "Move Speed", amount: 3, units: "m/sec" },
+            ],
+            duration: 6,
+            cooldown: 10.5,
+        },
+    },
+    {
+        name: "Torment Pulse",
+        category: "spirit",
+        tier: 3,
+        stats: [
+            { name: "Bonus Health", amount: 160 },
+            { name: "Spirit Power", amount: 6 },
+        ],
+        passive: {
+            condition: "Pulse Radius 9m",
+            stats: [{ name: "Spirit Damage", amount: 40 }],
+            cooldown: 1.5,
+        },
+    },
+    {
+        name: "Ethereal Shift",
+        category: "spirit",
+        tier: 3,
+        stats: [],
+        active: {
+            stats: [
+                { name: "Immunity", amount: 1, units: "ac" },
+                { name: "Ammo", amount: 100, units: "%" },
+                { name: "Spirit Power", amount: 14 },
+            ],
+            duration: 3.5,
+            cooldown: 32,
+        },
+        additionalInfo: "Bonus Spirit Power has a duration of 10s after the 3.5s of Ethereal Shift",
+    },
+    {
+        name: "Knockdown",
+        category: "spirit",
+        tier: 3,
+        stats: [
+            { name: "Stamina", amount: 1 },
+            { name: "Spirit Shield Health", amount: 200 },
+            { name: "Spirit Power", amount: 6 },
+        ],
+        active: {
+            stats: [{ name: "Enemy Stun", amount: 1, units: "ac" }],
+            duration: 0.9,
+            cooldown: 40,
+        },
+        additionalInfo: "Cast range is 45m",
+    },
+    {
+        name: "Silence Glyph",
+        category: "spirit",
+        tier: 3,
+        stats: [
+            { name: "Spirit Shield Health", amount: 150 },
+            { name: "Sprint Speed", amount: 1, units: "m/sec" },
+        ],
+        active: {
+            stats: [
+                { name: "Spirit Damage", amount: 100 },
+                { name: "Silence", amount: 1, units: "ac" },
+            ],
+            duration: 3,
+            cooldown: 32,
+        },
+        additionalInfo: "Cast range is 25m",
+    },
+    {
+        name: "Boundless Spirit",
+        category: "spirit",
+        tier: 4,
+        component: "Improved Spirit",
+        stats: [
+            { name: "Spirit Power", amount: 60 },
+            { name: "Bonus Health", amount: 300 },
+            { name: "Health Regen", amount: 15 },
+            { name: "Weapon Damage", amount: 25, units: "%" },
+            { name: "Sprint Speed", amount: 2, units: "m/sec" },
+        ],
+    },
+    {
+        name: "Diviner's Kevlar",
+        category: "spirit",
+        tier: 4,
+        stats: [
+            { name: "Spirit Lifesteal", amount: 20, units: "%" },
+            { name: "Cooldown Reduction", amount: 12, units: "%" },
+        ],
+        passive: {
+            condition: "Use Ultimate",
+            stats: [
+                { name: "Bullet Shield Health", amount: 700 },
+                { name: "Spirit Shield Health", amount: 700 },
+                { name: "Spirit Power", amount: 40 },
+            ],
+            duration: 15,
+            cooldown: 64,
+        },
+    },
+    {
+        name: "Escalating Exposure",
+        category: "spirit",
+        tier: 4,
+        component: "Mystic Vulnerability",
+        stats: [
+            { name: "Spirit Resist", amount: 15, units: "%" },
+            { name: "Bonus Health", amount: 125 },
+            { name: "Spirit Resist", amount: -12, units: "%" }, //TODO: this is actually a bad thing (reduces your spirit resist when you take spirit damage)
+        ],
+        passive: {
+            condition: "On Spirit Hit",
+            stats: [
+                { name: "Spirit Amp", amount: 5, units: "%", stacks: { max: 20, duration: 12 } },
+            ],
+        },
+        additionalInfo: "Max frequency per target is 0.7s",
+    },
+    {
+        name: "Mystic Reverb",
+        category: "spirit",
+        tier: 4,
+        stats: [
+            { name: "Spirit Lifesteal", amount: 15, units: "%" },
+            { name: "Spirit Resist", amount: 15, units: "%" },
+            { name: "Ability Range", amount: 15, units: "%" },
+        ],
+        passive: {
+            condition: "Use Imbued Ability",
+            stats: [
+                { name: "Spirit Damage", amount: 40 },
+                { name: "Enemy Movement Slow", amount: 40, units: "%" },
+            ],
+            duration: 3,
+            cooldown: 6.2,
+        },
+        additionalInfo: "16m radius",
+    },
+    {
+        name: "Curse",
+        category: "spirit",
+        tier: 4,
+        stats: [
+            { name: "Weapon Damage", amount: 20, units: "%" },
+            { name: "Spirit Power", amount: 8 },
+        ],
+        active: {
+            stats: [
+                { name: "Silence", amount: 1, units: "ac" },
+                { name: "Disarm", amount: 1, units: "ac" },
+            ],
+            duration: 3.25,
+            cooldown: 53,
+        },
+        additionalInfo: "Cast range is 20m",
+    },
+    {
+        name: "Echo Shard",
+        category: "spirit",
+        tier: 4,
+        stats: [
+            { name: "Move Speed", amount: 1, units: "m/sec" },
+            { name: "Bullet Resist", amount: 16, units: "%" },
+            { name: "Spirit Power", amount: 12 },
+        ],
+        active: {
+            stats: [{ name: "Cooldown Reduction", amount: 100, units: "%" }],
+            cooldown: 21,
+        },
+        additionalInfo: "Only works for the most recently used non-ultimate ability",
+    },
+    {
+        name: "Magic Carpet",
+        category: "spirit",
+        tier: 4,
+        stats: [
+            { name: "Ability Duration", amount: 10, units: "%" },
+            { name: "Spirit Power", amount: 15 },
+            { name: "Bonus Health", amount: 150 },
+        ],
+        active: {
+            stats: [
+                { name: "Immunity", amount: 1, units: "ac" },
+                { name: "Bullet Shield Health", amount: 400 },
+                { name: "Spirit Shield Health", amount: 400 },
+            ],
+            duration: 7,
+            cooldown: 32,
+        },
+        additionalInfo:
+            "Any action dismisses the carpet, summon duration is 1.3s, bonus fly speed is 6m/s, and shield duration is 16s",
+    },
+    {
+        name: "Refresher",
+        category: "spirit",
+        tier: 4,
+        stats: [
+            { name: "Spirit Resist", amount: 8, units: "%" },
+            { name: "Bullet Resist", amount: 16, units: "%" },
+        ],
+        active: {
+            stats: [
+                { name: "Cooldown Reduction", amount: 100, units: "%" },
+                { name: "Time Between Charges Reduction", amount: 100, units: "%" },
+            ],
+            cooldown: 230,
+        },
+    },
 ];

@@ -37,6 +37,7 @@ export interface ItemStat {
 }
 
 type ItemStatName =
+    | "Ability Cooldown Reduction"
     | "Ability Duration"
     | "Ability Range"
     | "Ammo"
@@ -59,6 +60,7 @@ type ItemStatName =
     | "Enemy Movement Slow"
     | "Enemy Silence"
     | "Enemy Spirit Resist Reduction"
+    | "Enemy Stun" //TODO: used for Knockdown
     | "Fire Rate"
     | "Healing"
     | "Healing Amp"
@@ -68,7 +70,7 @@ type ItemStatName =
     | "Health Regen"
     | "Heavy Melee Damage"
     | "Heavy Melee Distance"
-    | "Immunity" //TODO: used for Metal Skin and Unstoppable
+    | "Immunity" //TODO: used for Metal Skin, Unstoppable, and Ethereal Shift
     | "Jump Dash Distance"
     | "Launch" //TODO: used for majestic leap
     | "Max Health"
@@ -82,6 +84,7 @@ type ItemStatName =
     | "Respawn" //TODO: used for Soul Rebirth
     | "Respawn Time"
     | "Ricochet Damage"
+    | "Silence" //TODO: used for Silence Glyph and Curse
     | "Slide Distance"
     | "Spirit Amp"
     | "Spirit Damage"
@@ -95,6 +98,7 @@ type ItemStatName =
     | "Stamina Recovery"
     | "Teleport" //TODO: used for Phantom Strike
     | "Temporary Ammo"
+    | "Time Between Charges Reduction"
     | "Weapon Damage"
     | "Weapon Damage vs. NPCs"
     | "Weapon Fall-off Range"
@@ -128,8 +132,10 @@ type ItemConditionName =
     | "On Hero Kill"
     | "On Melee Hit"
     | "On Spirit Hit"
+    | "Pulse Radius 9m"
     | "Spirit Shield Up"
     | "Sustained Damage"
-    | "Use Imbued Ability";
+    | "Use Imbued Ability"
+    | "Use Ultimate";
 
 type ItemTag = "mobility" | "bullet multi-hit" | "silence" | "spirit multi-hit" | "stealth";
