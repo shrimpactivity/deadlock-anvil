@@ -1,0 +1,5 @@
+Background Dark Teal: 04454E
+Light Purple: DF76E5
+Light Green: 8FE388
+Light Orange: FFB01F
+Light Blue: 7CAAF4
