@@ -1,5 +1,5 @@
 import { NormalCalculator } from "./normal-calc";
-import { getTierBonusStat } from "./utils";
+import { getItemCost, getTierBonusStat } from "./utils";
 import { Item, ItemStat } from "../types/item";
 import { BuildOptions } from "../types/build";
 import { DetailedPriorities } from "../types/priority";
@@ -32,19 +32,21 @@ export class BuildCalculator {
      * Adds items' shop tier stat to it's list of innate stats (in-place).
      */
     private addTierBonusStatToItems(items: Item[]) {
-        items.forEach((item) => {
-            const bonusStat = getTierBonusStat(item.tier, item.category);
-            const existingStat: ItemStat | undefined = item.stats.filter(
+        let newItems = items.map((item) => {
+            let newItem: Item = { ...item };
+            const bonusStat = getTierBonusStat(newItem.tier, newItem.category);
+            const existingStat: ItemStat | undefined = newItem.stats.filter(
                 (stat) => stat.name === bonusStat.name && stat.units === bonusStat.units,
             )[0];
 
             if (existingStat) {
                 existingStat.amount += bonusStat.amount;
             } else {
-                item.stats = [...item.stats, bonusStat];
+                newItem.stats = [...newItem.stats, bonusStat];
             }
+            return newItem;
         });
-        return items;
+        return newItems;
     }
 
     private getValueForStats(stats: ItemStat[], priorities: DetailedPriorities) {
@@ -114,7 +116,6 @@ export class BuildCalculator {
             if (activeConditionPriority) {
                 conditionsValue += Math.sqrt(activeConditionPriority);
             }
-
         }
 
         const passiveCondition = item.passive?.condition;
@@ -148,11 +149,7 @@ export class BuildCalculator {
         result += this.calcTagsBuildValue(item, priorities);
         //result += this.calcComponentBuildValue(item, priorities);
 
-        // TODO: add item shop tier stat priorities
 
-        // TODO: consider stacking things in calc
-
-        // TODO: add tag priority
 
         // TODO: Compute value of component and add to result, maybe with a scale factor?
         // This is to account for components and parents taking up a single item slot, increasing
@@ -174,12 +171,17 @@ export class BuildCalculator {
      * item costs and other arguments.
      */
     getBuildOrder({ items, priorities, mandatedItems, settings }: BuildOptions) {
-        const buildValues = items.map((item) => ({
-            item,
-            value: this.calcItemBuildValue(item, priorities),
-        }));
+        const itemsWithBuildValues = items.map((item) => {
+            const value = this.calcItemBuildValue(item, priorities);
+
+            return {
+                ...item,
+                value,
+                adjustedValue: value / Math.sqrt(getItemCost(item)) * 1000
+            }
+        });
         // const sortedItems = itemsWithBuildValues.sort((a, b) => b.buildValue! - a.buildValue!);
         // return sortedItems;
-        return buildValues.filter((x) => x.value !== 0);
+        return itemsWithBuildValues.filter((x) => x.value !== 0);
     }
 }

@@ -7,9 +7,9 @@ import BuildRoot from "./routes/build/BuildRoot";
 import ItemsPage from "./routes/ItemsPage";
 import AboutPage from "./routes/AboutPage";
 import BuildProvider from "./context/BuildProvider";
-import "./index.css";
 import { ITEMS } from "./config/items.config";
 import { PRIORITY_MAPPING } from "./config/priorities.config";
+import "./index.css";
 
 const router = createBrowserRouter([
     {

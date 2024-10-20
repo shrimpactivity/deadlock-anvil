@@ -1,5 +1,7 @@
 import { PRIORITY_MAPPING } from "../src/config/priorities.config";
 import { ITEMS } from "../src/config/items.config";
+import {BuildCalculator} from "../src/lib/build-calc";
+import { GroupPriorities, PriorityGroupMapping } from "../src/types/priority";
 
 /**
  * Print a sorted list of all stat names used in the items list config.
@@ -101,6 +103,18 @@ function getPriorityGroupsWithoutProps() {
         }
     });
     return result;
+}
+
+function generateRandomPriorities(): GroupPriorities {
+    let result: GroupPriorities = {}
+    Object.keys(PRIORITY_MAPPING).forEach(priority => {
+        result[priority] = Math.floor(Math.random() * 4);
+    })
+    return result;
+}
+
+function generateRandomBuild() {
+    const buildCalc = new BuildCalculator(ITEMS);
 }
 
 function printAuditResults() {

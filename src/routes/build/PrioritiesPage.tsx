@@ -5,14 +5,14 @@ import { getItemCost } from "../../lib/utils";
 export default function PrioritiesPage() {
     const { priorities, buildOrder } = useBuild();
     const weaponItems = buildOrder
-        .filter((x) => x.item.category === "weapon")
-        .sort((a, b) => b.value - a.value);
+        .filter((x) => x.category === "weapon")
+        .sort((a, b) => b.adjustedValue - a.adjustedValue);
     const vitItems = buildOrder
-        .filter((x) => x.item.category === "vitality")
-        .sort((a, b) => b.value - a.value);
+        .filter((x) => x.category === "vitality")
+        .sort((a, b) => b.adjustedValue - a.adjustedValue);
     const spiritItems = buildOrder
-        .filter((x) => x.item.category === "spirit")
-        .sort((a, b) => b.value - a.value);
+        .filter((x) => x.category === "spirit")
+        .sort((a, b) => b.adjustedValue - a.adjustedValue);
 
     return (
         <>
@@ -36,20 +36,20 @@ export default function PrioritiesPage() {
                     <h2>Weapon</h2>
                     {weaponItems.map((x) => (
                         <div
-                            key={x.item.name}
-                        >{`${getItemCost(x.item)} - ${x.item.name} - ${Math.round(x.value * 1000) / 1000}`}</div>
+                            key={x.name}
+                        >{`${getItemCost(x)} - ${x.name} - ${Math.round(x.adjustedValue * 1000) / 1000}`}</div>
                     ))}
                     <h2>Vitality</h2>
                     {vitItems.map((x) => (
                         <div
-                            key={x.item.name}
-                        >{`${getItemCost(x.item)} - ${x.item.name} - ${Math.round(x.value * 1000) / 1000}`}</div>
+                            key={x.name}
+                        >{`${getItemCost(x)} - ${x.name} - ${Math.round(x.adjustedValue * 1000) / 1000}`}</div>
                     ))}
                     <h2>Spirit</h2>
                     {spiritItems.map((x) => (
                         <div
-                            key={x.item.name}
-                        >{`${getItemCost(x.item)} - ${x.item.name} - ${Math.round(x.value * 1000) / 1000}`}</div>
+                            key={x.name}
+                        >{`${getItemCost(x)} - ${x.name} - ${Math.round(x.adjustedValue * 1000) / 1000}`}</div>
                     ))}
                 </div>
             </div>
