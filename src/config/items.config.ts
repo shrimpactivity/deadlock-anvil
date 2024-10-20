@@ -5,6 +5,7 @@ export const ITEMS: Item[] = [
         name: "Basic Magazine",
         category: "weapon",
         tier: 1,
+        componentOf: "Titanic Magazine",
         stats: [
             { name: "Ammo", amount: 26, units: "%" },
             { name: "Weapon Damage", amount: 15, units: "%" },
@@ -14,6 +15,7 @@ export const ITEMS: Item[] = [
         name: "Close Quarters",
         category: "weapon",
         tier: 1,
+        componentOf: "Point Blank",
         stats: [{ name: "Bullet Shield Health", amount: 85 }],
         passive: {
             condition: "Close Range 15m",
@@ -24,6 +26,7 @@ export const ITEMS: Item[] = [
         name: "Headshot Booster",
         category: "weapon",
         tier: 1,
+        componentOf: "Headhunter",
         stats: [
             { name: "Fire Rate", amount: 4, units: "%" },
             { name: "Bullet Shield Health", amount: 40 },
@@ -38,6 +41,7 @@ export const ITEMS: Item[] = [
         name: "High Velocity Mag",
         category: "weapon",
         tier: 1,
+        componentOf: "Pristine Emblem",
         stats: [
             { name: "Bullet Velocity", amount: 25, units: "%" },
             { name: "Weapon Damage", amount: 12, units: "%" },
@@ -86,7 +90,6 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 7, units: "%" },
         ],
         passive: {
-            condition: "On Bullet Hit",
             stats: [
                 { name: "Healing", amount: 40 },
                 { name: "Healing From NPCs", amount: 15 },
@@ -126,7 +129,7 @@ export const ITEMS: Item[] = [
                 {
                     name: "Weapon Damage",
                     amount: 5,
-                    units: "%/stack",
+                    units: "%",
                     stacks: { max: 10, duration: 10 },
                 },
             ],
@@ -176,7 +179,7 @@ export const ITEMS: Item[] = [
             { name: "Heavy Melee Distance", amount: 40, units: "%" },
         ],
         passive: {
-            condition: "Heavy Melee Hit",
+            condition: "On Heavy Melee Hit",
             stats: [
                 { name: "Heavy Melee Damage", amount: 20, units: "%" },
                 { name: "Ammo", amount: 100, units: "%" },
@@ -194,7 +197,6 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 4 },
         ],
         passive: {
-            condition: "On Bullet Hit",
             stats: [{ name: "Spirit Damage", amount: 65 }],
             cooldown: 5.2,
         },
@@ -208,7 +210,6 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 5 },
         ],
         passive: {
-            condition: "On Bullet Hit",
             stats: [{ name: "Enemy Movement Slow", amount: 25, units: "%" }],
             duration: 1.3,
         },
@@ -219,7 +220,6 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [{ name: "Weapon Damage", amount: 7, units: "%" }],
         passive: {
-            condition: "On Bullet Hit",
             stats: [
                 { name: "Spirit Amp", amount: 10, units: "%" },
                 { name: "Spirit Lifesteal", amount: 20, units: "%" },
@@ -265,7 +265,6 @@ export const ITEMS: Item[] = [
             { name: "Bonus Health", amount: 70 },
         ],
         passive: {
-            condition: "On Bullet Hit",
             stats: [
                 { name: "Fire Rate", amount: 30, units: "%" },
                 { name: "Move Speed", amount: 2, units: "m/sec" },
@@ -283,12 +282,11 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 14, units: "%" },
         ],
         passive: {
-            condition: "On Bullet Hit",
             stats: [
                 {
                     name: "Bullet Resist",
                     amount: 2,
-                    units: "%/stack",
+                    units: "%",
                     stacks: { max: 20, duration: 20 },
                 },
             ],
@@ -324,11 +322,11 @@ export const ITEMS: Item[] = [
         passive: {
             condition: "Close Range 15m",
             stats: [
-                { name: "Enemy Bullet Resist Reduction", amount: 27, units: "%" },
-                { name: "Enemy Fire Rate Slow", amount: 30, units: "%" },
+                { name: "Enemy Bullet Resist Reduction", amount: 9, units: "%" },
+                { name: "Enemy Fire Rate Slow", amount: 10, units: "%" },
             ],
         },
-        additionalInfo: "Effect is cut in third with more than one enemy nearby.",
+        additionalInfo: "Effect is tripled with only one enemy nearby.",
     },
     {
         name: "Intensifying Magazine",
@@ -423,10 +421,9 @@ export const ITEMS: Item[] = [
         tier: 3,
         stats: [{ name: "Bonus Health", amount: 100 }],
         passive: {
-            condition: "On Bullet Hit",
             stats: [
                 { name: "Bleed Damage", amount: 0.05, units: "%/sec" },
-                { name: "Healing Reduction", amount: -65, units: "%" },
+                { name: "Enemy Healing Reduction", amount: 65, units: "%" },
             ],
             duration: 3,
         },
@@ -443,7 +440,7 @@ export const ITEMS: Item[] = [
         ],
         active: {
             stats: [
-                { name: "Spirit Damage", amount: 104.5, units: "/sec" },
+                { name: "Spirit Damage", amount: 73, units: "/sec" },
                 { name: "Weapon Damage", amount: 50, units: "%" },
             ],
             duration: 5,
@@ -537,7 +534,7 @@ export const ITEMS: Item[] = [
         ],
         passive: {
             condition: "On Hero Kill",
-            stats: [{ name: "Weapon Damage", amount: 10, units: "%/stack", stacks: { max: 7 } }],
+            stats: [{ name: "Weapon Damage", amount: 10, units: "%", stacks: { max: 7 } }],
         },
         additionalInfo: "Death results in loss of one stack",
     },
@@ -550,7 +547,6 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 31.5, units: "%" },
         ],
         passive: {
-            condition: "Bullet Proc Chance",
             stats: [{ name: "Enemy Movement Slow", amount: 30, units: "%" }],
             duration: 1.5,
         },
@@ -564,10 +560,8 @@ export const ITEMS: Item[] = [
             { name: "Ammo", amount: 35, units: "%" },
             { name: "Fire Rate", amount: 10, units: "%" },
             { name: "Bonus Health", amount: 150 },
+            { name: "Ricochet Damage", amount: 60, units: "%" },
         ],
-        passive: {
-            stats: [{ name: "Ricochet Damage", amount: 60, units: "%" }],
-        },
         additionalInfo: "Hits 2 ricochet targets with 11m of eachother",
     },
     {
@@ -600,14 +594,14 @@ export const ITEMS: Item[] = [
         ],
         active: {
             stats: [
+                { name: "Stealth", amount: 25, units: "sec" },
                 { name: "Fire Rate", amount: 30, units: "%" },
                 { name: "Spirit Power", amount: 55 },
             ],
             cooldown: 41,
             duration: 8,
         },
-        tags: ["stealth"],
-        additionalInfo: "Become stealthed for 25sec, attacking enemies initiates 8sec ambush",
+        additionalInfo: "Attacking enemies while stealthed initiates ambush",
     },
     {
         name: "Silencer",
@@ -692,11 +686,11 @@ export const ITEMS: Item[] = [
             { name: "Bonus Health", amount: 75 },
         ],
         passive: {
-            condition: "On Melee Hit",
             stats: [
                 { name: "Melee Lifesteal", amount: 20, units: "%" },
                 { name: "Melee Lifesteal", amount: 90 },
             ],
+            cooldown: 7.5,
         },
     },
     {
@@ -725,7 +719,7 @@ export const ITEMS: Item[] = [
             duration: 19,
             cooldown: 64,
         },
-        additionalInfo: "Has a cast range of 30m",
+        additionalInfo: "30m Cast Range",
     },
     {
         name: "Bullet Armor",
@@ -800,11 +794,11 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [{ name: "Bonus Health", amount: 75 }],
         passive: {
-            condition: "On Spirit Hit",
-            stats: [{ name: "Healing Reduction", amount: 40, units: "%" }],
+            stats: [{ name: "Enemy Healing Reduction", amount: 40, units: "%" }],
             duration: 6,
-        },
+        }, // FIXME: include healing effect in stats?
         additionalInfo: "If the enemy hero dies under the healing reduction effect, heal 350",
+        tags: ["hero kill"],
     },
     {
         name: "Healing Booster",
@@ -872,7 +866,7 @@ export const ITEMS: Item[] = [
             duration: 5,
             cooldown: 30,
         },
-        additionalInfo: "Cast Range is 35m",
+        additionalInfo: "35m Cast Range",
     },
     {
         name: "Healing Nova",
@@ -900,7 +894,8 @@ export const ITEMS: Item[] = [
             { name: "Sprint Speed", amount: 1, units: "m/sec" },
         ],
         active: {
-            stats: [{ name: "Healing", amount: 35, units: "/stack", stacks: { max: 15 } }],
+            condition: "Enemy Ability Use",
+            stats: [{ name: "Healing", amount: 35, stacks: { max: 15 } }],
             cooldown: 30,
         },
     },
@@ -970,14 +965,15 @@ export const ITEMS: Item[] = [
             { name: "Bullet Resist", amount: 8, units: "%" },
         ],
         passive: {
-            condition: "On Melee Hit",
             stats: [
                 { name: "Enemy Movement Slow", amount: 60, units: "%" },
                 { name: "Melee Lifesteal", amount: 65, units: "%" },
                 { name: "Melee Lifesteal", amount: 110 },
             ],
+            cooldown: 5,
+            duration: 2.5
         },
-        additionalInfo: "Melee Lifesteal is only 40% effective against non-heroes",
+        additionalInfo: "Lifesteal is only 40% effective against non-heroes",
     },
     {
         name: "Superior Stamina",
@@ -987,7 +983,7 @@ export const ITEMS: Item[] = [
         stats: [
             { name: "Stamina", amount: 3 },
             { name: "Stamina Recovery", amount: 25, units: "%" },
-            { name: "Jump Dash Distance", amount: 30, units: "%" },
+            { name: "Dash Jump Distance", amount: 30, units: "%" },
             { name: "Fire Rate", amount: 7, units: "%" },
             { name: "Spirit Power", amount: 8 },
         ],
@@ -1005,11 +1001,13 @@ export const ITEMS: Item[] = [
         ],
         passive: {
             condition: "Pass Through Cosmic Veil",
-            stats: [{ name: "Move Speed", amount: 4, units: "m/sec" }],
+            stats: [
+                { name: "Move Speed", amount: 4, units: "m/sec" },
+                { name: "Stealth", amount: 5, units: "sec" },
+            ],
             duration: 5,
             cooldown: 18,
         },
-        tags: ["stealth"],
         additionalInfo:
             "Walking through the cosmic veil also restores all bullet and spirit shields",
     },
@@ -1037,12 +1035,8 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 10 },
             { name: "Bonus Health", amount: 125 },
         ],
-        active: {
-            stats: [{ name: "Launch", amount: 1, units: "ac" }],
-            cooldown: 26,
-        },
         tags: ["mobility"],
-        additionalInfo: "Cannot be used for 5s if attacked by enemy Hero",
+        additionalInfo: "26s cooldown. Cannot be used for 5s if attacked by enemy hero",
     },
     {
         name: "Metal Skin",
@@ -1054,9 +1048,9 @@ export const ITEMS: Item[] = [
             { name: "Fire Rate", amount: 8, units: "%" },
         ],
         active: {
-            stats: [{ name: "Immunity", amount: 1, units: "ac" }],
-            duration: 3.5,
+            stats: [{ name: "Bullet Immunity", amount: 3.5, units: "sec" }],
             cooldown: 21,
+            duration: 3.5,
         },
     },
     {
@@ -1074,7 +1068,7 @@ export const ITEMS: Item[] = [
             cooldown: 26,
         },
         tags: ["mobility"],
-        additionalInfo: "Cast range of 32m",
+        additionalInfo: "32m Cast Range",
     },
     {
         name: "Inhibitor",
@@ -1085,10 +1079,9 @@ export const ITEMS: Item[] = [
             { name: "Bonus Health", amount: 175 },
         ],
         passive: {
-            condition: "On Bullet Hit",
             stats: [
                 { name: "Enemy Movement Slow", amount: 25, units: "%" },
-                { name: "Damage Penalty", amount: 35, units: "%" },
+                { name: "Enemy Damage Reduction", amount: 35, units: "%" },
             ],
             duration: 2.5,
         },
@@ -1111,12 +1104,11 @@ export const ITEMS: Item[] = [
         tier: 4,
         stats: [{ name: "Bullet Resist", amount: 18, units: "%" }],
         passive: {
-            condition: "On Bullet Hit",
-            stats: [{ name: "Max HP Lifesteal", amount: 50 }],
+            stats: [{ name: "Max Health Lifesteal", amount: 50 }],
             duration: 20,
         },
         additionalInfo:
-            "Max frequency is 0.8s. Permanently steal one stack of health if a siphoned target dies, and lose 2 stacks if you die.",
+            "Permanently steal one stack of health if a siphoned target dies, and lose 2 stacks if you die.",
     },
     {
         name: "Soul Rebirth",
@@ -1129,12 +1121,11 @@ export const ITEMS: Item[] = [
         ],
         passive: {
             condition: "Death",
-            stats: [
-                { name: "Respawn", amount: 1, units: "ac" },
-                { name: "Bonus Health", amount: 50, units: "%" },
-            ],
+            stats: [{ name: "Healing", amount: 50, units: "%" }],
             cooldown: 212,
         },
+        tags: ["respawn"],
+        additionalInfo: "If you die, respawn after 4s",
     },
     {
         name: "Colossus",
@@ -1146,6 +1137,7 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 20, units: "%" },
         ],
         active: {
+            condition: "Close Range 15m",
             stats: [
                 { name: "Bullet Resist", amount: 40, units: "%" },
                 { name: "Spirit Resist", amount: 40, units: "%" },
@@ -1154,7 +1146,7 @@ export const ITEMS: Item[] = [
             duration: 7,
             cooldown: 37,
         },
-        additionalInfo: "Your model size grows by 20%, 14m Radius for enemy movement and dash slow",
+        additionalInfo: "Your model size grows by 20%",
     },
     {
         name: "Phantom Strike",
@@ -1166,14 +1158,15 @@ export const ITEMS: Item[] = [
         ],
         active: {
             stats: [
-                { name: "Teleport", amount: 1, units: "ac" },
-                { name: "Disarm", amount: 1, units: "ac" },
+                { name: "Disarm", amount: 3, units: "sec" },
                 { name: "Enemy Movement Slow", amount: 50, units: "%" },
                 { name: "Spirit Damage", amount: 75 },
             ],
             duration: 3,
             cooldown: 26,
         },
+        tags: ["mobility"],
+        additionalInfo: "25m Cast Range",
     },
     {
         name: "Unstoppable",
@@ -1186,10 +1179,7 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 12 },
         ],
         active: {
-            stats: [
-                { name: "Immunity", amount: 1, units: "ac" },
-                { name: "Debuff Resist", amount: 100, units: "%" },
-            ],
+            stats: [{ name: "Debuff Immunity", amount: 6, units: "sec" }],
             duration: 6,
             cooldown: 64,
         },
@@ -1204,13 +1194,12 @@ export const ITEMS: Item[] = [
             { name: "Bonus Health", amount: 40 },
         ],
         passive: {
-            condition: "Hit Soul",
+            condition: "On Soul Secure",
             stats: [
-                { name: "Ammo", amount: 2, units: "/soul" },
+                { name: "Ammo", amount: 2 },
                 {
                     name: "Spirit Power",
                     amount: 1,
-                    units: "/soul",
                     stacks: { max: 20, duration: 30 },
                 },
             ],
@@ -1222,7 +1211,7 @@ export const ITEMS: Item[] = [
         tier: 1,
         stats: [
             { name: "Bonus Ability Charge", amount: 1 },
-            { name: "Cooldown Reduction", amount: 10, units: "%" },
+            { name: "Charge Cooldown Reduction", amount: 10, units: "%" },
             { name: "Weapon Damage", amount: 6, units: "%" },
         ],
     },
@@ -1245,7 +1234,7 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 6, units: "%" },
         ],
         passive: {
-            condition: "Ability Hit 80+ Damage",
+            condition: "Spirit Burst Damage 80+",
             stats: [{ name: "Spirit Damage", amount: 35 }],
             cooldown: 6.2,
         },
@@ -1303,7 +1292,6 @@ export const ITEMS: Item[] = [
             { name: "Bullet Resist", amount: 5, units: "%" },
         ],
         passive: {
-            condition: "On Spirit Hit",
             stats: [{ name: "Enemy Bullet Resist Reduction", amount: 12, units: "%" }],
             duration: 8,
         },
@@ -1332,7 +1320,6 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [{ name: "Spirit Resist", amount: 6, units: "%" }],
         passive: {
-            condition: "On Spirit Hit",
             stats: [{ name: "Enemy Spirit Resist Reduction", amount: 12, units: "%" }],
             duration: 6,
         },
@@ -1343,13 +1330,15 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [],
         passive: {
-            condition: "Use Imbued Ability",
+            condition: "On Imbued Ability",
             stats: [
                 { name: "Spirit Damage", amount: 65 },
                 { name: "Fire Rate", amount: 15, units: "%" },
+                { name: "Ammo", amount: 100, units: "%" },
             ],
+            cooldown: 12,
         },
-        additionalInfo: "Only activates when Ammo is not full. 12s Max Frequency",
+        additionalInfo: "Only activates when Ammo is not full",
     },
     {
         name: "Suppressor",
@@ -1361,7 +1350,6 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 4 },
         ],
         passive: {
-            condition: "On Spirit Hit",
             stats: [{ name: "Enemy Fire Rate Slow", amount: 25, units: "%" }],
             duration: 2,
         },
@@ -1372,6 +1360,7 @@ export const ITEMS: Item[] = [
         tier: 2,
         stats: [{ name: "Spirit Resist", amount: 10, units: "%" }],
         active: {
+            condition: "Close Range 15m",
             stats: [
                 { name: "Spirit Damage", amount: 75 },
                 { name: "Enemy Movement Slow", amount: 40, units: "%" },
@@ -1379,7 +1368,8 @@ export const ITEMS: Item[] = [
             duration: 3,
             cooldown: 28,
         },
-        additionalInfo: "End radius is 14m",
+        additionalInfo: "14m Ability Range",
+        tags: ["spirit multi-hit"],
     },
     {
         name: "Decay",
@@ -1394,7 +1384,7 @@ export const ITEMS: Item[] = [
             duration: 10,
             cooldown: 45,
         },
-        additionalInfo: "Cast range is 15m",
+        additionalInfo: "15m Cast Range",
     },
     {
         name: "Slowing Hex",
@@ -1408,12 +1398,12 @@ export const ITEMS: Item[] = [
             stats: [
                 { name: "Spirit Damage", amount: 70 },
                 { name: "Enemy Movement Slow", amount: 25, units: "%" },
+                { name: "Enemy Movement Silence", amount: 3, units: "sec" },
             ],
             duration: 3,
             cooldown: 26,
         },
-        tags: ["silence"],
-        additionalInfo: "Cast range is 25m",
+        additionalInfo: "25m Cast Range",
     },
     {
         name: "Withering Whip",
@@ -1432,7 +1422,7 @@ export const ITEMS: Item[] = [
             duration: 4.5,
             cooldown: 22,
         },
-        additionalInfo: "Cast range is 30m",
+        additionalInfo: "30m Cast Range",
     },
     {
         name: "Improved Burst",
@@ -1444,8 +1434,8 @@ export const ITEMS: Item[] = [
             { name: "Weapon Damage", amount: 8, units: "%" },
         ],
         passive: {
-            condition: "Ability Hit 125+ Damage",
-            stats: [{ name: "Spirit Damage", amount: 7, units: "%" }],
+            condition: "Spirit Burst Damage 125+",
+            stats: [{ name: "Max Health Spirit Damage", amount: 7, units: "%" }],
             cooldown: 5,
         },
     },
@@ -1460,7 +1450,7 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 8 },
         ],
         passive: {
-            condition: "Use Imbued Ability",
+            condition: "On Imbued Ability",
             stats: [{ name: "Ability Range", amount: 35, units: "%" }],
         },
     },
@@ -1487,7 +1477,6 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 6 },
         ],
         passive: {
-            condition: "On Spirit Hit",
             stats: [
                 { name: "Enemy Movement Slow", amount: 30, units: "%" },
                 { name: "Enemy Fire Rate Slow", amount: 40, units: "%" },
@@ -1502,8 +1491,8 @@ export const ITEMS: Item[] = [
         component: "Extra Charge",
         stats: [
             { name: "Bonus Ability Charge", amount: 2 },
-            { name: "Time Between Charges Reduction", amount: 65, units: "%" },
-            { name: "Cooldown Reduction", amount: 30, units: "%" },
+            { name: "Charge Time Reduction", amount: 65, units: "%" },
+            { name: "Charge Cooldown Reduction", amount: 30, units: "%" },
             { name: "Weapon Damage", amount: 12, units: "%" },
         ],
     },
@@ -1513,13 +1502,13 @@ export const ITEMS: Item[] = [
         tier: 3,
         component: "Improved Cooldown",
         stats: [
-            { name: "Ability Cooldown Reduction", amount: 24, units: "%" },
+            { name: "Cooldown Reduction", amount: 24, units: "%" },
             { name: "Spirit Shield Health", amount: 100 },
             { name: "Health Regen", amount: 4 },
         ],
         passive: {
-            condition: "Use Imbued Ability",
-            stats: [{ name: "Ability Cooldown Reduction", amount: 32, units: "%" }],
+            condition: "On Imbued Ability",
+            stats: [{ name: "Cooldown Reduction", amount: 32, units: "%" }],
         },
     },
     {
@@ -1534,7 +1523,7 @@ export const ITEMS: Item[] = [
             { name: "Health Regen", amount: 4 },
         ],
         passive: {
-            condition: "Use Imbued Ability",
+            condition: "On Imbued Ability",
             stats: [{ name: "Ability Duration", amount: 32, units: "%" }],
         },
     },
@@ -1544,7 +1533,7 @@ export const ITEMS: Item[] = [
         tier: 3,
         stats: [{ name: "Bonus Health", amount: 75 }],
         passive: {
-            condition: "Use Imbued Ability",
+            condition: "On Imbued Ability",
             stats: [
                 { name: "Spirit Power", amount: 34 },
                 { name: "Fire Rate", amount: 10, units: "%" },
@@ -1563,7 +1552,7 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 6 },
         ],
         passive: {
-            condition: "Pulse Radius 9m",
+            condition: "Close Range 9m",
             stats: [{ name: "Spirit Damage", amount: 40 }],
             cooldown: 1.5,
         },
@@ -1575,14 +1564,14 @@ export const ITEMS: Item[] = [
         stats: [],
         active: {
             stats: [
-                { name: "Immunity", amount: 1, units: "ac" },
+                { name: "Invincible", amount: 3.5, units: "sec" },
                 { name: "Ammo", amount: 100, units: "%" },
                 { name: "Spirit Power", amount: 14 },
             ],
-            duration: 3.5,
+            duration: 10,
             cooldown: 32,
         },
-        additionalInfo: "Bonus Spirit Power has a duration of 10s after the 3.5s of Ethereal Shift",
+        additionalInfo: "While invincible, cannot move or perform actions",
     },
     {
         name: "Knockdown",
@@ -1594,11 +1583,11 @@ export const ITEMS: Item[] = [
             { name: "Spirit Power", amount: 6 },
         ],
         active: {
-            stats: [{ name: "Enemy Stun", amount: 1, units: "ac" }],
+            stats: [{ name: "Enemy Stun", amount: 0.9, units: "sec" }],
             duration: 0.9,
             cooldown: 40,
         },
-        additionalInfo: "Cast range is 45m",
+        additionalInfo: "45m Cast Range, target is stunned after 2s delay",
     },
     {
         name: "Silence Glyph",
@@ -1611,12 +1600,12 @@ export const ITEMS: Item[] = [
         active: {
             stats: [
                 { name: "Spirit Damage", amount: 100 },
-                { name: "Silence", amount: 1, units: "ac" },
+                { name: "Enemy Silence", amount: 3, units: "sec" },
             ],
             duration: 3,
             cooldown: 32,
         },
-        additionalInfo: "Cast range is 25m",
+        additionalInfo: "25m Cast Range",
     },
     {
         name: "Boundless Spirit",
@@ -1640,7 +1629,7 @@ export const ITEMS: Item[] = [
             { name: "Cooldown Reduction", amount: 12, units: "%" },
         ],
         passive: {
-            condition: "Use Ultimate",
+            condition: "On Ultimate",
             stats: [
                 { name: "Bullet Shield Health", amount: 700 },
                 { name: "Spirit Shield Health", amount: 700 },
@@ -1658,15 +1647,14 @@ export const ITEMS: Item[] = [
         stats: [
             { name: "Spirit Resist", amount: 15, units: "%" },
             { name: "Bonus Health", amount: 125 },
-            { name: "Spirit Resist", amount: -12, units: "%" }, //TODO: this is actually a bad thing (reduces your spirit resist when you take spirit damage)
         ],
         passive: {
-            condition: "On Spirit Hit",
             stats: [
+                { name: "Enemy Spirit Resist Reduction", amount: 12, units: "%" }, //TODO: this is actually a bad thing (reduces your spirit resist when you take spirit damage)
                 { name: "Spirit Amp", amount: 5, units: "%", stacks: { max: 20, duration: 12 } },
             ],
+            cooldown: 0.7
         },
-        additionalInfo: "Max frequency per target is 0.7s",
     },
     {
         name: "Mystic Reverb",
@@ -1678,7 +1666,7 @@ export const ITEMS: Item[] = [
             { name: "Ability Range", amount: 15, units: "%" },
         ],
         passive: {
-            condition: "Use Imbued Ability",
+            condition: "On Imbued Ability",
             stats: [
                 { name: "Spirit Damage", amount: 40 },
                 { name: "Enemy Movement Slow", amount: 40, units: "%" },
@@ -1686,7 +1674,7 @@ export const ITEMS: Item[] = [
             duration: 3,
             cooldown: 6.2,
         },
-        additionalInfo: "16m radius",
+        additionalInfo: "Reverb effect has 16m radius",
     },
     {
         name: "Curse",
@@ -1698,13 +1686,13 @@ export const ITEMS: Item[] = [
         ],
         active: {
             stats: [
-                { name: "Silence", amount: 1, units: "ac" },
-                { name: "Disarm", amount: 1, units: "ac" },
+                { name: "Enemy Silence", amount: 3.25, units: "sec" },
+                { name: "Disarm", amount: 3.25, units: "sec" },
             ],
             duration: 3.25,
             cooldown: 53,
         },
-        additionalInfo: "Cast range is 20m",
+        additionalInfo: "20m Cast Range",
     },
     {
         name: "Echo Shard",
@@ -1719,7 +1707,7 @@ export const ITEMS: Item[] = [
             stats: [{ name: "Cooldown Reduction", amount: 100, units: "%" }],
             cooldown: 21,
         },
-        additionalInfo: "Only works for the most recently used non-ultimate ability",
+        additionalInfo: "Reset cooldown of most recently used non-ultimate ability, 0.3s cast delay",
     },
     {
         name: "Magic Carpet",
@@ -1732,15 +1720,16 @@ export const ITEMS: Item[] = [
         ],
         active: {
             stats: [
-                { name: "Immunity", amount: 1, units: "ac" },
+                { name: "Movement Slow Resist", amount: 100, units: "%" },
                 { name: "Bullet Shield Health", amount: 400 },
                 { name: "Spirit Shield Health", amount: 400 },
+                { name: "Move Speed", amount: 6, units: "m/sec"}
             ],
             duration: 7,
             cooldown: 32,
         },
         additionalInfo:
-            "Any action dismisses the carpet, summon duration is 1.3s, bonus fly speed is 6m/s, and shield duration is 16s",
+            "Any action dismisses the carpet, summon duration is 1.3s, and shield duration is 16s",
     },
     {
         name: "Refresher",
@@ -1753,9 +1742,10 @@ export const ITEMS: Item[] = [
         active: {
             stats: [
                 { name: "Cooldown Reduction", amount: 100, units: "%" },
-                { name: "Time Between Charges Reduction", amount: 100, units: "%" },
+                { name: "Charge Cooldown Reduction", amount: 100, units: "%" },
             ],
             cooldown: 230,
         },
+        additionalInfo: "0.3s cast delay"
     },
 ];

@@ -3,6 +3,7 @@ export interface Item {
     category: ItemCategory;
     tier: ItemTier;
     component?: string;
+    componentOf?: string;
     stats: ItemStat[];
     passive?: {
         stats: ItemStat[];
@@ -20,12 +21,6 @@ export interface Item {
     additionalInfo?: string;
 }
 
-type ItemTier = 1 | 2 | 3 | 4;
-
-type ItemCategory = "weapon" | "vitality" | "spirit";
-
-export type ItemStatUnits = "%" | "%/sec" | "%/stack" | "/sec" | "/stack" | "m" | "m/sec" | "sec" | "ac" | "/soul"; //TODO: ac = action, ideally for just like, you do it or you don't
-
 export interface ItemStat {
     name: ItemStatName;
     amount: number;
@@ -36,8 +31,21 @@ export interface ItemStat {
     };
 }
 
+type ItemTier = 1 | 2 | 3 | 4;
+
+type ItemCategory = "weapon" | "vitality" | "spirit";
+
+export type ItemStatUnits =
+    | "%"
+    | "%/sec"
+    | "%/stack"
+    | "/sec"
+    | "/stack"
+    | "m"
+    | "m/sec"
+    | "sec"
+
 type ItemStatName =
-    | "Ability Cooldown Reduction"
     | "Ability Duration"
     | "Ability Range"
     | "Ammo"
@@ -46,45 +54,47 @@ type ItemStatName =
     | "Bonus Health"
     | "Bullet Damage Returned"
     | "Bullet Lifesteal"
+    | "Bullet Immunity"
     | "Bullet Resist"
     | "Bullet Resist vs. NPCs"
     | "Bullet Shield Health"
     | "Bullet Velocity"
     | "Cooldown Reduction"
-    | "Damage Penalty"
+    | "Charge Cooldown Reduction"
+    | "Charge Time Reduction"
+    | "Dash Jump Distance"
+    | "Debuff Immunity"
     | "Debuff Resist"
-    | "Disarm" //TODO: used for Phantom Strike
+    | "Disarm"
     | "Enemy Bullet Resist Reduction"
+    | "Enemy Damage Reduction"
     | "Enemy Fire Rate Slow"
     | "Enemy Healing Reduction"
+    | "Enemy Movement Silence"
     | "Enemy Movement Slow"
     | "Enemy Silence"
     | "Enemy Spirit Resist Reduction"
-    | "Enemy Stun" //TODO: used for Knockdown
+    | "Enemy Stun"
     | "Fire Rate"
     | "Healing"
     | "Healing Amp"
     | "Healing From NPCs"
-    | "Healing Reduction"
     | "Healing Reduction Resistance"
     | "Health Regen"
     | "Heavy Melee Damage"
     | "Heavy Melee Distance"
-    | "Immunity" //TODO: used for Metal Skin, Unstoppable, and Ethereal Shift
-    | "Jump Dash Distance"
-    | "Launch" //TODO: used for majestic leap
+    | "Invincible"
     | "Max Health"
-    | "Max HP Lifesteal"
+    | "Max Health Lifesteal"
+    | "Max Health Spirit Damage"
     | "Melee Damage"
     | "Melee Lifesteal"
     | "Minion Fire Rate"
     | "Move Speed"
     | "Movement Slow Resist"
     | "Reload Speed"
-    | "Respawn" //TODO: used for Soul Rebirth
     | "Respawn Time"
     | "Ricochet Damage"
-    | "Silence" //TODO: used for Silence Glyph and Curse
     | "Slide Distance"
     | "Spirit Amp"
     | "Spirit Damage"
@@ -96,32 +106,29 @@ type ItemStatName =
     | "Sprint Speed"
     | "Stamina"
     | "Stamina Recovery"
-    | "Teleport" //TODO: used for Phantom Strike
+    | "Stealth"
     | "Temporary Ammo"
-    | "Time Between Charges Reduction"
     | "Weapon Damage"
     | "Weapon Damage vs. NPCs"
     | "Weapon Fall-off Range"
     | "Weapon Zoom";
 
 type ItemConditionName =
-    | "Ability Hit 80+ Damage"
-    | "Ability Hit 125+ Damage"
     | "Avoid Damage"
     | "Bullet Hit Buildup"
     | "Bullet Proc Chance"
     | "Bullet Shield Up"
+    | "Close Range 9m"
     | "Close Range 15m"
     | "Close Range 20m"
     | "Continuous Fire"
     | "Death"
+    | "Enemy Ability Use"
     | "Enemy Health Above 50%"
     | "Pass Through Cosmic Veil"
     | "Health Above 60%"
     | "Health Above 75%"
     | "Health Below 50%"
-    | "Heavy Melee Hit"
-    | "Hit Soul"
     | "Long Range 15m"
     | "Minions Near 20m"
     | "Movement Locked"
@@ -129,13 +136,20 @@ type ItemConditionName =
     | "On Bullet Hit"
     | "On Dash Jump"
     | "On Headshot"
+    | "On Heavy Melee Hit"
     | "On Hero Kill"
-    | "On Melee Hit"
-    | "On Spirit Hit"
+    | "On Imbued Ability"
+    | "On Soul Secure"
+    | "On Ultimate"
     | "Pulse Radius 9m"
+    | "Spirit Burst Damage 80+"
+    | "Spirit Burst Damage 125+"
     | "Spirit Shield Up"
     | "Sustained Damage"
-    | "Use Imbued Ability"
-    | "Use Ultimate";
 
-type ItemTag = "mobility" | "bullet multi-hit" | "silence" | "spirit multi-hit" | "stealth";
+type ItemTag =
+    | "mobility"
+    | "bullet multi-hit"
+    | "hero kill"
+    | "respawn"
+    | "spirit multi-hit"
